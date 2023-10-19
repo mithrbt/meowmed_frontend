@@ -15,4 +15,11 @@ export class CustomerService {
   getCustomerList(): Observable<Customer[]>{
     return this.httpClient.get<Customer[]>(this.baseURL);
   }
+
+  setCustomer(){
+    return this.httpClient.post(this.baseURL,Customer).subscribe((response) => {
+      console.log('Produkt erstellt:', response);
+    });
+
+  }
 }
