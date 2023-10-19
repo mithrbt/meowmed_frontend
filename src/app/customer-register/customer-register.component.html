@@ -4,7 +4,7 @@
     <thead>
     </thead>
     <tbody>
-    <form (ngSubmit)="createCustomer()">
+
         <div>
             <label for="id">ID</label>
             <input type="text" id="id" name="id" [(ngModel)]="customer.id" required>
@@ -18,11 +18,11 @@
             <input type="text" id="lastName" name="lastName" [(ngModel)]="customer.lastname" required>
         </div>
         <div>
-            <label for="address">Vorname</label>
+            <label for="address">Adresse</label>
             <input type="text" id="address" name="address" [(ngModel)]="customer.address" required>
         </div>
-        <button type="submit">Kunde erstellen</button>
-    </form>
+        <button type="button" (click)="createCustomer()">Kunde erstellen</button>
+
     </tbody>
 </table>
 

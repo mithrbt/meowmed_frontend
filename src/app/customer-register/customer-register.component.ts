@@ -10,12 +10,12 @@ import { FormsModule } from '@angular/forms';
 export class CustomerRegisterComponent implements OnInit{
   constructor(private customerService: CustomerService){
   }
-  customer : Customer ={
+  customer: Customer = {
     id: 0,
     firstname: '',
-    lastname:'',
-    address:''
-  }
+    lastname: '',
+    address: ''
+  };
   ngOnInit(): void{
     this.createCustomer();
   }
