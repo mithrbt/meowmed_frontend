@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Customer} from "../customer";
 import {CustomerService} from "../customer.service";
-
+import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-customer-register',
   templateUrl: './customer-register.component.html',
@@ -10,11 +10,16 @@ import {CustomerService} from "../customer.service";
 export class CustomerRegisterComponent implements OnInit{
   constructor(private customerService: CustomerService){
   }
-
-  ngOnInit(): void{
-    this.setCustomerRegistered();
+  customer : Customer ={
+    id: 0,
+    firstname: '',
+    lastname:'',
+    address:''
   }
-  private setCustomerRegistered(){
-    this.customerService.setCustomer();
+  ngOnInit(): void{
+    this.createCustomer();
+  }
+  createCustomer(){
+    this.customerService.createCustomer();
   }
 }

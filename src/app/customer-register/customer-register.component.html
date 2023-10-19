@@ -1,15 +1,28 @@
+
 <h2> neuer Kunde </h2>
 <table class = "table table-striped">
     <thead>
-    <tr>
-        <th> ID </th>
-        <th> Vorname</th>
-        <th> Nachname</th>
-        <th> Adresse</th>
-    </tr>
     </thead>
     <tbody>
-
+    <form (ngSubmit)="createCustomer()">
+        <div>
+            <label for="id">ID</label>
+            <input type="text" id="id" name="id" [(ngModel)]="customer.id" required>
+        </div>
+        <div>
+            <label for="firstName">Vorname</label>
+            <input type="text" id="firstName" name="firstName" [(ngModel)]="customer.firstname" required>
+        </div>
+        <div>
+            <label for="lastName">Nachname</label>
+            <input type="text" id="lastName" name="lastName" [(ngModel)]="customer.lastname" required>
+        </div>
+        <div>
+            <label for="address">Vorname</label>
+            <input type="text" id="address" name="address" [(ngModel)]="customer.address" required>
+        </div>
+        <button type="submit">Kunde erstellen</button>
+    </form>
     </tbody>
 </table>
 
