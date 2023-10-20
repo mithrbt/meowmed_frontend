@@ -16,12 +16,8 @@ export class CustomerService {
     return this.httpClient.get<Customer[]>(this.baseURL);
   }
 
-  createCustomer() {
-    this.httpClient.post(this.baseURL, this.customer)
-        .subscribe((response) => {
-          console.log('Kunde erstellt:', response);
-          // Hier können Sie eine Weiterleitung oder andere Aktionen hinzufügen
-        });
-
+  createCustomer(customer: Customer): Observable<Object>{
+    return this.httpClient.post(this.baseURL, customer);
   }
+
 }
