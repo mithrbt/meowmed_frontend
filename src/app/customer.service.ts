@@ -20,4 +20,7 @@ export class CustomerService {
     return this.httpClient.post(this.baseURL, customer);
   }
 
+  deleteCustomer(id: number): Observable<Object>{
+    return this.httpClient.delete(`${this.baseURL}/${id}`);
+  }
 }

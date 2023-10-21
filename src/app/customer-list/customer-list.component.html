@@ -19,6 +19,9 @@
             <td> {{ customer.firstname }} </td>
             <td> {{ customer.lastname }} </td>
             <td> {{ customer.address }} </td>
+            <td>
+              <button (click)="deleteCustomer($event, customer.id)" class = "btn btn-danger" style="margin-left: 10px">Löschen</button>
+            </td>
         </tr>
     </tbody>
 </table>

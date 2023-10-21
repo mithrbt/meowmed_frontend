@@ -7,20 +7,22 @@ import { CustomerListComponent } from './customer-list/customer-list.component';
 import { CustomerRegisterComponent } from './customer-register/customer-register.component';
 import { FormsModule } from "@angular/forms";
 import { ReactiveFormsModule } from '@angular/forms';
+import {MatIconModule} from "@angular/material/icon";
 
 
 @NgModule({
   declarations: [
     AppComponent,
     CustomerListComponent,
-    CustomerRegisterComponent
+    CustomerRegisterComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]
