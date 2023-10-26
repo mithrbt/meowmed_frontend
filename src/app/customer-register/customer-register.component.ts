@@ -27,7 +27,8 @@ export class CustomerRegisterComponent implements OnInit{
   }
 
   /** Wenn neuer Kunde angelegt wird, soll auf die Kunden Details Seite weitergelietet werden */
-  goToCustomerDetails(){
+  goToCustomerDetails(id: number){
+    this.router.navigate(['kundendetails', id]);
   }
 
   createCustomer() {

@@ -21,6 +21,7 @@
             <td> {{ customer.address }} </td>
             <td>
               <button (click)="deleteCustomer($event, customer.id)" class = "btn btn-danger" style="margin-left: 10px">Löschen</button>
+              <button (click)="customerDetails(customer.id)" class = "btn btn-info" style="margin-left: 10px">Details</button>
             </td>
         </tr>
     </tbody>

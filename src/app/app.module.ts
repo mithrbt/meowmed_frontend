@@ -8,7 +8,7 @@ import { CustomerRegisterComponent } from './customer-register/customer-register
 import { FormsModule } from "@angular/forms";
 import { ReactiveFormsModule } from '@angular/forms';
 import {MatIconModule} from "@angular/material/icon";
-import { ReadCustomerComponent } from './read-customer/read-customer.component';
+import { CustomerDetailsComponent } from './customer-details/customer-details.component';
 
 
 @NgModule({
@@ -16,7 +16,7 @@ import { ReadCustomerComponent } from './read-customer/read-customer.component';
     AppComponent,
     CustomerListComponent,
     CustomerRegisterComponent,
-    ReadCustomerComponent,
+    CustomerDetailsComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Customer } from '../customer'
 import { CustomerService } from '../customer.service';
-import { Router } from '@angular/router';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-customer-list',
@@ -11,8 +11,9 @@ import { Router } from '@angular/router';
 export class CustomerListComponent implements OnInit{
 
   customers: Customer[] = [];
+  customer: Customer = new Customer();
 
-  constructor(private customerService: CustomerService){
+  constructor(private customerService: CustomerService, private router: Router){
   }
 
   ngOnInit(): void{
@@ -33,10 +34,11 @@ export class CustomerListComponent implements OnInit{
         this.getCustomerList();
         alert("Der Kunde wurde erfolgreich gelöscht.");
       });
-
-
     }
   }
 
+  customerDetails(id: number){
+    this.router.navigate(['kundendetails', id]);
+  }
 
 }
