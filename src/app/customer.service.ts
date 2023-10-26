@@ -23,4 +23,7 @@ export class CustomerService {
   deleteCustomer(id: number): Observable<Object>{
     return this.httpClient.delete(`${this.baseURL}/${id}`);
   }
+  readCustomer(id: number): Observable<Object>{
+    return this.httpClient.read(`${this.baseURL}/${id}`);
+  }
 }

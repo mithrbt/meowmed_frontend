@@ -33,6 +33,8 @@ export class CustomerListComponent implements OnInit{
         this.getCustomerList();
         alert("Der Kunde wurde erfolgreich gelöscht.");
       });
+
+
     }
   }
 
