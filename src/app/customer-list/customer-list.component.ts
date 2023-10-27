@@ -41,4 +41,8 @@ export class CustomerListComponent implements OnInit{
     this.router.navigate(['kundendetails', id]);
   }
 
+  updateCustomer(id: number){
+    this.router.navigate(['update-kunde', id]);
+  }
+
 }

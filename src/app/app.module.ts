@@ -9,6 +9,7 @@ import { FormsModule } from "@angular/forms";
 import { ReactiveFormsModule } from '@angular/forms';
 import {MatIconModule} from "@angular/material/icon";
 import { CustomerDetailsComponent } from './customer-details/customer-details.component';
+import { UpdateCustomerComponent } from './update-customer/update-customer.component';
 
 
 @NgModule({
@@ -17,6 +18,7 @@ import { CustomerDetailsComponent } from './customer-details/customer-details.co
     CustomerListComponent,
     CustomerRegisterComponent,
     CustomerDetailsComponent,
+    UpdateCustomerComponent,
   ],
   imports: [
     BrowserModule,

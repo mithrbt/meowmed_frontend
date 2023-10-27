@@ -12,7 +12,6 @@ export class CustomerRegisterComponent implements OnInit{
 
   customer : Customer = new Customer();
 
-
   constructor(private customerService: CustomerService, private router: Router){
   }
 
@@ -22,17 +21,18 @@ export class CustomerRegisterComponent implements OnInit{
   saveCustomer(){
     this.customerService.createCustomer(this.customer).subscribe(data =>{
       console.log(data);
+      this.goToCustomerDetails();
     },
     error => console.log(error));
-  }
-
-  /** Wenn neuer Kunde angelegt wird, soll auf die Kunden Details Seite weitergelietet werden */
-  goToCustomerDetails(id: number){
-    this.router.navigate(['kundendetails', id]);
   }
 
   createCustomer() {
     console.log(this.customer);
     this.saveCustomer();
+  }
+
+  /** Wenn neuer Kunde angelegt wird, soll auf die Kunden Details Seite weitergelietet werden, funktioniert noch nicht */
+  goToCustomerDetails(){
+    this.router.navigate(['kundendetails', this.customer.id]);
   }
 }
