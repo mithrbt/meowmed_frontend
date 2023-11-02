@@ -16,7 +16,7 @@ export class VertragService {
     return this.httpClient.get<Vertrag[]>(this.baseURL + `/kunden/${id}/vertrag`);
   }
 
-  createVertrag(vertrag: Vertrag, id: number): Observable<Object>{
+  createVertrag(id: number, vertrag: Vertrag): Observable<Object>{
       return this.httpClient.post(this.baseURL + `/kunden/${id}/vertrag`, vertrag);
   }
 
