@@ -1,0 +1,66 @@
+
+<h2> Neuer Vertrag </h2>
+<form (ngSubmit)="createVertrag()">
+
+  <div class = "form-group">
+    <label> Name </label>
+    <input type="text" class="form-control" id="name"
+           [(ngModel)] = "vertrag.name" name ="name">
+  </div>
+  <div class = "form-group">
+      <label> Rasse </label>
+    <input type="text" class="form-control" id="rasse"
+           [(ngModel)] = "vertrag.rasse" name ="rasse">
+  </div>
+  <div class = "form-group">
+    <label> Farbe </label>
+    <input type="text" class="form-control" id="farbe"
+           [(ngModel)] = "vertrag.farbe" name ="farbe">
+  </div>
+  <div class = "form-group">
+    <label> alter </label>
+    <input type="number" class="form-control" id="alter"
+           [(ngModel)] = "vertrag.alter" name ="alter">
+  </div>
+  <div class = "form-group">
+    <label> kastriert </label><br>
+    <input type="radio" id="ja" name="kastriert" value="ja"
+           [(ngModel)] = "vertrag.kastriert" name ="kastriert">
+    <label for="ja"> ja</label><br>
+    <input type="radio" id="nein" name="kastriert" value="nein"
+           [(ngModel)] = "vertrag.kastriert" name ="kastriert">
+    <label for="nein"> nein</label>
+  </div>
+  <div class = "form-group">
+    <label> persoenlichkeit </label><br>
+    <input type="radio" id="verspielt" name="persoenlichkeit" value="verspielt"
+           [(ngModel)] = "vertrag.persoenlichkeit" name ="persoenlichkeit">
+    <label for="verspielt"> verspielt</label><br>
+    <input type="radio" id="ausgeglichen" name="persoenlichkeit" value="ausgeglichen"
+           [(ngModel)] = "vertrag.persoenlichkeit" name ="persoenlichkeit">
+    <label for="ausgeglichen"> ausgeglichen</label>
+  </div>
+  <div class = "form-group">
+    <label> gewicht </label>
+    <input type="number" class="form-control" id="gewicht"
+           [(ngModel)] = "vertrag.gewicht" name ="gewicht">
+  </div>
+  <div class = "form-group">
+    <label> beginn </label>
+    <input type="date" class="form-control" id="beginn"
+           [(ngModel)] = "vertrag.beginn" name ="beginn">
+  </div>
+  <div class = "form-group">
+    <label> ende </label>
+    <input type="date" class="form-control" id="ende"
+           [(ngModel)] = "vertrag.ende" name ="ende">
+  </div>
+  <div class = "form-group">
+    <label> deckungssummer </label>
+    <input type="number" class="form-control" id="deckungssummer"
+           [(ngModel)] = "vertrag.deckungssummer" name ="deckungssummer">
+  </div>
+
+  <button type= "submit" class ="btn btn-success" >Anlegen</button>
+</form>
+

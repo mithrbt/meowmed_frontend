@@ -10,6 +10,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import {MatIconModule} from "@angular/material/icon";
 import { CustomerDetailsComponent } from './customer-details/customer-details.component';
 import { UpdateCustomerComponent } from './update-customer/update-customer.component';
+import { CreateVertragdashboardComponent } from './create-vertragdashboard/create-vertragdashboard.component';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { UpdateCustomerComponent } from './update-customer/update-customer.compo
     CustomerRegisterComponent,
     CustomerDetailsComponent,
     UpdateCustomerComponent,
+    CreateVertragdashboardComponent,
   ],
   imports: [
     BrowserModule,
@@ -26,7 +28,7 @@ import { UpdateCustomerComponent } from './update-customer/update-customer.compo
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    MatIconModule
+    MatIconModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
