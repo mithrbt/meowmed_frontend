@@ -17,8 +17,8 @@ export class VertragService {
   }
 
   createVertrag(vertrag: Vertrag): Observable<Object>{
-    vertrag.beitrag = vertrag.deckungssummer * 0.15 + 200;
-    return this.httpClient.post(this.baseURL, vertrag);
+    vertrag.beitrag = (vertrag.farbe=="schwarz") ? (vertrag.deckungssummer *0.2) : (vertrag.deckungssummer *0.15);
+      return this.httpClient.post(this.baseURL, vertrag);
   }
 
   deleteVertrag(id: number): Observable<Object>{
