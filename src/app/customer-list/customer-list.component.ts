@@ -13,6 +13,7 @@ export class CustomerListComponent implements OnInit{
   customers: Customer[] = [];
   customer: Customer = new Customer();
 
+
   constructor(private customerService: CustomerService, private router: Router){
   }
 
