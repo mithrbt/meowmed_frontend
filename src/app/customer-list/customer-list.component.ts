@@ -23,7 +23,7 @@ export class CustomerListComponent implements OnInit{
   private getCustomerList(){
     this.customerService.getCustomerList().subscribe(data =>{
       this.customers = data;
-    })
+    });
   }
 
   deleteCustomer(event: any, id: number){

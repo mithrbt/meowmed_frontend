@@ -12,7 +12,7 @@ const routes: Routes = [
   {path: '', redirectTo: 'kunden', pathMatch: 'full'},
   {path: 'kundendetails/:id', component: CustomerDetailsComponent},
   {path: 'update-kunde/:id', component: UpdateCustomerComponent},
-  {path: 'vertrag', component: CreateVertragdashboardComponent}
+  {path: 'vertrag/:id', component: CreateVertragdashboardComponent}
 ];
 
 @NgModule({

@@ -1,7 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {VertragService} from "../vertrag.service";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {Vertrag} from "../vertrag";
+import {CustomerService} from "../customer.service";
+import {Customer} from "../customer";
 
 @Component({
   selector: 'app-create-vertragdashboard',
@@ -11,16 +13,24 @@ import {Vertrag} from "../vertrag";
 export class CreateVertragdashboardComponent implements OnInit{
 
   vertrag : Vertrag = new Vertrag();
+  id!: number;
+  customer: Customer = new Customer();
 
-  constructor(private vertragService: VertragService, private router: Router){
+  constructor(private vertragService: VertragService, private router: Router, private route: ActivatedRoute, private customerService: CustomerService){
   }
 
   ngOnInit() {
+    this.id = this.route.snapshot.params['id'];
+    console.log("id: " + this.id);
+    this.customerService.getCustomerById(this.id).subscribe(data =>{
+      this.customer = data;
+    });
   }
 
   saveVertrag(){
-    this.vertragService.createVertrag(this.vertrag).subscribe(data =>{
+    this.vertragService.createVertrag(this.vertrag, this.id).subscribe(data =>{
         console.log(data);
+        this.goToCustomerDetails();
       },
       error => console.log(error));
   }
@@ -28,6 +38,10 @@ export class CreateVertragdashboardComponent implements OnInit{
   createVertrag() {
     console.log(this.vertrag);
     this.saveVertrag();
+  }
+
+  goToCustomerDetails(){
+    this.router.navigate(['kundendetails', this.customer.id]);
   }
 
 }

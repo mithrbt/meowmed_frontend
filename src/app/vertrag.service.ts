@@ -8,29 +8,28 @@ import {Vertrag} from "./vertrag";
 })
 export class VertragService {
 
-  private baseURL = "http://localhost:8080/api/vertrag";
+  private baseURL = "http://localhost:8080/api";
   customer: any = {};
   constructor(private httpClient: HttpClient) { }
 
-  getVertragList(): Observable<Vertrag[]>{
-    return this.httpClient.get<Vertrag[]>(this.baseURL);
+  getVertragList(id: number): Observable<Vertrag[]>{
+    return this.httpClient.get<Vertrag[]>(this.baseURL + `/kunden/${id}/vertrag`);
   }
 
-  createVertrag(vertrag: Vertrag): Observable<Object>{
-    vertrag.beitrag = (vertrag.farbe=="schwarz") ? (vertrag.deckungssummer *0.2) : (vertrag.deckungssummer *0.15);
-      return this.httpClient.post(this.baseURL, vertrag);
+  createVertrag(vertrag: Vertrag, id: number): Observable<Object>{
+      return this.httpClient.post(this.baseURL + `/kunden/${id}/vertrag`, vertrag);
   }
 
   deleteVertrag(id: number): Observable<Object>{
-    return this.httpClient.delete(`${this.baseURL}/${id}`);
+    return this.httpClient.delete(this.baseURL + `/vertrag/${id}`);
   }
 
   getVertragById(id: number): Observable<Vertrag>{
-    return this.httpClient.get<Vertrag>(`${this.baseURL}/${id}`);
+    return this.httpClient.get<Vertrag>(this.baseURL + `/vertrag/${id}`);
   }
 
   updateVertrag(id: number, vertrag: Vertrag): Observable<Object>{
-    return this.httpClient.put(`${this.baseURL}/${id}`, vertrag);
+    return this.httpClient.put(this.baseURL + `/vertrag/${id}`, vertrag);
   }
 
 

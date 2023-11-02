@@ -8,28 +8,28 @@ import { Customer } from './customer';
 })
 export class CustomerService {
 
-  private baseURL = "http://localhost:8080/api/kunden";
+  private baseURL = "http://localhost:8080/api";
   customer: any = {};
   constructor(private httpClient: HttpClient) { }
 
   getCustomerList(): Observable<Customer[]>{
-    return this.httpClient.get<Customer[]>(this.baseURL);
+    return this.httpClient.get<Customer[]>(this.baseURL + `/kunden`);
   }
 
   createCustomer(customer: Customer): Observable<Object>{
-    return this.httpClient.post(this.baseURL, customer);
+    return this.httpClient.post(this.baseURL + `/kunden`, customer);
   }
 
   deleteCustomer(id: number): Observable<Object>{
-    return this.httpClient.delete(`${this.baseURL}/${id}`);
+    return this.httpClient.delete(this.baseURL + `/kunden/${id}`);
   }
 
   getCustomerById(id: number): Observable<Customer>{
-    return this.httpClient.get<Customer>(`${this.baseURL}/${id}`);
+    return this.httpClient.get<Customer>(this.baseURL +`/kunden/${id}`);
   }
 
   updateCustomer(id: number, customer: Customer): Observable<Object>{
-    return this.httpClient.put(`${this.baseURL}/${id}`, customer);
+    return this.httpClient.put(this.baseURL + `/kunden/${id}`, customer);
   }
 
 

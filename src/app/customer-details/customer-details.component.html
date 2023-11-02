@@ -13,8 +13,24 @@
     <label> <b> Adresse: </b></label> {{customer.address}}
   </div>
   <form>
-    <a onclick = "window.location.href = 'http://localhost:4200/vertrag';" routerLink="vertrag" routerLinkActive="active" style="float: right;">
-      <button>Neuer Vertrag +</button>
-    </a>
+    <button (click)="createContract(customer.id)" class = "btn btn-info" style="margin-left: 10px">Neuer Vertrag +</button>
   </form>
+  <table class = "table table-striped">
+    <thead>
+    <tr>
+      <th> ID </th>
+      <th> Beginn </th>
+      <th> Ende </th>
+      <th> Jahresdeckung </th>
+    </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor = "let vertrag of vertraege">
+        <td> {{ vertrag.id }} </td>
+        <td> {{ vertrag.start }} </td>
+        <td> {{ vertrag.end }} </td>
+        <td> {{ vertrag.coverage }} </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
