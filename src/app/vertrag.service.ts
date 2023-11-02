@@ -8,17 +8,17 @@ import {Vertrag} from "./vertrag";
 })
 export class VertragService {
 
-  private baseURL = "http://localhost:8080/api/vertrag";
+  private baseURL = "http://localhost:8080/api/kunden/{customerID}/vertrag";
   customer: any = {};
   constructor(private httpClient: HttpClient) { }
 
-  getVertragList(): Observable<Vertrag[]>{
-    return this.httpClient.get<Vertrag[]>(this.baseURL);
+  getVertragList(id: number): Observable<Vertrag[]>{
+    return this.httpClient.get<Vertrag[]>(`${"http://localhost:8080/api/kunden"}/${id}/${"vertrag"}`);
   }
 
-  createVertrag(vertrag: Vertrag): Observable<Object>{
+  createVertrag(id:number, vertrag: Vertrag): Observable<Object>{
     vertrag.beitrag = (vertrag.farbe=="schwarz") ? (vertrag.deckungssummer *0.2) : (vertrag.deckungssummer *0.15);
-      return this.httpClient.post(this.baseURL, vertrag);
+      return this.httpClient.post(`${"http://localhost:8080/api/kunden"}/${id}/${"vertrag"}`,vertrag);
   }
 
   deleteVertrag(id: number): Observable<Object>{

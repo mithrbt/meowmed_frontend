@@ -17,4 +17,28 @@
       <button>Neuer Vertrag +</button>
     </a>
   </form>
+  <table class = "table table-striped">
+    <thead>
+    <tr>
+      <th> ID </th>
+      <th> Name</th>
+      <th> Nachname</th>
+      <th> Adresse</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor = "let vertrag of vertraege">
+      <td> {{ vertrag.id }} </td>
+      <td> {{ vertrag.name}} </td>
+      <td> {{ vertrag.beginn }} </td>
+      <td> {{ vertrag.ende }} </td>
+      <td> {{ vertrag.beitrag }} </td>
+      <td>
+        <button (click)="deleteVertrag($event, customer.id)" class = "btn btn-danger" style="margin-left: 10px">Löschen</button>
+        <button (click)="vertragDetails(customer.id)" class = "btn btn-info" style="margin-left: 10px">Details</button>
+        <button (click)="updateVertrag(customer.id)" class = "btn btn-info" style="margin-left: 10px">Update</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
 </div>

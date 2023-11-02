@@ -1,7 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {VertragService} from "../vertrag.service";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {Vertrag} from "../vertrag";
+import {CustomerService} from "../customer.service";
+import {Customer} from "../customer";
 
 @Component({
   selector: 'app-create-vertragdashboard',
@@ -11,15 +13,22 @@ import {Vertrag} from "../vertrag";
 export class CreateVertragdashboardComponent implements OnInit{
 
   vertrag : Vertrag = new Vertrag();
+  id!: number;
+  customer: Customer = new Customer();
 
-  constructor(private vertragService: VertragService, private router: Router){
+
+  constructor(private router: Router, private activerouter: ActivatedRoute, private customerService: CustomerService, private vertragService: VertragService) {
   }
 
   ngOnInit() {
+    this.id = this.activerouter.snapshot.params['id'];
+    this.customerService.getCustomerById(this.id).subscribe(data =>{
+      this.customer = data;
+    });
   }
 
   saveVertrag(){
-    this.vertragService.createVertrag(this.vertrag).subscribe(data =>{
+    this.vertragService.createVertrag(this.customer.id, this.vertrag).subscribe(data =>{
         console.log(data);
       },
       error => console.log(error));

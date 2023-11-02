@@ -12,7 +12,6 @@ import { CustomerDetailsComponent } from './customer-details/customer-details.co
 import { UpdateCustomerComponent } from './update-customer/update-customer.component';
 import { CreateVertragdashboardComponent } from './create-vertragdashboard/create-vertragdashboard.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,7 +19,7 @@ import { CreateVertragdashboardComponent } from './create-vertragdashboard/creat
     CustomerRegisterComponent,
     CustomerDetailsComponent,
     UpdateCustomerComponent,
-    CreateVertragdashboardComponent,
+    CreateVertragdashboardComponent
   ],
   imports: [
     BrowserModule,
