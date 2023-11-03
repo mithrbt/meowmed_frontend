@@ -19,6 +19,7 @@
     <thead>
     <tr>
       <th> ID </th>
+      <th> Katze </th>
       <th> Beginn </th>
       <th> Ende </th>
       <th> Jahresdeckung </th>
@@ -27,6 +28,7 @@
     <tbody>
       <tr *ngFor = "let vertrag of vertraege">
         <td> {{ vertrag.id }} </td>
+        <td> {{ cat.name }}</td>
         <td> {{ vertrag.start | date: 'dd/MM/yyyy' }} </td>
         <td> {{ vertrag.start | date: 'dd/MM/yyyy' }} </td>
         <td> {{ vertrag.coverage }} </td>

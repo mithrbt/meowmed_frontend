@@ -4,6 +4,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {CustomerService} from "../customer.service";
 import {Vertrag} from "../vertrag";
 import {VertragService} from "../vertrag.service";
+import {Cat} from "../cat";
 
 @Component({
   selector: 'app-customer-details',
@@ -15,6 +16,7 @@ export class CustomerDetailsComponent implements OnInit{
   id!: number;
   customer: Customer = new Customer();
   vertraege: Vertrag[] = [];
+  cat: Cat = new Cat();
 
   constructor(private route: ActivatedRoute, private customerService: CustomerService, private vertragService: VertragService, private router: Router) {
   }

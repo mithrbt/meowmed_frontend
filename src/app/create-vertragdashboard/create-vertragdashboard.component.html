@@ -3,21 +3,26 @@
 <form (ngSubmit)="createVertrag()">
 
   <div class = "form-group">
-    <label> beginn </label>
+    <label> Beginn </label>
     <input type="date" class="form-control" id="beginn"
            [(ngModel)] = "vertrag.start" name ="beginn">
   </div>
   <div class = "form-group">
-    <label> ende </label>
+    <label> Ende </label>
     <input type="date" class="form-control" id="ende"
            [(ngModel)] = "vertrag.end" name ="ende">
   </div>
   <div class = "form-group">
-    <label> deckungssummer </label>
-    <input type="number" class="form-control" id="deckungssummer"
-           [(ngModel)] = "vertrag.coverage" name ="deckungssummer">
+    <label> Deckung </label>
+    <input type="number" class="form-control" id="coverage"
+           [(ngModel)] = "vertrag.coverage" name ="deckung">
   </div>
-
+  <h2> Katze </h2>
+  <div class = "form-group">
+    <label> Name </label>
+    <input type="text" class="form-control" id="name"
+           [(ngModel)] = "cat.name" name ="name">
+  </div>
   <button type= "submit" class ="btn btn-success" >Anlegen</button>
 </form>
 

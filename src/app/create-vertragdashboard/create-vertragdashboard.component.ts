@@ -4,6 +4,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {Vertrag} from "../vertrag";
 import {CustomerService} from "../customer.service";
 import {Customer} from "../customer";
+import {Cat} from "../cat";
 
 @Component({
   selector: 'app-create-vertragdashboard',
@@ -15,6 +16,7 @@ export class CreateVertragdashboardComponent implements OnInit{
   vertrag : Vertrag = new Vertrag();
   id!: number;
   customer: Customer = new Customer();
+  cat: Cat = new Cat();
 
   constructor(private vertragService: VertragService, private router: Router, private route: ActivatedRoute, private customerService: CustomerService){
   }
