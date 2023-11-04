@@ -28,7 +28,7 @@
     <tbody>
       <tr *ngFor = "let vertrag of vertraege">
         <td> {{ vertrag.id }} </td>
-        <td> {{ cat.name }}</td>
+        <td *ngFor = "let cat of cats"> {{ cat.name }}</td>
         <td> {{ vertrag.start | date: 'dd/MM/yyyy' }} </td>
         <td> {{ vertrag.start | date: 'dd/MM/yyyy' }} </td>
         <td> {{ vertrag.coverage }} </td>

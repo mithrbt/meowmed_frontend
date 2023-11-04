@@ -5,6 +5,7 @@ import {Vertrag} from "../vertrag";
 import {CustomerService} from "../customer.service";
 import {Customer} from "../customer";
 import {Cat} from "../cat";
+import {CatService} from "../cat.service";
 
 @Component({
   selector: 'app-create-vertragdashboard',
@@ -18,7 +19,7 @@ export class CreateVertragdashboardComponent implements OnInit{
   customer: Customer = new Customer();
   cat: Cat = new Cat();
 
-  constructor(private vertragService: VertragService, private router: Router, private route: ActivatedRoute, private customerService: CustomerService){
+  constructor(private catService: CatService,private vertragService: VertragService, private router: Router, private route: ActivatedRoute, private customerService: CustomerService){
   }
 
   ngOnInit() {
@@ -35,6 +36,11 @@ export class CreateVertragdashboardComponent implements OnInit{
         this.goToCustomerDetails();
       },
       error => console.log(error));
+
+    this.catService.createVertrag(this.id, this.cat).subscribe(data =>{
+          console.log(data);
+        },
+        error => console.log(error));
   }
 
   createVertrag() {

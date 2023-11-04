@@ -5,6 +5,7 @@ import {CustomerService} from "../customer.service";
 import {Vertrag} from "../vertrag";
 import {VertragService} from "../vertrag.service";
 import {Cat} from "../cat";
+import {CatService} from "../cat.service";
 
 @Component({
   selector: 'app-customer-details',
@@ -17,8 +18,8 @@ export class CustomerDetailsComponent implements OnInit{
   customer: Customer = new Customer();
   vertraege: Vertrag[] = [];
   cat: Cat = new Cat();
-
-  constructor(private route: ActivatedRoute, private customerService: CustomerService, private vertragService: VertragService, private router: Router) {
+  cats: Cat[] = [];
+  constructor(private route: ActivatedRoute, private catService: CatService, private customerService: CustomerService, private vertragService: VertragService, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -36,6 +37,17 @@ export class CustomerDetailsComponent implements OnInit{
       console.log(this.vertraege);
     });
   }
+  private getCatList() {
+    this.catService.getCatList(this.id).subscribe(data => {
+      this.cats = data;
+      console.log("Katzen:");
+      console.log(this.cats);
+    });
+  }
+
+
+
+
 
 
   createContract(id: number){
