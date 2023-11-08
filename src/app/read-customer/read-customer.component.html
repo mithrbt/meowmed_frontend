@@ -1,0 +1,21 @@
+<h2> Neuer Kunde </h2>
+<form (ngSubmit)="readCustomer()">
+
+  <div class = "form-group">
+    <label> Vorname </label>
+    <input type="text" class="form-control" id="firstname"
+           [(ngModel)] = "customer.firstname" name ="firstname">
+  </div>
+  <div class = "form-group">
+    <label> Nachname </label>
+    <input type="text" class="form-control" id="lastname"
+           [(ngModel)] = "customer.lastname" name ="lastname">
+  </div>
+  <div class = "form-group">
+    <label> Adresse </label>
+    <input type="text" class="form-control" id="address"
+           [(ngModel)] = "customer.address" name ="address">
+  </div>
+
+
+</form>
