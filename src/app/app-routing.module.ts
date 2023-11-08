@@ -5,6 +5,8 @@ import {CustomerRegisterComponent} from "./customer-register/customer-register.c
 import {CustomerDetailsComponent} from "./customer-details/customer-details.component";
 import {UpdateCustomerComponent} from "./update-customer/update-customer.component";
 import {CreateVertragdashboardComponent} from "./create-vertragdashboard/create-vertragdashboard.component";
+import {UpdateVertragComponent} from "./update-vertrag/update-vertrag.component";
+import {DetailsVertragComponent} from "./details-vertrag/details-vertrag.component";
 
 const routes: Routes = [
   {path: 'kunden', component: CustomerListComponent},
@@ -12,7 +14,9 @@ const routes: Routes = [
   {path: '', redirectTo: 'kunden', pathMatch: 'full'},
   {path: 'kundendetails/:id', component: CustomerDetailsComponent},
   {path: 'update-kunde/:id', component: UpdateCustomerComponent},
-  {path: 'vertrag/:id', component: CreateVertragdashboardComponent}
+  {path: 'vertrag/:id', component: CreateVertragdashboardComponent},
+  {path: 'update-vertrag/:id', component:UpdateVertragComponent},
+  {path: 'vertragdetails/:id', component: DetailsVertragComponent}
 ];
 
 @NgModule({
