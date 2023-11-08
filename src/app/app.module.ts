@@ -11,6 +11,7 @@ import {MatIconModule} from "@angular/material/icon";
 import { CustomerDetailsComponent } from './customer-details/customer-details.component';
 import { UpdateCustomerComponent } from './update-customer/update-customer.component';
 import { CreateVertragdashboardComponent } from './create-vertragdashboard/create-vertragdashboard.component';
+import {MatTableModule} from "@angular/material/table";
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { CreateVertragdashboardComponent } from './create-vertragdashboard/creat
     FormsModule,
     ReactiveFormsModule,
     MatIconModule,
+    MatTableModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

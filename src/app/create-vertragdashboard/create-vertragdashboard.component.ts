@@ -18,13 +18,17 @@ export class CreateVertragdashboardComponent implements OnInit{
   id!: number;
   customer: Customer = new Customer();
   cat: Cat = new Cat();
+  contract!: Vertrag;
 
-  constructor(private catService: CatService,private vertragService: VertragService, private router: Router, private route: ActivatedRoute, private customerService: CustomerService){
+  constructor(private catService: CatService,
+              private vertragService: VertragService,
+              private router: Router,
+              private route: ActivatedRoute,
+              private customerService: CustomerService){
   }
 
   ngOnInit() {
     this.id = this.route.snapshot.params['id'];
-    console.log("id: " + this.id);
     this.customerService.getCustomerById(this.id).subscribe(data =>{
       this.customer = data;
     });
@@ -33,20 +37,28 @@ export class CreateVertragdashboardComponent implements OnInit{
   saveVertrag(){
     this.vertragService.createVertrag(this.id, this.vertrag).subscribe(data =>{
         console.log(data);
+        this.contract = data;
+        this.saveCat();
         this.goToCustomerDetails();
       },
-      error => console.log(error));
-
-    this.catService.createVertrag(this.id, this.cat).subscribe(data =>{
-          console.log(data);
-        },
-        error => console.log(error));
+      error => console.log(error)
+    );
   }
 
   createVertrag() {
     console.log(this.vertrag);
     this.saveVertrag();
   }
+
+  saveCat(){
+    console.log("VertragID: " + this.contract.id);
+    this.catService.createCat(this.contract.id, this.cat).subscribe(data =>{
+      console.log(data);
+      },
+      error => console.log(error)
+    );
+  }
+
 
   goToCustomerDetails(){
     this.router.navigate(['kundendetails', this.customer.id]);

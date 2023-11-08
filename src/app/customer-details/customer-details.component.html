@@ -13,26 +13,27 @@
     <label> <b> Adresse: </b></label> {{customer.address}}
   </div>
   <form>
-    <button (click)="createContract(customer.id)" class = "btn btn-info" style="float: right">Neuer Vertrag +</button>
+    <button (click)="goToCreateContract(customer.id)" class = "btn btn-info" style="float: right">Neuer Vertrag +</button>
   </form>
-  <table class = "table table-striped">
-    <thead>
-    <tr>
-      <th> ID </th>
-      <th> Katze </th>
-      <th> Beginn </th>
-      <th> Ende </th>
-      <th> Jahresdeckung </th>
-    </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor = "let vertrag of vertraege">
-        <td> {{ vertrag.id }} </td>
-        <td *ngFor = "let cat of cats"> {{ cat.name }}</td>
-        <td> {{ vertrag.start | date: 'dd/MM/yyyy' }} </td>
-        <td> {{ vertrag.start | date: 'dd/MM/yyyy' }} </td>
-        <td> {{ vertrag.coverage }} </td>
-      </tr>
-    </tbody>
-  </table>
+
+ <table class = "table table-striped">
+     <thead>
+     <tr>
+       <th> ID </th>
+       <th> Katze </th>
+       <th> Beginn </th>
+       <th> Ende </th>
+       <th> Jahresdeckung </th>
+     </tr>
+     </thead>
+     <tbody>
+       <tr *ngFor = "let vertrag of vertraege">
+           <td> {{ vertrag.id }} </td>
+           <td> {{ getCatByContractId(vertrag.id).name }}</td>
+           <td> {{ vertrag.start | date: 'dd/MM/yyyy' }} </td>
+           <td> {{ vertrag.start | date: 'dd/MM/yyyy' }} </td>
+           <td> {{ vertrag.coverage }} </td>
+       </tr>
+     </tbody>
+   </table>
 </div>
