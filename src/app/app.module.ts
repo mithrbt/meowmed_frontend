@@ -12,8 +12,6 @@ import { CustomerDetailsComponent } from './customer-details/customer-details.co
 import { UpdateCustomerComponent } from './update-customer/update-customer.component';
 import { CreateVertragdashboardComponent } from './create-vertragdashboard/create-vertragdashboard.component';
 import {MatTableModule} from "@angular/material/table";
-import { UpdateVertragComponent } from './update-vertrag/update-vertrag.component';
-import { DetailsVertragComponent } from './details-vertrag/details-vertrag.component';
 
 @NgModule({
   declarations: [
@@ -22,9 +20,7 @@ import { DetailsVertragComponent } from './details-vertrag/details-vertrag.compo
     CustomerRegisterComponent,
     CustomerDetailsComponent,
     UpdateCustomerComponent,
-    CreateVertragdashboardComponent,
-    UpdateVertragComponent,
-    DetailsVertragComponent
+    CreateVertragdashboardComponent
   ],
   imports: [
     BrowserModule,

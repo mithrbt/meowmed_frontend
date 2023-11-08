@@ -23,6 +23,7 @@ export class CustomerDetailsComponent implements OnInit{
   contract: Vertrag = new Vertrag();
 
   constructor(private route: ActivatedRoute,
+              private catService: CatService,
               private customerService: CustomerService,
               private vertragService: VertragService,
               private router: Router) {
@@ -63,25 +64,5 @@ export class CustomerDetailsComponent implements OnInit{
 
   goToCreateContract(id: number){
     this.router.navigate(['vertrag', id]);
-  }
-
-  deleteVertrag(event: any, id: number) {
-    if(confirm('Sind Sie sicher, dass Sie den Vertrag löschen möchten?')){
-      event.target.innerText = "Löschen...";
-
-      this.vertragService.deleteVertrag(id).subscribe((response:any) => {
-        this.getVertragList();
-        alert("Der Vertrag wurde erfolgreich gelöscht.");
-      });
-    }
-
-  }
-
-  vertragDetails(id: number) {
-    this.router.navigate(['vertragdetails', id]);
-  }
-
-  updateVertrag(id: number) {
-    this.router.navigate(['update-vertrag', id]);
   }
 }

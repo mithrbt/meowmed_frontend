@@ -33,11 +33,6 @@
            <td> {{ vertrag.start | date: 'dd/MM/yyyy' }} </td>
            <td> {{ vertrag.start | date: 'dd/MM/yyyy' }} </td>
            <td> {{ vertrag.coverage }} </td>
-           <td>
-             <button (click)="deleteVertrag($event, vertrag.id)" class = "btn btn-danger" style="margin-left: 10px">Löschen</button>
-             <button (click)="vertragDetails(vertrag.id)" class = "btn btn-info" style="margin-left: 10px">Details</button>
-             <button (click)="updateVertrag(vertrag.id)" class = "btn btn-info" style="margin-left: 10px">Update</button>
-           </td>
        </tr>
      </tbody>
    </table>
