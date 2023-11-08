@@ -23,7 +23,7 @@ export class CustomerRegisterComponent implements OnInit{
       console.log(data);
       this.goToCustomerDetails();
     },
-    error => console.log(error));
+    error => console.log(error));``
   }
 
   createCustomer() {

@@ -6,6 +6,7 @@ import {Vertrag} from "../vertrag";
 import {VertragService} from "../vertrag.service";
 import {Cat} from "../cat";
 import {CatService} from "../cat.service";
+import {firstValueFrom, Observable} from "rxjs";
 
 @Component({
   selector: 'app-customer-details',
@@ -18,8 +19,14 @@ export class CustomerDetailsComponent implements OnInit{
   customer: Customer = new Customer();
   vertraege: Vertrag[] = [];
   cat: Cat = new Cat();
-  cats: Cat[] = [];
-  constructor(private route: ActivatedRoute, private catService: CatService, private customerService: CustomerService, private vertragService: VertragService, private router: Router) {
+  cats!: Map<number, Cat>;
+  contract: Vertrag = new Vertrag();
+
+  constructor(private route: ActivatedRoute,
+              private catService: CatService,
+              private customerService: CustomerService,
+              private vertragService: VertragService,
+              private router: Router) {
   }
 
   ngOnInit(): void {
@@ -27,6 +34,7 @@ export class CustomerDetailsComponent implements OnInit{
     this.customerService.getCustomerById(this.id).subscribe(data =>{
       this.customer = data;
     });
+    console.log("ID: " + this.id);
     this.getVertragList();
   }
 
@@ -35,22 +43,26 @@ export class CustomerDetailsComponent implements OnInit{
       this.vertraege = data;
       console.log("Verträge:");
       console.log(this.vertraege);
+      this.cats = new Map<number, Cat>();
+      for (const vertrag of this.vertraege) {
+        this.vertragService.getCatByContractId(vertrag.id).subscribe(data => {
+          this.cats.set(vertrag.id, data);
+        });
+      }
     });
   }
-  private getCatList() {
-    this.catService.getCatList(this.id).subscribe(data => {
-      this.cats = data;
-      console.log("Katzen:");
-      console.log(this.cats);
-    });
+
+  getCatByContractId(id: number): Cat {
+    const cat = this.cats.get(id);
+    if(cat) {
+      return cat;
+    } else {
+      return new Cat();
+    }
   }
 
 
-
-
-
-
-  createContract(id: number){
+  goToCreateContract(id: number){
     this.router.navigate(['vertrag', id]);
   }
 }
