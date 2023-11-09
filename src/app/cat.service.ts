@@ -13,8 +13,8 @@ export class CatService {
   cat: any = {};
   constructor(private httpClient: HttpClient) { }
 
-  createCat(contractID: number, cat: Cat): Observable<Object>{
-    return this.httpClient.post(this.baseURL + `/vertrag/${contractID}/katze`, cat);
+  createCat(contractID: number, cat: Cat): Observable<Cat>{
+    return this.httpClient.post<Cat>(this.baseURL + `/vertrag/${contractID}/katze`, cat);
   }
 
   getCatList(id: number): Observable<Cat[]>{

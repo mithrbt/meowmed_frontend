@@ -6,6 +6,9 @@ import {CustomerService} from "../customer.service";
 import {Customer} from "../customer";
 import {Cat} from "../cat";
 import {CatService} from "../cat.service";
+import {Observable} from "rxjs";
+import {Color} from "../enums/Color";
+import {Environment} from "../enums/Environment";
 
 @Component({
   selector: 'app-create-vertragdashboard',
@@ -19,6 +22,10 @@ export class CreateVertragdashboardComponent implements OnInit{
   customer: Customer = new Customer();
   cat: Cat = new Cat();
   contract!: Vertrag;
+  savedCat!: Cat;
+  result!: number;
+  public colors = Object.values(Color);
+  public environments = Object.values(Environment);
 
   constructor(private catService: CatService,
               private vertragService: VertragService,
@@ -54,6 +61,7 @@ export class CreateVertragdashboardComponent implements OnInit{
     console.log("VertragID: " + this.contract.id);
     this.catService.createCat(this.contract.id, this.cat).subscribe(data =>{
       console.log(data);
+      this.savedCat = data;
       },
       error => console.log(error)
     );
@@ -62,6 +70,21 @@ export class CreateVertragdashboardComponent implements OnInit{
 
   goToCustomerDetails(){
     this.router.navigate(['kundendetails', this.customer.id]);
+  }
+
+  quote() {
+    this.vertragService.quote(this.cat, this.vertrag).subscribe(data =>{
+      this.result = data;
+      console.log(this.result);
+    },
+      error => {
+        console.log(error);
+    });
+  }
+
+  showMonthlyContribution(){
+    this.quote();
+    console.log(this.result);
   }
 
 }

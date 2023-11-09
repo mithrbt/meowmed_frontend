@@ -3,15 +3,19 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import {Vertrag} from "./vertrag";
 import {Cat} from "./cat";
+import {Catract} from "./catract";
 
 @Injectable({
   providedIn: 'root'
 })
+
+
 export class VertragService {
 
   private baseURL = "http://localhost:8080/api";
   customer: any = {};
   constructor(private httpClient: HttpClient) { }
+
 
   getVertragList(id: number): Observable<Vertrag[]>{
     return this.httpClient.get<Vertrag[]>(this.baseURL + `/kunden/${id}/vertrag`);
@@ -37,5 +41,10 @@ export class VertragService {
     return this.httpClient.put(this.baseURL + `/vertrag/${id}`, vertrag);
   }
 
+  quote(cat: Cat, contract: Vertrag): Observable<number>{
+    const catract = new Catract(contract, cat);
+    console.log(catract);
+    return this.httpClient.post<number>(this.baseURL + `/vertrag/quote`, catract);
+  }
 
 }

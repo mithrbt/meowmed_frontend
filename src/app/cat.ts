@@ -1,9 +1,9 @@
-enum kastriert{ja = "ja",nein = "nein"}
-enum pers{ausgeglichen = "ausgeglichen",verspielt = "verspielt"}
-enum env{draussen = "draussen", drin = "drin"}
+import {Color} from "./enums/Color";
+import {Environment} from "./enums/Environment";
+
 export class Cat {
   id!: number;
   name!: string;
-  personality!: pers;
-  environment!: env;
+  environment!: Environment;
+  color!: Color;
 }
