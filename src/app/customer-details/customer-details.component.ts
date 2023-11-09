@@ -74,8 +74,7 @@ export class CustomerDetailsComponent implements OnInit{
   vertragDetails(id: number) {
     this.router.navigate(['vertragdetails', id]);
   }
-
-
+  
   deleteVertrag(event: any, id: number) {
     if(confirm('Sind Sie sicher, dass Sie den Vertrag löschen möchten?')){
       event.target.innerText = "Löschen...";
