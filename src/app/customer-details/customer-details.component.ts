@@ -65,4 +65,16 @@ export class CustomerDetailsComponent implements OnInit{
   goToCreateContract(id: number){
     this.router.navigate(['vertrag', id]);
   }
+
+  updateVertrag(id: number) {
+    this.router.navigate(['update-vertrag',id])
+  }
+
+  vertragDetails(id: number) {
+    this.router.navigate(['vertragdetails', id]);
+  }
+
+  deleteVertrag($event: MouseEvent, id: number) {
+
+  }
 }

@@ -25,4 +25,8 @@ export class CatService {
     return this.httpClient.get<Cat>(this.baseURL + `/katze/${id}`);
   }
 
+  updateCat(id:number, cat: Cat): Observable<Cat>{
+    return this.httpClient.post<Cat>(this.baseURL + `/katze/${id}`, cat);
+  }
+
 }
