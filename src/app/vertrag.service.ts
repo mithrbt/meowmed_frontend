@@ -1,9 +1,11 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import {HttpClient} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {Observable} from 'rxjs';
 import {Vertrag} from "./vertrag";
 import {Cat} from "./cat";
 import {Catract} from "./catract";
+import {Environment} from "./enums/Environment";
+import {Color} from "./enums/Color";
 
 @Injectable({
   providedIn: 'root'
@@ -43,6 +45,8 @@ export class VertragService {
 
   quote(cat: Cat, contract: Vertrag): Observable<number>{
     const catract = new Catract(contract, cat);
+    // catract.cat.environment = Environment.DRAUSSEN;
+    // catract.cat.color = Color.SCHWARZ;
     console.log(catract);
     return this.httpClient.post<number>(this.baseURL + `/vertrag/quote`, catract);
   }

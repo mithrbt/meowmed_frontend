@@ -24,8 +24,8 @@ export class CreateVertragdashboardComponent implements OnInit{
   contract!: Vertrag;
   savedCat!: Cat;
   result!: number;
-  public colors = Object.values(Color);
-  public environments = Object.values(Environment);
+  environmentKeys!: any;
+
 
   constructor(private catService: CatService,
               private vertragService: VertragService,
@@ -39,6 +39,7 @@ export class CreateVertragdashboardComponent implements OnInit{
     this.customerService.getCustomerById(this.id).subscribe(data =>{
       this.customer = data;
     });
+    this.environmentKeys = Object.keys(Environment).filter(Number)
   }
 
   saveVertrag(){
