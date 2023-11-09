@@ -20,6 +20,7 @@ export class CustomerDetailsComponent implements OnInit{
   vertraege: Vertrag[] = [];
   cat: Cat = new Cat();
   cats!: Map<number, Cat>;
+  vertrag: Vertrag = new Vertrag();
   contract: Vertrag = new Vertrag();
 
   constructor(private route: ActivatedRoute,
@@ -74,7 +75,14 @@ export class CustomerDetailsComponent implements OnInit{
     this.router.navigate(['vertragdetails', id]);
   }
 
-  deleteVertrag($event: MouseEvent, id: number) {
+  deleteVertrag(event: any, id: number) {
+    if(confirm('Sind Sie sicher, dass Sie den Vertrag löschen möchten?')){
+      event.target.innerText = "Löschen...";
+      this.vertragService.deleteVertrag(id).subscribe((response:any)=>{
+        this.getVertragList();
+        alert("Der Vertrag wurde erfolgreich gelöscht.");
+      });
+    }
 
   }
 }
