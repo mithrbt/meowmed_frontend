@@ -74,15 +74,17 @@ export class CustomerDetailsComponent implements OnInit{
   vertragDetails(id: number) {
     this.router.navigate(['vertragdetails', id]);
   }
-  
+
   deleteVertrag(event: any, id: number) {
     if(confirm('Sind Sie sicher, dass Sie den Vertrag löschen möchten?')){
       event.target.innerText = "Löschen...";
-      this.vertragService.deleteVertrag(id).subscribe((response:any)=>{
-        this.getVertragList();
-        alert("Der Vertrag wurde erfolgreich gelöscht.");
+      this.catService.deleteCatByContractID(id).subscribe((response:any)=>{
+        this.vertragService.deleteVertrag(id).subscribe((response:any)=>{
+          this.getVertragList();
+          alert("Der Vertrag wurde gelöscht. Die zugehörige Katze konnte nicht gefunden werden.");
+        });
       });
     }
-
   }
+
 }

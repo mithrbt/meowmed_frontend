@@ -1,21 +1,28 @@
 <h3>Vertragdetails</h3>
-<table class = "table table-striped">
-  <thead>
-  <tr>
-    <th> ID </th>
-    <th> Katze </th>
-    <th> Beginn </th>
-    <th> Ende </th>
-    <th> Jahresdeckung </th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr>
-    <td> {{ vertrag.id}} </td>
-    <td> {{ cat.name }}</td>
-    <td> {{ vertrag.start | date: 'dd/MM/yyyy' }} </td>
-    <td> {{ vertrag.end | date: 'dd/MM/yyyy' }} </td>
-    <td> {{ vertrag.coverage }} </td>
-  </tr>
-  </tbody>
-</table>
+<div>
+  <div>
+    <label> <b> ID: </b></label> {{vertrag.id}}
+  </div>
+  <div>
+    <label> <b> Start: </b></label> {{vertrag.start | date: 'dd/MM/yyyy'}}
+  </div>
+  <div>
+    <label> <b> Ende: </b></label> {{vertrag.end | date: 'dd/MM/yyyy'}}
+  </div>
+  <div>
+    <label> <b> Deckung: </b></label> {{vertrag.coverage}}
+  </div>
+  <h3>Katze</h3>
+  <div>
+    <label> <b> ID: </b></label> {{cat.id}}
+  </div>
+  <div>
+    <label> <b> Name: </b></label> {{cat.name}}
+  </div>
+  <div>
+    <label> <b> Umgebung: </b></label> {{cat.environment}}
+  </div>
+  <div>
+    <label> <b> Farbe: </b></label> {{cat.color}}
+  </div>
+</div>

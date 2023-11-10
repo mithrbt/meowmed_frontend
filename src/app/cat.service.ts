@@ -29,4 +29,12 @@ export class CatService {
     return this.httpClient.post<Cat>(this.baseURL + `/katze/${id}`, cat);
   }
 
+  deleteCat(id: number): Observable<Object>{
+    return this.httpClient.delete(this.baseURL + `/cat/${id}`);
+  }
+
+  deleteCatByContractID(contractID: number): Observable<Object>{
+    return this.httpClient.delete(this.baseURL + `/katze/${contractID}`);
+  }
+
 }
