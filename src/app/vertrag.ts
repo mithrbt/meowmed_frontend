@@ -1,5 +1,3 @@
-//Klasse, die die Antwort der Rest-API enthält
-import {Cat} from "./cat";
 
 export class Vertrag {
     id!: number;

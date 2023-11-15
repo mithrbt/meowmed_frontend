@@ -13,11 +13,88 @@
            [(ngModel)] = "customer.lastname" name ="lastname">
   </div>
   <div class = "form-group">
-    <label> Adresse </label>
-    <input type="text" class="form-control" id="address"
-           [(ngModel)] = "customer.address" name ="address">
+    <label> Strasse </label>
+    <input type="text" class="form-control" id="address.street"
+           [(ngModel)] = "customer.address.street" name ="address.street">
   </div>
-
+  <div class = "form-group">
+    <label> Hausnummer </label>
+    <input type="text" class="form-control" id="address.houseNr"
+           [(ngModel)] = "customer.address.houseNr" name ="address.houseNr">
+  </div>
+  <div class = "form-group">
+    <label> Postleitzahl </label>
+    <input type="text" class="form-control" id="address.zipCode"
+           [(ngModel)] = "customer.address.zipCode" name ="address.zipCode">
+  </div>
+  <div class = "form-group">
+    <label> Stadt </label>
+    <input type="text" class="form-control" id="address.city"
+           [(ngModel)] = "customer.address.city" name ="address.city">
+  </div>
+  <div class = "form-group">
+    <label> Land </label>
+    <input type="text" class="form-control" id="address.country"
+           [(ngModel)] = "customer.address.country" name ="address.country">
+  </div>
+  <div class = "form-group">
+    <label> Geburtsdatum </label>
+    <input type="date" class="form-control" id="birthdate"
+           [(ngModel)] = "customer.birthdate" name ="birthdate">
+  </div>
+  <div class = "form-group">
+    <label> Steuer-Nr. </label>
+    <input type="text" class="form-control" id="taxID"
+           [(ngModel)] = "customer.taxID" name ="taxID">
+  </div>
+  <div class = "form-group">
+    <label> Sozialversicherungsnummer </label>
+    <input type="text" class="form-control" id="snv"
+           [(ngModel)] = "customer.svn" name ="svn">
+  </div>
+  <div class = "form-group">
+    <label> Telefonnummer </label>
+    <input type="text" class="form-control" id="telNr"
+           [(ngModel)] = "customer.telNr" name ="telNr">
+  </div>
+  <div class = "form-group">
+    <label> Brutto-Einkommen </label>
+    <input type="text" class="form-control" id="income"
+           [(ngModel)] = "customer.income" name ="income">
+  </div>
+  <div class = "form-group">
+    <label> Berufsstand </label><br>
+    <input type="radio" id="employed" name="profession" value="EMPLOYED"
+           [(ngModel)] = "customer.profession" name ="profession">
+    <label for="employed"> Angestellt </label><br>
+    <input type="radio" id="unemployed" name="profession" value="UNEMPLOYED"
+           [(ngModel)] = "customer.profession" name ="profession">
+    <label for="unemployed"> Arbeitslos </label><br>
+    <input type="radio" id="selfemployed" name="profession" value="SELFEMPLOYED"
+           [(ngModel)] = "customer.profession" name ="profession">
+    <label for="selfemployed"> Selbstständig </label><br>
+    <input type="radio" id="student" name="profession" value="STUDENT"
+           [(ngModel)] = "customer.profession" name ="profession">
+    <label for="student"> Student/Schüler </label><br>
+  </div>
+  <div class = "form-group">
+    <label> Familienstatus </label><br>
+    <input type="radio" id="single" name="familyStatus" value="SINGLE"
+           [(ngModel)] = "customer.familyStatus" name ="familyStatus">
+    <label for="single"> Ledig </label><br>
+    <input type="radio" id="regPartnership" name="familyStatus" value="REGPARTNERSHIP"
+           [(ngModel)] = "customer.familyStatus" name ="familyStatus">
+    <label for="regPartnership"> Geschieden </label><br>
+    <input type="radio" id="married" name="familyStatus" value="MARRIED"
+           [(ngModel)] = "customer.familyStatus" name ="familyStatus">
+    <label for="married"> Verheiratet </label><br>
+    <input type="radio" id="divorced" name="familyStatus" value="DIVORCED"
+           [(ngModel)] = "customer.familyStatus" name ="familyStatus">
+    <label for="divorced"> Geschieden </label><br>
+    <input type="radio" id="widowed" name="familyStatus" value="WIDOWED"
+           [(ngModel)] = "customer.familyStatus" name ="familyStatus">
+    <label for="widowed"> Verwitwet </label><br>
+  </div>
   <button type= "submit" class ="btn btn-success" >Anlegen</button>
 </form>
 

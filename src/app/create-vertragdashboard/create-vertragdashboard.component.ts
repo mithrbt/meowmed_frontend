@@ -74,7 +74,7 @@ export class CreateVertragdashboardComponent implements OnInit{
   }
 
   quote() {
-    this.vertragService.quote(this.cat, this.vertrag).subscribe(data =>{
+    this.vertragService.quote(this.cat, this.vertrag, this.customer).subscribe(data =>{
       this.result = data;
       console.log(this.result);
     },

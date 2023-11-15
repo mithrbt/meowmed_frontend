@@ -4,6 +4,7 @@ import {Observable} from 'rxjs';
 import {Vertrag} from "./vertrag";
 import {Cat} from "./cat";
 import {Catract} from "./catract";
+import {Customer} from "./customer";
 
 @Injectable({
   providedIn: 'root'
@@ -41,8 +42,8 @@ export class VertragService {
     return this.httpClient.put(this.baseURL + `/vertrag/${id}`, vertrag);
   }
 
-  quote(cat: Cat, contract: Vertrag): Observable<number>{
-    const catract = new Catract(contract, cat);
+  quote(cat: Cat, contract: Vertrag, customer: Customer): Observable<number>{
+    const catract = new Catract(contract, cat, customer);
     console.log(catract);
     return this.httpClient.post<number>(this.baseURL + `/vertrag/quote`, catract);
   }

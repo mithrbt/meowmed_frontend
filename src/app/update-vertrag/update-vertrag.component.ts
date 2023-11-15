@@ -46,7 +46,7 @@ export class UpdateVertragComponent implements OnInit {
 
   }
 
-  quote() {
+  /*quote() {
     this.vertragService.quote(this.cat, this.vertrag).subscribe(data => {
         this.result = data;
         console.log(this.result);
@@ -54,7 +54,7 @@ export class UpdateVertragComponent implements OnInit {
       error => {
         console.log(error);
       });
-  }
+  }*/
 
   private updateCat() {
     this.catService.updateCat(this.cat.id, this.cat).subscribe(data => {

@@ -18,7 +18,7 @@
             <td> {{ customer.id }} </td>
             <td> {{ customer.firstname }} </td>
             <td> {{ customer.lastname }} </td>
-            <td> {{ customer.address }} </td>
+            <td> {{ customer.address.street }}</td>
             <td>
               <button (click)="deleteCustomer($event, customer.id)" class = "btn btn-danger" style="margin-left: 10px">Löschen</button>
               <button (click)="customerDetails(customer.id)" class = "btn btn-info" style="margin-left: 10px">Details</button>

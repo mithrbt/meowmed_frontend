@@ -16,8 +16,8 @@ export class CustomerService {
     return this.httpClient.get<Customer[]>(this.baseURL + `/kunden`);
   }
 
-  createCustomer(customer: Customer): Observable<Object>{
-    return this.httpClient.post(this.baseURL + `/kunden`, customer);
+  createCustomer(customer: Customer): Observable<Customer>{
+    return this.httpClient.post<Customer>(this.baseURL + `/kunden`, customer);
   }
 
   deleteCustomer(id: number): Observable<Object>{

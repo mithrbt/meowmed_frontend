@@ -12,10 +12,46 @@
            [(ngModel)] = "customer.lastname" name ="lastname">
   </div>
   <div class = "form-group">
-    <label> Adresse </label>
-    <input type="text" class="form-control" id="address"
-           [(ngModel)] = "customer.address" name ="address">
+    <label> Strasse </label>
+    <input type="text" class="form-control" id="street"
+           [(ngModel)] = "customer.address.street" name ="street">
   </div>
+  <div class = "form-group">
+    <label> Hausnummer </label>
+    <input type="text" class="form-control" id="houseNr"
+           [(ngModel)] = "customer.address.houseNr" name ="houseNr">
+  </div>
+  <div class = "form-group">
+    <label> Postleitzahl </label>
+    <input type="text" class="form-control" id="zipCode"
+           [(ngModel)] = "customer.address.zipCode" name ="zipCode">
+  </div>
+  <div class = "form-group">
+    <label> Stadt </label>
+    <input type="text" class="form-control" id="city"
+           [(ngModel)] = "customer.address.city" name ="city">
+  </div>
+  <div class = "form-group">
+    <label> Land </label>
+    <input type="text" class="form-control" id="country"
+           [(ngModel)] = "customer.address.country" name ="country">
+  </div>
+  <div class = "form-group">
+    <label> Steuer-Nr. </label>
+    <input type="text" class="form-control" id="taxID"
+           [(ngModel)] = "customer.taxID" name ="taxID">
+  </div>
+  <div class = "form-group">
+    <label> Sozialversicherungsnummer </label>
+    <input type="text" class="form-control" id="snv"
+           [(ngModel)] = "customer.svn" name ="svn">
+  </div>
+  <div class = "form-group">
+    <label> Telefonnummer </label>
+    <input type="text" class="form-control" id="telNr"
+           [(ngModel)] = "customer.telNr" name ="telNr">
+  </div>
+
 
   <button type= "submit" class ="btn btn-success" >Update</button>
 </form>

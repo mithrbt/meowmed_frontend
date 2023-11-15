@@ -10,7 +10,14 @@
     <label> <b> Nachname: </b></label> {{customer.lastname}}
   </div>
   <div>
-    <label> <b> Adresse: </b></label> {{customer.address}}
+    <label> <b> Strasse: </b></label> {{customer.address.street}}
+    <label> <b> Hausnummer: </b></label> {{customer.address.houseNr}}
+  </div>
+  <div>
+    <label> <b> Postleitzahl: </b></label> {{customer.address.zipCode}}
+  </div>
+  <div>
+    <label> <b> Land: </b></label> {{customer.address.country}}
   </div>
   <form>
     <button (click)="goToCreateContract(customer.id)" class = "btn btn-info" style="float: right">Neuer Vertrag +</button>
