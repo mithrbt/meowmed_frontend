@@ -53,7 +53,7 @@ export class CreateVertragdashboardComponent implements OnInit{
     this.vertragService.createVertrag(this.id, this.vertrag).subscribe(data =>{
         console.log(data);
         this.contract = data;
-        this.saveCat();
+        this.saveCat()
         this.goToCustomerDetails();
       },
       error => console.log(error)

@@ -1,27 +1,44 @@
+<style>
+  input:invalid {
+    border: 2px solid red;
+  }
 
+  /* Style all elements with a required attribute */
+  :required {
+    border: 2px solid red;
+  }
+
+  .invalid-radio-group {
+    border: 2px solid red;
+  }
+
+  .invalid-radio {
+    border: 2px solid red;
+  }
+</style>
 <h2> Neuer Vertrag </h2>
 <form (ngSubmit)="createVertrag()">
 
   <div class = "form-group">
     <label> Beginn </label>
     <input type="date" class="form-control" id="start"
-           [(ngModel)] = "vertrag.start" name ="start">
+           [(ngModel)] = "vertrag.start" name ="start" required>
   </div>
   <div class = "form-group">
     <label> Ende </label>
     <input type="date" class="form-control" id="end"
-           [(ngModel)] = "vertrag.end" name ="end">
+           [(ngModel)] = "vertrag.end" name ="end" required>
   </div>
   <div class = "form-group">
     <label> Deckung </label>
     <input type="number" class="form-control" id="coverage"
-           [(ngModel)] = "vertrag.coverage" name ="coverage">
+           [(ngModel)] = "vertrag.coverage" name ="coverage" required>
   </div>
   <h2> Katze </h2>
   <div class = "form-group">
     <label> Name </label>
     <input type="text" class="form-control" id="name"
-           [(ngModel)] = "cat.name" name ="name">
+           [(ngModel)] = "cat.name" name ="name" required>
   </div>
   <label> Rassen </label>
   <div *ngFor="let breed of breeds">
@@ -30,9 +47,9 @@
   <div class = "form-group">
     <label> Geburtsdatum </label>
     <input type="date" class="form-control" id="birthdate"
-           [(ngModel)] = "cat.birthdate" name ="birthdate">
+           [(ngModel)] = "cat.birthdate" name ="birthdate" required>
   </div>
-  <div class = "form-group">
+  <div class = "form-group" [ngClass]="{'invalid-radio-group': !cat.environment}">
     <label> Umgebung </label><br>
     <input type="radio" id="outdoor" name="environment" value="DRAUSSEN"
            [(ngModel)] = "cat.environment" name ="environment">
@@ -41,16 +58,16 @@
            [(ngModel)] = "cat.environment" name ="environment">
     <label for="indoor"> drin</label>
   </div>
-  <div class = "form-group">
+  <div class = "form-group" [ngClass]="{'invalid-radio-group': !cat.color}">
     <label> Farbe </label><br>
     <input type="radio" id="black" name="color" value="SCHWARZ"
-           [(ngModel)] = "cat.color" name ="color">
+           [(ngModel)] = "cat.color" name ="color" required="required">
     <label for="black"> schwarz</label><br>
     <input type="radio" id="white" name="color" value="WEISS"
            [(ngModel)] = "cat.color" name ="color">
     <label for="white"> weiss</label>
   </div>
-  <div class = "form-group">
+  <div class = "form-group" [ngClass]="{'invalid-radio-group': !cat.personality}">
     <label> Persönlichkeit </label><br>
     <input type="radio" id="verspielt" name="personality" value="VERSPIELT"
            [(ngModel)] = "cat.personality" name ="personality">
@@ -62,7 +79,7 @@
   <div class = "form-group">
     <label> Gewicht </label>
     <input type="text" class="form-control" id="weight"
-           [(ngModel)] = "cat.weight" name ="weight">
+           [(ngModel)] = "cat.weight" name ="weight" required>
   </div>
   <div class = "form-group">
     <label> Kastriert </label><br>
@@ -71,9 +88,11 @@
     <label for="verspielt"> Ist kastriert</label><br>
   </div>
   <div>
-    <button type="button" (click)="quote()" class = "btn btn-info" style="float: right">Beitrag berechnen</button>
+    <button type="button" (click)="quote()" class="btn btn-info" style="float: right">Beitrag berechnen</button>
     <div *ngIf="result !== null">Monatlicher Beitrag: {{result}}€</div>
   </div>
-  <button type= "submit" class ="btn btn-success" >Vertrag abschließen</button>
+  <button type="submit" class="btn btn-success">Vertrag abschließen</button>
 </form>
+
+
 
