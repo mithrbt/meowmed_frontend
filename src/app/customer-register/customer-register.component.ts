@@ -32,10 +32,36 @@ export class CustomerRegisterComponent implements OnInit{
 
   createCustomer() {
     console.log(this.customer);
-    this.saveCustomer();
+    if (!this.validateForm()) {
+      // Zeige das Dialogfenster an
+      this.openValidationDialog();
+      return; // Stoppe die Funktion, um das Formular nicht abzusenden
+    }else{
+    this.saveCustomer();}
   }
 
   goToCustomerDetails(){
     this.router.navigate(['kundendetails', this.customer.id]);
+  }
+  validateForm(): boolean {
+    return (
+      this.customer.firstname !== null && this.customer.firstname !== undefined &&
+      this.customer.lastname !== null && this.customer.lastname !== undefined &&
+      this.customer.address.street !== null && this.customer.address.street !== undefined &&
+      this.customer.address.houseNr !== null && this.customer.address.houseNr !== undefined &&
+      this.customer.address.zipCode !== null && this.customer.address.zipCode !== undefined &&
+      this.customer.address.city !== null && this.customer.address.city !== undefined &&
+      this.customer.address.country !== null && this.customer.address.country !== undefined &&
+      this.customer.birthdate !== null && this.customer.birthdate !== undefined &&
+      this.customer.taxID !== null && this.customer.taxID !== undefined &&
+      this.customer.svn !== null && this.customer.svn !== undefined &&
+      this.customer.telNr !== null && this.customer.telNr !== undefined &&
+      this.customer.income !== null && this.customer.income !== undefined &&
+      this.customer.familyStatus !== null && this.customer.familyStatus !== undefined &&
+      this.customer.profession !== null && this.customer.profession !== undefined
+    );
+  }
+  openValidationDialog(): void {
+    alert('Nicht alle Felder sind ausgefüllt. Bitte überprüfen Sie Ihre Eingaben.');
   }
 }

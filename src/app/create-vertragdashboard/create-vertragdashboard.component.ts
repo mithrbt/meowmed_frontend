@@ -9,6 +9,7 @@ import {CatService} from "../cat.service";
 import {Environment} from "../enums/Environment";
 import {BreedService} from "../breed.service";
 import {Breed} from "../breed";
+import {AbstractControl, NgModel} from "@angular/forms";
 
 @Component({
   selector: 'app-create-vertragdashboard',
@@ -62,7 +63,12 @@ export class CreateVertragdashboardComponent implements OnInit{
 
   createVertrag() {
     console.log(this.vertrag);
-    this.saveVertrag();
+    if (!this.validateForm()) {
+      // Zeige das Dialogfenster an
+      this.openValidationDialog();
+      return; // Stoppe die Funktion, um das Formular nicht abzusenden
+    }else{
+    this.saveVertrag();}
   }
 
   saveCat(){
@@ -92,6 +98,21 @@ export class CreateVertragdashboardComponent implements OnInit{
   showMonthlyContribution(){
     this.quote();
     console.log(this.result);
+  }
+
+  validateForm(): boolean {
+    return (
+      this.cat.environment !== null && this.cat.environment !== undefined &&
+      this.cat.color !== null && this.cat.color !== undefined &&
+      this.cat.personality !== null && this.cat.personality !== undefined &&
+      this.cat.name !== null && this.cat.name !== undefined &&
+      this.cat.birthdate !== null && this.cat.birthdate !== undefined &&
+      this.cat.weight !== null && this.cat.weight !== undefined
+      // Füge weitere Bedingungen für andere Felder hinzu
+    );
+  }
+  openValidationDialog(): void {
+    alert('Nicht alle Felder sind ausgefüllt. Bitte überprüfen Sie Ihre Eingaben.');
   }
 
 }
