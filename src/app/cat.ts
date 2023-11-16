@@ -1,6 +1,7 @@
 import {Color} from "./enums/Color";
 import {Environment} from "./enums/Environment";
 import {Personality} from "./enums/Personality";
+import {Breed} from "./breed";
 
 export class Cat {
   id!: number;
@@ -11,5 +12,5 @@ export class Cat {
   birthdate!: Date;
   weight!: number;
   castrated!: boolean;
-  
+  breed!: Breed;
 }

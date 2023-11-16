@@ -12,7 +12,7 @@ import {Address} from "../address";
 export class CustomerRegisterComponent implements OnInit{
 
   customer : Customer = new Customer();
-  address: Address = new Address();
+  address!: Address;
 
   constructor(private customerService: CustomerService, private router: Router){
   }

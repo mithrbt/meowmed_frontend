@@ -24,6 +24,16 @@
            [(ngModel)] = "cat.name" name ="name">
   </div>
   <div class = "form-group">
+    <label> Rasse </label>
+    <input type="text" class="form-control" id="breed.name"
+           [(ngModel)] = "cat.breed.name" name ="breed.name">
+  </div>
+  <div class = "form-group">
+    <label> Geburtsdatum </label>
+    <input type="date" class="form-control" id="birthdate"
+           [(ngModel)] = "cat.birthdate" name ="birthdate">
+  </div>
+  <div class = "form-group">
     <label> Umgebung </label><br>
     <input type="radio" id="outdoor" name="environment" value="DRAUSSEN"
            [(ngModel)] = "cat.environment" name ="environment">
@@ -49,6 +59,17 @@
     <input type="radio" id="ausgeglichen" name="personality" value="AUSGEGLICHEN"
            [(ngModel)] = "cat.personality" name ="personality">
     <label for="ausgeglichen"> ausgeglichen</label>
+  </div>
+  <div class = "form-group">
+    <label> Gewicht </label>
+    <input type="text" class="form-control" id="weight"
+           [(ngModel)] = "cat.weight" name ="weight">
+  </div>
+  <div class = "form-group">
+    <label> Kastriert </label><br>
+    <input type="radio" id="castrated" name="castrated" value="TRUE"
+           [(ngModel)] = "cat.castrated" name ="castrated">
+    <label for="verspielt"> Ist kastriert</label><br>
   </div>
   <div>
     <button type="button" (click)="quote()" class = "btn btn-info" style="float: right">Beitrag berechnen</button>

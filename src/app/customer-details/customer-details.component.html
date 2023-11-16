@@ -10,12 +10,15 @@
     <label> <b> Nachname: </b></label> {{customer.lastname}}
   </div>
   <div>
-    <label> <b> Strasse: </b></label> {{customer.address.street}}
-    <label> <b> Hausnummer: </b></label> {{customer.address.houseNr}}
+    <label> <b> Straße: </b></label> {{customer.address.street + " " + customer.address.houseNr}}
   </div>
   <div>
-    <label> <b> Postleitzahl: </b></label> {{customer.address.zipCode}}
+    <div>
+      <label> <b> Postleitzahl: </b></label> {{customer.address.zipCode}}
   </div>
+    <div>
+      <label> <b> Stadt: </b></label> {{customer.address.city}}
+    </div>
   <div>
     <label> <b> Land: </b></label> {{customer.address.country}}
   </div>

@@ -7,6 +7,7 @@ import {VertragService} from "../vertrag.service";
 import {Cat} from "../cat";
 import {CatService} from "../cat.service";
 import {firstValueFrom, Observable} from "rxjs";
+import {Address} from "../address";
 
 @Component({
   selector: 'app-customer-details',
@@ -22,6 +23,7 @@ export class CustomerDetailsComponent implements OnInit{
   cats!: Map<number, Cat>;
   vertrag: Vertrag = new Vertrag();
   contract: Vertrag = new Vertrag();
+  address!: Address;
 
   constructor(private route: ActivatedRoute,
               private catService: CatService,
@@ -37,6 +39,8 @@ export class CustomerDetailsComponent implements OnInit{
     });
     console.log("ID: " + this.id);
     this.getVertragList();
+    this.customer.address = this.address;
+    console.log("Adresse: " + this.address);
   }
 
   private getVertragList(){
