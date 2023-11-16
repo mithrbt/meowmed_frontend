@@ -23,7 +23,10 @@
     <label> <b> Land: </b></label> {{customer.address.country}}
   </div>
   <form>
-    <button (click)="goToCreateContract(customer.id)" class = "btn btn-info" style="float: right">Neuer Vertrag +</button>
+      <div style="text-align: center;">
+          <label >insgesammter Beitrag: </label>
+      </div>
+      <button (click)="goToCreateContract(customer.id)" class = "btn btn-info" style="float: right">Neuer Vertrag +</button>
   </form>
 
  <table class = "table table-striped">

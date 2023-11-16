@@ -48,6 +48,7 @@ export class CreateVertragdashboardComponent implements OnInit{
   private getBreedList(){
     this.breedService.getAllBreeds().subscribe(data =>{
       this.breeds = data;
+      console.log(this.breeds);
     })
   }
   saveVertrag(){
