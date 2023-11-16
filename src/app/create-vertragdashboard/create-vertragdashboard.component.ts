@@ -6,9 +6,9 @@ import {CustomerService} from "../customer.service";
 import {Customer} from "../customer";
 import {Cat} from "../cat";
 import {CatService} from "../cat.service";
-import {Observable} from "rxjs";
-import {Color} from "../enums/Color";
 import {Environment} from "../enums/Environment";
+import {BreedService} from "../breed.service";
+import {Breed} from "../breed";
 
 @Component({
   selector: 'app-create-vertragdashboard',
@@ -22,16 +22,17 @@ export class CreateVertragdashboardComponent implements OnInit{
   customer: Customer = new Customer();
   cat: Cat = new Cat();
   contract!: Vertrag;
-  savedCat!: Cat;
   result!: number;
   environmentKeys!: any;
+  breeds: Breed []= [];
 
 
   constructor(private catService: CatService,
               private vertragService: VertragService,
               private router: Router,
               private route: ActivatedRoute,
-              private customerService: CustomerService){
+              private customerService: CustomerService,
+              private breedService: BreedService){
   }
 
   ngOnInit() {
@@ -39,9 +40,15 @@ export class CreateVertragdashboardComponent implements OnInit{
     this.customerService.getCustomerById(this.id).subscribe(data =>{
       this.customer = data;
     });
-    this.environmentKeys = Object.keys(Environment).filter(Number)
+    this.environmentKeys = Object.keys(Environment).filter(Number);
+    this.getBreedList();
   }
 
+  private getBreedList(){
+    this.breedService.getAllBreeds().subscribe(data =>{
+      this.breeds = data;
+    })
+  }
   saveVertrag(){
     this.vertragService.createVertrag(this.id, this.vertrag).subscribe(data =>{
         console.log(data);
@@ -62,7 +69,6 @@ export class CreateVertragdashboardComponent implements OnInit{
     console.log("VertragID: " + this.contract.id);
     this.catService.createCat(this.contract.id, this.cat).subscribe(data =>{
       console.log(data);
-      this.savedCat = data;
       },
       error => console.log(error)
     );

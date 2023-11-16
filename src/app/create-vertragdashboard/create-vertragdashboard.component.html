@@ -23,10 +23,9 @@
     <input type="text" class="form-control" id="name"
            [(ngModel)] = "cat.name" name ="name">
   </div>
-  <div class = "form-group">
-    <label> Rasse </label>
-    <input type="text" class="form-control" id="breed.name"
-           [(ngModel)] = "cat.breed.name" name ="breed.name">
+  <label> Rassen </label>
+  <div *ngFor="let breed of breeds">
+    <p>{{breed.name}}</p>
   </div>
   <div class = "form-group">
     <label> Geburtsdatum </label>
