@@ -7,8 +7,7 @@ import {Customer} from "../customer";
 import {Cat} from "../cat";
 import {CatService} from "../cat.service";
 import {Environment} from "../enums/Environment";
-import {BreedService} from "../breed.service";
-import {Breed} from "../breed";
+
 
 @Component({
   selector: 'app-create-vertragdashboard',
@@ -24,15 +23,15 @@ export class CreateVertragdashboardComponent implements OnInit{
   contract!: Vertrag;
   result!: number;
   environmentKeys!: any;
-  breeds: Breed []= [];
-
+  selectedItem: any;
+  breeds: string[] = ['Perserkatze', 'Rasse 2', 'Rasse 3'];
+  selectedBreed: string = '';
 
   constructor(private catService: CatService,
               private vertragService: VertragService,
               private router: Router,
               private route: ActivatedRoute,
-              private customerService: CustomerService,
-              private breedService: BreedService){
+              private customerService: CustomerService){
   }
 
   ngOnInit() {
@@ -41,14 +40,14 @@ export class CreateVertragdashboardComponent implements OnInit{
       this.customer = data;
     });
     this.environmentKeys = Object.keys(Environment).filter(Number);
-    this.getBreedList();
   }
 
-  private getBreedList(){
-    this.breedService.getAllBreeds().subscribe(data =>{
-      this.breeds = data;
-    })
+  onSelectBreed(){
+    this.cat.breed = this.selectedBreed;
+    console.log("Ausgewählte Rasse:", this.selectedBreed);
   }
+
+
   saveVertrag(){
     this.vertragService.createVertrag(this.id, this.vertrag).subscribe(data =>{
         console.log(data);

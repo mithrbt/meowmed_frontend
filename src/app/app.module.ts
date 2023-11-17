@@ -14,6 +14,7 @@ import { CreateVertragdashboardComponent } from './create-vertragdashboard/creat
 import {MatTableModule} from "@angular/material/table";
 import { VertragDetailsComponent } from './vertrag-details/vertrag-details.component';
 import { UpdateVertragComponent } from './update-vertrag/update-vertrag.component';
+import {MatSelectModule} from "@angular/material/select";
 
 @NgModule({
   declarations: [
@@ -26,15 +27,16 @@ import { UpdateVertragComponent } from './update-vertrag/update-vertrag.componen
     VertragDetailsComponent,
     UpdateVertragComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MatIconModule,
-    MatTableModule,
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MatIconModule,
+        MatTableModule,
+        MatSelectModule,
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

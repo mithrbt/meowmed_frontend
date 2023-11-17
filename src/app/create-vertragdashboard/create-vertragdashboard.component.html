@@ -23,10 +23,33 @@
     <input type="text" class="form-control" id="name"
            [(ngModel)] = "cat.name" name ="name">
   </div>
-  <label> Rassen </label>
-  <div *ngFor="let breed of breeds">
-    <p>{{breed.name}}</p>
-  </div>
+  <!--<div class="form-group">
+    <label>Rasse:</label>
+    <dx-select-box class="form-control" id="breed" name="breed" [(ngModel)]="cat.breed" onChange="onSelectionChanged($event)">
+      <option *ngFor="let breed of breeds" [value]="breed">{{ breed.viewValue }}</option>
+    </dx-select-box>
+  </div>-->
+
+  <select id="mySelect" onchange="myFunction()">
+    <option value="Audi">Audi</option>
+    <option value="BMW">BMW</option>
+    <option value="Mercedes">Mercedes</option>
+    <option value="Volvo">Volvo</option>
+  </select>
+
+  <script>
+    function myFunction() {
+      var x = document.getElementById('mySelect').value;
+      console.log("You selected: " + x);
+    }
+  </script>
+
+  <label for="breed">Rasse:</label>
+  <select class="form-control" id="breed" name="breed" [(ngModel)]="selectedBreed">
+    <option *ngFor="let breed of breeds" [value]="breed">{{ breed }}</option>
+  </select>
+  <button type="button" (click)="onSelectBreed()">Auswählen</button>
+
   <div class = "form-group">
     <label> Geburtsdatum </label>
     <input type="date" class="form-control" id="birthdate"
