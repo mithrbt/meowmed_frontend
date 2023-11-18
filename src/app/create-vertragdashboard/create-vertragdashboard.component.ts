@@ -7,6 +7,8 @@ import {Customer} from "../customer";
 import {Cat} from "../cat";
 import {CatService} from "../cat.service";
 import {Environment} from "../enums/Environment";
+import {BreedService} from "../breed.service";
+import {Breed} from "../breed";
 
 
 @Component({
@@ -23,15 +25,15 @@ export class CreateVertragdashboardComponent implements OnInit{
   contract!: Vertrag;
   result!: number;
   environmentKeys!: any;
-  selectedItem: any;
-  breeds: string[] = ['Perserkatze', 'Rasse 2', 'Rasse 3'];
-  selectedBreed: string = '';
+  breeds: Breed[] = [];
+  selectedBreed!: Breed;
 
   constructor(private catService: CatService,
               private vertragService: VertragService,
               private router: Router,
               private route: ActivatedRoute,
-              private customerService: CustomerService){
+              private customerService: CustomerService,
+              private breedService: BreedService){
   }
 
   ngOnInit() {
@@ -40,11 +42,22 @@ export class CreateVertragdashboardComponent implements OnInit{
       this.customer = data;
     });
     this.environmentKeys = Object.keys(Environment).filter(Number);
+    this.getBreedList();
+  }
+
+  getBreedList(){
+    this.breedService.getAllBreeds().subscribe(data =>{
+      this.breeds = data;
+      console.log(data);
+    })
   }
 
   onSelectBreed(){
-    this.cat.breed = this.selectedBreed;
-    console.log("Ausgewählte Rasse:", this.selectedBreed);
+    console.log("Ausgewählte Rasse: ", this.selectedBreed.name);
+    this.breedService.getBreedById(this.selectedBreed.name).subscribe(data =>{
+      this.cat.breed = data;
+      console.log("Rasse:", this.cat.breed);
+    });
   }
 
 
@@ -79,6 +92,7 @@ export class CreateVertragdashboardComponent implements OnInit{
   }
 
   quote() {
+    console.log("Katzenrasse:" , this.cat.breed);
     this.vertragService.quote(this.cat, this.vertrag, this.customer).subscribe(data =>{
       this.result = data;
       console.log(this.result);
@@ -86,6 +100,7 @@ export class CreateVertragdashboardComponent implements OnInit{
       error => {
         console.log(error);
     });
+
   }
 
   showMonthlyContribution(){
