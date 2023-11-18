@@ -1,4 +1,8 @@
 export enum Color{
   SCHWARZ = 'schwarz',
-  WEISS = 'weiss'
+  WEISS = 'weiss',
+  BRAUN = 'braun',
+  MEHRFARBIG = 'mehrfarbig',
+  ORANGE = 'orange',
+  GRAU = 'grau'
 }
