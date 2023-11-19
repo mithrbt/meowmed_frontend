@@ -12,12 +12,8 @@
   <div>
     <label> <b> Straße: </b></label> {{customer.address.street + " " + customer.address.houseNr}}
   </div>
-  <div>
     <div>
-      <label> <b> Postleitzahl: </b></label> {{customer.address.zipCode}}
-  </div>
-    <div>
-      <label> <b> Stadt: </b></label> {{customer.address.city}}
+      <label> <b> Stadt: </b></label> {{customer.address.zipCode + " " + customer.address.street}}
     </div>
   <div>
     <label> <b> Land: </b></label> {{customer.address.country}}

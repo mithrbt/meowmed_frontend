@@ -1,5 +1,5 @@
 
-<h2> Neuer Vertrag </h2>
+<h2> Update Vertrag </h2>
 <form (ngSubmit)="onSubmit()">
 
   <div class = "form-group">
@@ -24,28 +24,66 @@
            [(ngModel)] = "cat.name" name ="name">
   </div>
   <div class = "form-group">
+    <label> Geburtsdatum </label>
+    <input type="date" class="form-control" id="birthdate"
+           [(ngModel)] = "cat.birthdate" name ="birthdate">
+  </div>
+  <div class = "form-group">
     <label> Umgebung </label><br>
     <input type="radio" id="outdoor" name="environment" value="DRAUSSEN"
            [(ngModel)] = "cat.environment" name ="environment">
-    <label for="outdoor"> draussen</label><br>
+    <label for="outdoor"> Draussen</label><br>
     <input type="radio" id="indoor" name="environment" value="DRIN"
            [(ngModel)] = "cat.environment" name ="environment">
-    <label for="indoor"> drin</label>
+    <label for="indoor"> Drin</label>
   </div>
   <div class = "form-group">
     <label> Farbe </label><br>
     <input type="radio" id="black" name="color" value="SCHWARZ"
            [(ngModel)] = "cat.color" name ="color">
-    <label for="black"> schwarz</label><br>
+    <label for="black"> Schwarz</label><br>
     <input type="radio" id="white" name="color" value="WEISS"
            [(ngModel)] = "cat.color" name ="color">
-    <label for="white"> weiss</label>
+    <label for="white"> Weiss</label><br>
+    <input type="radio" id="braun" name="color" value="BRAUN"
+           [(ngModel)] = "cat.color" name ="color">
+    <label for="braun"> Braun</label><br>
+    <input type="radio" id="mehrfarbig" name="color" value="MEHRFARBIG"
+           [(ngModel)] = "cat.color" name ="color">
+    <label for="mehrfarbig"> Mehrfarbig </label><br>
+    <input type="radio" id="orange" name="color" value="ORANGE"
+           [(ngModel)] = "cat.color" name ="color">
+    <label for="orange"> Orange </label><br>
+    <input type="radio" id="grau" name="color" value="GRAU"
+           [(ngModel)] = "cat.color" name ="color">
+    <label for="grau"> Grau </label>
+  </div>
+  <div class = "form-group">
+    <label> Persönlichkeit </label><br>
+    <input type="radio" id="verspielt" name="personality" value="VERSPIELT"
+           [(ngModel)] = "cat.personality" name ="personality">
+    <label for="verspielt"> Verspielt</label><br>
+    <input type="radio" id="ausgeglichen" name="personality" value="AUSGEGLICHEN"
+           [(ngModel)] = "cat.personality" name ="personality">
+    <label for="ausgeglichen"> Ausgeglichen</label>
+  </div>
+  <div class = "form-group">
+    <label> Gewicht </label>
+    <input type="text" class="form-control" id="weight"
+           [(ngModel)] = "cat.weight" name ="weight">
+  </div>
+  <div class = "form-group">
+    <label> Kastriert </label><br>
+    <input type="radio" id="castrated" name="castrated" value="TRUE"
+           [(ngModel)] = "cat.castrated" name ="castrated">
+    <label for="verspielt"> Ist kastriert</label><br>
   </div>
   <div>
-    <!-- <button type="button" (click)="quote()" class = "btn btn-info" style="float: right">Beitrag berechnen</button>
-    <div *ngIf="result !== null">Monatlicher Beitrag: {{result}}€</div>
-  </div> -->
+    <!--  <div>
+       <button type="button" (click)="quote()" class = "btn btn-info" style="float: right">Beitrag berechnen</button>
+       <div *ngIf="result !== null">Monatlicher Beitrag: {{result}}€</div>
+     </div> -->
   </div>
-  <button type= "submit" class ="btn btn-success" >Vertrag abschließen</button>
+  <button type= "submit" class ="btn btn-success" >Update</button>
 </form>
 

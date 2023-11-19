@@ -20,24 +20,29 @@ export class UpdateVertragComponent implements OnInit {
   cat: Cat = new Cat();
   result!: number;
 
-  constructor(private catService: CatService, private vertragService: VertragService, private customerService: CustomerService, private route: ActivatedRoute, private router: Router) {
+  constructor(private catService: CatService,
+              private vertragService: VertragService,
+              private customerService: CustomerService,
+              private route: ActivatedRoute,
+              private router: Router) {
   }
 
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id']; //Get ID from route
     this.vertragService.getVertragById(this.id).subscribe(data => {
       this.vertrag = data;
+      console.log("Ausgewählter Vertrag: ", this.vertrag);
+      this.vertragService.getCatByContractId(this.vertrag.id).subscribe(data => {
+        this.cat = data;
+        console.log("Ausgewählte Katze: ", this.cat);
+      });
     }, error => console.log(error));
-    this.vertragService.getCatByContractId(this.id).subscribe(data => {
-      this.cat = data;
-    }, error => console.log(error))
   }
 
 
   onSubmit() {
     this.vertragService.updateVertrag(this.id, this.vertrag).subscribe(data => {
       this.updateCat();
-      this.gotoVertragList(this.id);
     }, error => console.log(error));
   }
 
@@ -58,7 +63,7 @@ export class UpdateVertragComponent implements OnInit {
 
   private updateCat() {
     this.catService.updateCat(this.cat.id, this.cat).subscribe(data => {
-
+      this.gotoVertragList(this.id);
     }, error => console.log(error));
   }
 
