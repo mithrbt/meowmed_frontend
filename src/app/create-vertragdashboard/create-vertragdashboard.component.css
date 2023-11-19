@@ -1,0 +1,56 @@
+.invalid-field {
+  border: 2px solid red;
+  width: 20.2em;
+}
+
+label {
+  background-color: #B57B59;
+  width: 20em;
+}
+
+.radiolabel{
+  background-color: #ECDAD0;
+}
+
+input {
+  width: 20em;
+}
+
+.form-radio{
+  display: flex;
+  flex-direction: row;
+  align-items:center;
+  width: 20em;
+}
+
+.form-control {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.radio-group label {
+  background-color: #ECDAD0;
+  margin-left: 5px; /* Fügen Sie nach Bedarf Abstand hinzu */
+}
+
+.flex-container {
+  display: flex;
+  flex-direction: column;
+  margin-left: auto;
+  margin-right: 0;
+}
+
+.flex-container2 {
+  display: flex;
+  flex-direction: column;
+  margin-left: auto;
+  margin-right: 0;
+}
+
+.flex-container3 {
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: row;
+}
