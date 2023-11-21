@@ -1,4 +1,6 @@
 <h3>Kundendetails</h3>
+
+
 <div>
   <div>
     <label> <b> ID: </b></label> {{customer.id}}
@@ -20,6 +22,13 @@
   </div>
   <form>
     <button (click)="goToCreateContract(customer.id)" class = "btn btn-info" style="float: right">Neuer Vertrag +</button>
+    <div class="form-group">
+      <label for="searchTerm">Suche:</label>
+      <input type="text" class="form-control" id="searchTerm" [(ngModel)]="searchTerm" name="searchTerm">
+
+      <!-- Hier ist der Button für die Suche -->
+      <button type="button" class="btn btn-primary" (click)="filterCats()">Suchen</button>
+    </div>
   </form>
 
 
@@ -35,7 +44,7 @@
      </tr>
      </thead>
      <tbody>
-       <tr *ngFor = "let vertrag of vertraege" [ngClass]="{'vertrag-abgelaufen': isVertragAbgelaufen(vertrag)}">
+       <tr *ngFor = "let vertrag of filteredContracts" [ngClass]="{'vertrag-abgelaufen': isVertragAbgelaufen(vertrag)}">
            <td> {{ vertrag.id }} </td>
            <td> {{ getCatByContractId(vertrag.id).name }}</td>
            <td> {{ vertrag.start | date: 'dd/MM/yyyy' }} </td>

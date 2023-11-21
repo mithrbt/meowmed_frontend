@@ -24,6 +24,8 @@ export class CustomerDetailsComponent implements OnInit{
   vertrag: Vertrag = new Vertrag();
   contract: Vertrag = new Vertrag();
   address!: Address;
+  filteredContracts: Vertrag[] = [];
+  searchTerm: string = '';
 
   totalMonthlyContribution: number = 0;
 
@@ -48,6 +50,7 @@ export class CustomerDetailsComponent implements OnInit{
   private getVertragList(){
     this.vertragService.getVertragList(this.id).subscribe(data =>{
       this.vertraege = data;
+      this.filteredContracts = this.vertraege;
       console.log("Verträge:");
       console.log(this.vertraege);
       this.cats = new Map<number, Cat>();
@@ -100,6 +103,12 @@ export class CustomerDetailsComponent implements OnInit{
     const currentDate = new Date();
     const vertragEnd = new Date(vertrag.end);
     return vertragEnd < currentDate;
+  }
+
+  filterCats(): void {
+    this.filteredContracts = this.vertraege.filter(vertrag =>
+      this.getCatByContractId(vertrag.id).name.toLowerCase().includes(this.searchTerm.toLowerCase())
+    );
   }
 
 }
