@@ -91,4 +91,10 @@ export class CustomerDetailsComponent implements OnInit{
     }
   }
 
+  isVertragAbgelaufen(vertrag: any): boolean {
+    const currentDate = new Date();
+    const vertragEnd = new Date(vertrag.end);
+    return vertragEnd < currentDate;
+  }
+
 }

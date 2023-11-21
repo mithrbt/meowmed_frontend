@@ -33,11 +33,11 @@
      </tr>
      </thead>
      <tbody>
-       <tr *ngFor = "let vertrag of vertraege">
+       <tr *ngFor = "let vertrag of vertraege" [ngClass]="{'vertrag-abgelaufen': isVertragAbgelaufen(vertrag)}">
            <td> {{ vertrag.id }} </td>
            <td> {{ getCatByContractId(vertrag.id).name }}</td>
            <td> {{ vertrag.start | date: 'dd/MM/yyyy' }} </td>
-           <td> {{ vertrag.start | date: 'dd/MM/yyyy' }} </td>
+           <td> {{ vertrag.end | date: 'dd/MM/yyyy' }} </td>
            <td> {{ vertrag.coverage }} </td>
          <td>
 
