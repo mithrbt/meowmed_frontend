@@ -13,6 +13,9 @@ export class CustomerListComponent implements OnInit{
   customers: Customer[] = [];
   customer: Customer = new Customer();
 
+  filteredCustomers: Customer[] = [];
+  searchTerm: string = '';
+
 
   constructor(private customerService: CustomerService, private router: Router){
   }
@@ -24,6 +27,7 @@ export class CustomerListComponent implements OnInit{
   private getCustomerList(){
     this.customerService.getCustomerList().subscribe(data =>{
       this.customers = data;
+      this.filteredCustomers = this.customers;
     });
   }
 
@@ -45,5 +49,13 @@ export class CustomerListComponent implements OnInit{
   updateCustomer(id: number){
     this.router.navigate(['update-kunde', id]);
   }
+
+  filterCustomers(): void {
+    this.filteredCustomers = this.customers.filter(customer =>
+      (customer.firstname.toLowerCase().includes(this.searchTerm.toLowerCase())) ||
+      (customer.lastname.toLowerCase().includes(this.searchTerm.toLowerCase()))
+    );
+  }
+
 
 }
