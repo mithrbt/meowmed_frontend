@@ -22,6 +22,7 @@
     <button (click)="goToCreateContract(customer.id)" class = "btn btn-info" style="float: right">Neuer Vertrag +</button>
   </form>
 
+
  <table class = "table table-striped">
      <thead>
      <tr>
@@ -30,6 +31,7 @@
        <th> Beginn </th>
        <th> Ende </th>
        <th> Jahresdeckung </th>
+       <th> Beitrag </th>
      </tr>
      </thead>
      <tbody>
@@ -39,6 +41,7 @@
            <td> {{ vertrag.start | date: 'dd/MM/yyyy' }} </td>
            <td> {{ vertrag.end | date: 'dd/MM/yyyy' }} </td>
            <td> {{ vertrag.coverage }} </td>
+           <td> {{ vertrag.contribution }} </td>
          <td>
 
            <button (click)="deleteVertrag($event, vertrag.id)" class = "btn btn-danger" style="margin-left: 10px">Löschen</button>
