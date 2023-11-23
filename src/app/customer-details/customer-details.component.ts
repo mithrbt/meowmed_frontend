@@ -60,7 +60,6 @@ export class CustomerDetailsComponent implements OnInit{
           this.cats.set(vertrag.id, data);
         });
         console.log(vertrag.quote);
-        //this.totalMonthlyContribution = this.totalMonthlyContribution + vertrag.contribution;
       }
     });
   }
@@ -110,5 +109,6 @@ export class CustomerDetailsComponent implements OnInit{
       this.getCatByContractId(vertrag.id).name.toLowerCase().includes(this.searchTerm.toLowerCase())
     );
   }
+
 
 }
