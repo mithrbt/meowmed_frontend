@@ -39,20 +39,20 @@
     <input type="text" class="form-control" id="address.country"
            [(ngModel)] = "customer.address.country" name ="address.country" required>
   </div>
-  <div class = "form-group" [ngClass]="{'invalid-field': !customer.birthdate}" >
+  <div class="form-group" [ngClass]="{'invalid-field': !customer.birthdate}">
     <label> Geburtsdatum </label>
     <input type="date" class="form-control" id="birthdate"
-           [(ngModel)] = "customer.birthdate" name ="birthdate" required>
+           [(ngModel)]="customer.birthdate" name="birthdate" required>
   </div>
   <div class = "form-group" [ngClass]="{'invalid-field': !customer.taxID}">
     <label> Steuer-Nr. </label>
     <input type="text" class="form-control" id="taxID"
            [(ngModel)] = "customer.taxID" name ="taxID" required>
   </div>
-  <div class = "form-group" [ngClass]="{'invalid-field': !customer.svn}">
+  <div class="form-group" [ngClass]="{'invalid-field': !validateSozialversicherungsnummer()}">
     <label> Sozialversicherungsnummer </label>
     <input type="text" class="form-control" id="snv"
-           [(ngModel)] = "customer.svn" name ="svn" required>
+           [(ngModel)]="customer.svn" name="svn" required>
   </div>
   <div class = "form-group" [ngClass]="{'invalid-field': !customer.telNr}">
     <label> Telefonnummer </label>
