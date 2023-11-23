@@ -84,7 +84,7 @@ export class CreateVertragdashboardComponent implements OnInit{
 
   saveCat(){
     console.log("VertragID: " + this.contract.id);
-    this.catService.createCat(this.contract.id, this.cat).subscribe(data =>{
+    this.catService.createCat(this.id, this.contract.id, this.cat).subscribe(data =>{
       console.log(data);
       },
       error => console.log(error)
@@ -100,7 +100,7 @@ export class CreateVertragdashboardComponent implements OnInit{
     console.log("Katzenrasse:" , this.cat.breed);
     this.vertragService.quote(this.cat, this.vertrag, this.customer).subscribe(data =>{
       this.result = data;
-      this.vertrag.contribution = this.result;
+      this.vertrag.quote = this.result;
       console.log(this.result);
     },
       error => {

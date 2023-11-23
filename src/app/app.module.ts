@@ -15,6 +15,7 @@ import {MatTableModule} from "@angular/material/table";
 import { VertragDetailsComponent } from './vertrag-details/vertrag-details.component';
 import { UpdateVertragComponent } from './update-vertrag/update-vertrag.component';
 import {MatSelectModule} from "@angular/material/select";
+import {MatButtonToggleModule} from "@angular/material/button-toggle";
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import {MatSelectModule} from "@angular/material/select";
         MatIconModule,
         MatTableModule,
         MatSelectModule,
+        MatButtonToggleModule,
     ],
   providers: [],
   bootstrap: [AppComponent]

@@ -48,4 +48,8 @@ export class VertragService {
     return this.httpClient.post<number>(this.baseURL + `/vertrag/quote`, catract);
   }
 
+  deleteByCustomerId(id: number): Observable<Object>{
+    return this.httpClient.delete(this.baseURL + `/vertraege/${id}`);
+  }
+
 }

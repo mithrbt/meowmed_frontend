@@ -13,8 +13,8 @@ export class CatService {
   cat: any = {};
   constructor(private httpClient: HttpClient) { }
 
-  createCat(contractID: number, cat: Cat): Observable<Cat>{
-    return this.httpClient.post<Cat>(this.baseURL + `/vertrag/${contractID}/katze`, cat);
+  createCat(customerID: number, contractID: number, cat: Cat): Observable<Cat>{
+    return this.httpClient.post<Cat>(this.baseURL + `/kunden/${customerID}/vertrag/${contractID}/katze`, cat);
   }
 
   getCatList(id: number): Observable<Cat[]>{
@@ -35,6 +35,10 @@ export class CatService {
 
   deleteCatByContractID(contractID: number): Observable<Object>{
     return this.httpClient.delete(this.baseURL + `/katze/${contractID}`);
+  }
+
+  deleteByCustomerID(customerID: number): Observable<Object>{
+    return this.httpClient.delete(this.baseURL + `/kunde/${customerID}/katzen`)
   }
 
 }

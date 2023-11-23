@@ -4,5 +4,5 @@ export class Vertrag {
     start!: Date;
     end!: Date;
     coverage!: number;
-    contribution!: number;
+    quote!: number;
 }

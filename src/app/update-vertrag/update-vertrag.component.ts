@@ -44,6 +44,7 @@ export class UpdateVertragComponent implements OnInit {
     this.vertragService.updateVertrag(this.id, this.vertrag).subscribe(data => {
       this.updateCat();
     }, error => console.log(error));
+    this.gotoVertragList(this.id);
   }
 
   gotoVertragList(id: number) {
@@ -63,7 +64,6 @@ export class UpdateVertragComponent implements OnInit {
 
   private updateCat() {
     this.catService.updateCat(this.cat.id, this.cat).subscribe(data => {
-      this.gotoVertragList(this.id);
     }, error => console.log(error));
   }
 

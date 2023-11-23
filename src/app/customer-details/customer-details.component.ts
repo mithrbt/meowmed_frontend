@@ -55,11 +55,11 @@ export class CustomerDetailsComponent implements OnInit{
       console.log(this.vertraege);
       this.cats = new Map<number, Cat>();
       for (const vertrag of this.vertraege) {
-        console.log("Contribution: " + vertrag.contribution);
+        console.log("Contribution: " + vertrag.quote);
         this.vertragService.getCatByContractId(vertrag.id).subscribe(data => {
           this.cats.set(vertrag.id, data);
         });
-        console.log(vertrag.contribution);
+        console.log(vertrag.quote);
         //this.totalMonthlyContribution = this.totalMonthlyContribution + vertrag.contribution;
       }
     });
@@ -93,7 +93,7 @@ export class CustomerDetailsComponent implements OnInit{
       this.catService.deleteCatByContractID(id).subscribe((response:any)=>{
         this.vertragService.deleteVertrag(id).subscribe((response:any)=>{
           this.getVertragList();
-          alert("Der Vertrag wurde gelöscht. Die zugehörige Katze konnte nicht gefunden werden.");
+          alert("Der Vertrag und die Katze wurden gelöscht.");
         });
       });
     }

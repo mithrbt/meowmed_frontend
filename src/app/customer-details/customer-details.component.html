@@ -50,7 +50,7 @@
            <td> {{ vertrag.start | date: 'dd/MM/yyyy' }} </td>
            <td> {{ vertrag.end | date: 'dd/MM/yyyy' }} </td>
            <td> {{ vertrag.coverage }} </td>
-           <td> {{ vertrag.contribution }} </td>
+           <td> {{ vertrag.quote }} </td>
          <td>
 
            <button (click)="deleteVertrag($event, vertrag.id)" class = "btn btn-danger" style="margin-left: 10px">Löschen</button>

@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Customer } from '../customer'
 import { CustomerService } from '../customer.service';
 import {Router} from "@angular/router";
+import {VertragService} from "../vertrag.service";
+import {CatService} from "../cat.service";
+import {Vertrag} from "../vertrag";
 
 @Component({
   selector: 'app-customer-list',
@@ -12,12 +15,17 @@ export class CustomerListComponent implements OnInit{
 
   customers: Customer[] = [];
   customer: Customer = new Customer();
+  contract: Vertrag[] = [];
+  contractIDs: number[] = [];
 
   filteredCustomers: Customer[] = [];
   searchTerm: string = '';
 
 
-  constructor(private customerService: CustomerService, private router: Router){
+  constructor(private customerService: CustomerService,
+              private router: Router,
+              private contractService: VertragService,
+              private catService: CatService){
   }
 
   ngOnInit(): void{
@@ -35,10 +43,16 @@ export class CustomerListComponent implements OnInit{
     if(confirm('Sind Sie sicher, dass Sie den Kunden löschen möchten?')){
       event.target.innerText = "Löschen...";
 
-      this.customerService.deleteCustomer(id).subscribe((response:any) => {
-        this.getCustomerList();
-        alert("Der Kunde wurde erfolgreich gelöscht.");
+      this.catService.deleteByCustomerID(id).subscribe((response:any) =>{
+        this.contractService.deleteByCustomerId(id).subscribe((response:any) => {
+          this.customerService.deleteCustomer(id).subscribe((response:any) => {
+            this.getCustomerList();
+            alert("Der Kunde wurde erfolgreich gelöscht.");
+          });
+        });
       });
+
+
     }
   }
 
