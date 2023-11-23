@@ -22,6 +22,7 @@ export class CustomerDetailsComponent implements OnInit{
   cat: Cat = new Cat();
   cats!: Map<number, Cat>;
   vertrag: Vertrag = new Vertrag();
+  vertragdelete: Vertrag = new Vertrag();
   contract: Vertrag = new Vertrag();
   address!: Address;
   filteredContracts: Vertrag[] = [];
@@ -87,6 +88,7 @@ export class CustomerDetailsComponent implements OnInit{
   }
 
   deleteVertrag(event: any, id: number) {
+    this.totalMonthlyContribution = 0;
     if(confirm('Sind Sie sicher, dass Sie den Vertrag löschen möchten?')){
       event.target.innerText = "Löschen...";
       this.catService.deleteCatByContractID(id).subscribe((response:any)=>{

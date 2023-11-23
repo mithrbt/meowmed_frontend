@@ -42,7 +42,6 @@ export class CustomerListComponent implements OnInit{
   deleteCustomer(event: any, id: number){
     if(confirm('Sind Sie sicher, dass Sie den Kunden löschen möchten?')){
       event.target.innerText = "Löschen...";
-
       this.catService.deleteByCustomerID(id).subscribe((response:any) =>{
         this.contractService.deleteByCustomerId(id).subscribe((response:any) => {
           this.customerService.deleteCustomer(id).subscribe((response:any) => {
