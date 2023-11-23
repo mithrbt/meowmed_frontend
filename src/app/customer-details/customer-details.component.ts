@@ -26,7 +26,6 @@ export class CustomerDetailsComponent implements OnInit{
   address!: Address;
   filteredContracts: Vertrag[] = [];
   searchTerm: string = '';
-
   totalMonthlyContribution: number = 0;
 
   constructor(private route: ActivatedRoute,
@@ -56,6 +55,7 @@ export class CustomerDetailsComponent implements OnInit{
       this.cats = new Map<number, Cat>();
       for (const vertrag of this.vertraege) {
         console.log("Contribution: " + vertrag.quote);
+        this.totalMonthlyContribution = this.totalMonthlyContribution + vertrag.quote;
         this.vertragService.getCatByContractId(vertrag.id).subscribe(data => {
           this.cats.set(vertrag.id, data);
         });
