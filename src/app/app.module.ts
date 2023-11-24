@@ -16,6 +16,7 @@ import { VertragDetailsComponent } from './vertrag-details/vertrag-details.compo
 import { UpdateVertragComponent } from './update-vertrag/update-vertrag.component';
 import {MatSelectModule} from "@angular/material/select";
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
+import {DatePipe} from "@angular/common";
 
 @NgModule({
   declarations: [
@@ -39,7 +40,7 @@ import {MatButtonToggleModule} from "@angular/material/button-toggle";
         MatSelectModule,
         MatButtonToggleModule,
     ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

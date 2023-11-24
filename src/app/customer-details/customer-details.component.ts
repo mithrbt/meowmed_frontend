@@ -8,6 +8,7 @@ import {Cat} from "../cat";
 import {CatService} from "../cat.service";
 import {firstValueFrom, Observable} from "rxjs";
 import {Address} from "../address";
+import {DatePipe, formatDate} from '@angular/common';
 
 @Component({
   selector: 'app-customer-details',
@@ -28,13 +29,14 @@ export class CustomerDetailsComponent implements OnInit{
   filteredContracts: Vertrag[] = [];
   searchTerm: string = '';
   totalMonthlyContribution: number = 0;
+  today = new Date();
 
   constructor(private route: ActivatedRoute,
               private catService: CatService,
               private customerService: CustomerService,
               private vertragService: VertragService,
-              private router: Router) {
-  }
+              private router: Router,
+              public datepipe: DatePipe) {}
 
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
@@ -56,11 +58,14 @@ export class CustomerDetailsComponent implements OnInit{
       this.cats = new Map<number, Cat>();
       for (const vertrag of this.vertraege) {
         console.log("Contribution: " + vertrag.quote);
-        this.totalMonthlyContribution = this.totalMonthlyContribution + vertrag.quote;
+        console.log("Vertragende: " + vertrag.end);
+        console.log("Heute:" + this.today);
+        if(new Date(vertrag.end) >= this.today){
+          this.totalMonthlyContribution = this.totalMonthlyContribution + vertrag.quote;
+        }
         this.vertragService.getCatByContractId(vertrag.id).subscribe(data => {
           this.cats.set(vertrag.id, data);
         });
-        console.log(vertrag.quote);
       }
     });
   }
