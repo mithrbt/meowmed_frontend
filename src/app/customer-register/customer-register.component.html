@@ -44,7 +44,7 @@
     <input type="date" class="form-control" id="birthdate"
            [(ngModel)]="customer.birthdate" name="birthdate" required>
   </div>
-  <div class = "form-group" [ngClass]="{'invalid-field': !customer.taxID}">
+  <div class = "form-group" [ngClass]="{'invalid-field': !validateSteuerID()}">
     <label> Steuer-Nr. </label>
     <input type="text" class="form-control" id="taxID"
            [(ngModel)] = "customer.taxID" name ="taxID" required>

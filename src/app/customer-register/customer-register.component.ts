@@ -87,4 +87,9 @@ export class CustomerRegisterComponent implements OnInit {
   openValidationDialog(): void {
     alert('Nicht alle Felder sind ausgefüllt. Bitte überprüfen Sie Ihre Eingaben.');
   }
+
+  validateSteuerID() {
+    const steuerIDRegex = /^\d{11}$/;
+    return this.customer.taxID !== null && this.customer.taxID !== undefined && this.customer.taxID.toString().match(steuerIDRegex) !== null;
+  }
 }
