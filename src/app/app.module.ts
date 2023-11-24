@@ -17,6 +17,7 @@ import { UpdateVertragComponent } from './update-vertrag/update-vertrag.componen
 import {MatSelectModule} from "@angular/material/select";
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
 import {DatePipe} from "@angular/common";
+import { FileUploadModule } from 'ng2-file-upload';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import {DatePipe} from "@angular/common";
         AppRoutingModule,
         HttpClientModule,
         FormsModule,
+        FileUploadModule,
         ReactiveFormsModule,
         MatIconModule,
         MatTableModule,

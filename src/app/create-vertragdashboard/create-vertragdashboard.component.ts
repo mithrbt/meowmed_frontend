@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, NgModule, OnInit} from '@angular/core';
 import {VertragService} from "../vertrag.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Vertrag} from "../vertrag";
@@ -37,7 +37,7 @@ export class CreateVertragdashboardComponent implements OnInit{
               private customerService: CustomerService,
               private breedService: BreedService){
   }
-  
+
   ngOnInit() {
     this.route.queryParams.subscribe((params) => {
       this.actionType = params['action'];

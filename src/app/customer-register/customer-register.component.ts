@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, NgModule, OnInit} from '@angular/core';
 import { Customer } from '../customer';
 import { CustomerService } from '../customer.service';
 import { Router } from '@angular/router';
 import { Address } from '../address';
+import {FileItem, FileUploader, FileUploadModule, ParsedResponseHeaders} from 'ng2-file-upload';
 
 @Component({
   selector: 'app-customer-register',
@@ -12,11 +13,19 @@ import { Address } from '../address';
 export class CustomerRegisterComponent implements OnInit {
   customer: Customer = new Customer();
   address!: Address;
+  uploader: FileUploader = new FileUploader({
+    url: 'URL_ZUM_UPLOAD_ENDPUNKT', // Setzen Sie die tatsächliche URL zum Server-Upload-Endpunkt
+    itemAlias: 'file',
+  });
 
   constructor(private customerService: CustomerService, private router: Router) {}
 
   ngOnInit() {
     this.customer.address = new Address();
+    this.uploader.onCompleteItem = (item: FileItem, response: string, status: number, headers: ParsedResponseHeaders) => {
+      console.log('Datei hochgeladen:', item.file.name, 'Status:', status, 'Server-Antwort:', response);
+    };
+
   }
 
   saveCustomer() {
@@ -24,6 +33,7 @@ export class CustomerRegisterComponent implements OnInit {
       (data) => {
         console.log(data);
         this.customer = data;
+        this.uploader.uploadAll();
         this.goToCustomerDetails();
       },
       (error) => console.log(error)
