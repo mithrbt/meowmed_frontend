@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { Address } from '../address';
 import {BankDetails} from "../bank-details";
 
+
 @Component({
   selector: 'app-customer-register',
   templateUrl: 'customer-register.component.html',
@@ -90,7 +91,7 @@ export class CustomerRegisterComponent implements OnInit {
 
   validateIBAN(): boolean {
     // Muster für IBAN Deutschland
-    const ibanRegex = /^[A-Z]{2}\d{2}\s?(\d{4}\s?){4}\d{4}\s?(\d{2})?$/;
+    const ibanRegex = /^DE.{20}$/;
 
     return (
       this.customer.bankDetails !== null && // Überprüfe, ob die Bankdetails nicht null sind

@@ -17,7 +17,6 @@ import { UpdateVertragComponent } from './update-vertrag/update-vertrag.componen
 import {MatSelectModule} from "@angular/material/select";
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
 import {DatePipe} from "@angular/common";
-import {ibanValidator} from "./ibanValidator.directive";
 
 @NgModule({
   declarations: [
@@ -28,8 +27,7 @@ import {ibanValidator} from "./ibanValidator.directive";
     UpdateCustomerComponent,
     CreateVertragdashboardComponent,
     VertragDetailsComponent,
-    UpdateVertragComponent,
-    ibanValidator
+    UpdateVertragComponent
   ],
     imports: [
         BrowserModule,
