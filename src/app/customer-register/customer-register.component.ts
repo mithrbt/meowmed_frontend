@@ -3,6 +3,7 @@ import { Customer } from '../customer';
 import { CustomerService } from '../customer.service';
 import { Router } from '@angular/router';
 import { Address } from '../address';
+import {BankDetails} from "../bank-details";
 
 @Component({
   selector: 'app-customer-register',
@@ -12,11 +13,13 @@ import { Address } from '../address';
 export class CustomerRegisterComponent implements OnInit {
   customer: Customer = new Customer();
   address!: Address;
+  bankDetails!: BankDetails;
 
   constructor(private customerService: CustomerService, private router: Router) {}
 
   ngOnInit() {
     this.customer.address = new Address();
+    this.customer.bankDetails = new BankDetails();
   }
 
   saveCustomer() {
@@ -74,14 +77,29 @@ export class CustomerRegisterComponent implements OnInit {
       this.customer.familyStatus !== null &&
       this.customer.familyStatus !== undefined &&
       this.customer.profession !== null &&
-      this.customer.profession !== undefined
+      this.customer.profession !== undefined &&
+      this.customer.bankDetails !== null &&
+      this.customer.bankDetails != undefined
     );
   }
   validateSozialversicherungsnummer(): boolean {
     const sozialversicherungsnummerRegex = /^\d{2}\d{2}\d{2}\d{2}[A-Z]\d{3}$/;
-    return this.customer.svn !== null && this.customer.svn !== undefined && this.customer.svn.match(sozialversicherungsnummerRegex) !== null;
+    return this.customer.svn !== null && this.customer.svn !== undefined && this.customer.svn.toString().match(sozialversicherungsnummerRegex) !== null;
   }
 
+
+  validateIBAN(): boolean {
+    // Muster für IBAN Deutschland
+    const ibanRegex = /^[A-Z]{2}\d{2}\s?(\d{4}\s?){4}\d{4}\s?(\d{2})?$/;
+
+    return (
+      this.customer.bankDetails !== null && // Überprüfe, ob die Bankdetails nicht null sind
+      this.customer.bankDetails !== undefined && // Überprüfe, ob die Bankdetails nicht undefined sind
+      this.customer.bankDetails.iban !== null && // Überprüfe, ob die IBAN nicht null ist
+      this.customer.bankDetails.iban !== undefined && // Überprüfe, ob die IBAN nicht undefined ist
+      this.customer.bankDetails.iban.match(ibanRegex) !== null // Überprüfe, ob die IBAN dem Muster entspricht
+    );
+  }
 
 
   openValidationDialog(): void {

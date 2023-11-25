@@ -6,9 +6,7 @@ import {Vertrag} from "../vertrag";
 import {VertragService} from "../vertrag.service";
 import {Cat} from "../cat";
 import {CatService} from "../cat.service";
-import {firstValueFrom, Observable} from "rxjs";
 import {Address} from "../address";
-import {DatePipe, formatDate} from '@angular/common';
 
 @Component({
   selector: 'app-customer-details',
@@ -35,8 +33,7 @@ export class CustomerDetailsComponent implements OnInit{
               private catService: CatService,
               private customerService: CustomerService,
               private vertragService: VertragService,
-              private router: Router,
-              public datepipe: DatePipe) {}
+              private router: Router) {}
 
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
@@ -66,6 +63,7 @@ export class CustomerDetailsComponent implements OnInit{
         this.vertragService.getCatByContractId(vertrag.id).subscribe(data => {
           this.cats.set(vertrag.id, data);
         });
+        console.log(vertrag.quote);
       }
     });
   }
