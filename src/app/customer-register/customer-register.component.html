@@ -14,6 +14,11 @@
     <input type="text" class="form-control" id="lastname"
            [(ngModel)] = "customer.lastname" name ="lastname" required>
   </div>
+  <div class = "form-group" [ngClass]="{'invalid-field': !customer.email}">
+    <label> E-Mail </label>
+    <input type="text" class="form-control" id="email"
+           [(ngModel)] = "customer.email" name ="email" required>
+  </div>
   <div class = "form-group" [ngClass]="{'invalid-field': !customer.address.street}">
     <label> Strasse </label>
     <input type="text" class="form-control" id="address.street"

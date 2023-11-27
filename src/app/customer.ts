@@ -16,4 +16,5 @@ export class Customer {
     profession!: Profession;
     familyStatus!: FamilyStatusEnum;
     bankDetails!: BankDetails;
+    email!: String;
 }
