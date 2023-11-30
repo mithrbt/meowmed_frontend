@@ -4,6 +4,7 @@ import { CustomerService } from '../customer.service';
 import { Router } from '@angular/router';
 import { Address } from '../address';
 import {FileItem, FileUploader, FileUploadModule, ParsedResponseHeaders} from 'ng2-file-upload';
+import {BankDetails} from "../bank-details";
 
 @Component({
   selector: 'app-customer-register',
@@ -13,10 +14,13 @@ import {FileItem, FileUploader, FileUploadModule, ParsedResponseHeaders} from 'n
 export class CustomerRegisterComponent implements OnInit {
   customer: Customer = new Customer();
   address!: Address;
+
   uploader: FileUploader = new FileUploader({
     url: 'URL_ZUM_UPLOAD_ENDPUNKT', // Setzen Sie die tatsächliche URL zum Server-Upload-Endpunkt
     itemAlias: 'file',
   });
+  bankDetails!: BankDetails;
+
 
   constructor(private customerService: CustomerService, private router: Router) {}
 
@@ -26,6 +30,7 @@ export class CustomerRegisterComponent implements OnInit {
       console.log('Datei hochgeladen:', item.file.name, 'Status:', status, 'Server-Antwort:', response);
     };
 
+    this.customer.bankDetails = new BankDetails();
   }
 
   saveCustomer() {
@@ -84,14 +89,29 @@ export class CustomerRegisterComponent implements OnInit {
       this.customer.familyStatus !== null &&
       this.customer.familyStatus !== undefined &&
       this.customer.profession !== null &&
-      this.customer.profession !== undefined
+      this.customer.profession !== undefined &&
+      this.customer.bankDetails !== null &&
+      this.customer.bankDetails != undefined
     );
   }
   validateSozialversicherungsnummer(): boolean {
     const sozialversicherungsnummerRegex = /^\d{2}\d{2}\d{2}\d{2}[A-Z]\d{3}$/;
-    return this.customer.svn !== null && this.customer.svn !== undefined && this.customer.svn.match(sozialversicherungsnummerRegex) !== null;
+    return this.customer.svn !== null && this.customer.svn !== undefined && this.customer.svn.toString().match(sozialversicherungsnummerRegex) !== null;
   }
 
+
+  validateIBAN(): boolean {
+    // Muster für IBAN Deutschland
+    const ibanRegex = /^DE.{20}$/;
+
+    return (
+      this.customer.bankDetails !== null && // Überprüfe, ob die Bankdetails nicht null sind
+      this.customer.bankDetails !== undefined && // Überprüfe, ob die Bankdetails nicht undefined sind
+      this.customer.bankDetails.iban !== null && // Überprüfe, ob die IBAN nicht null ist
+      this.customer.bankDetails.iban !== undefined && // Überprüfe, ob die IBAN nicht undefined ist
+      this.customer.bankDetails.iban.match(ibanRegex) !== null // Überprüfe, ob die IBAN dem Muster entspricht
+    );
+  }
 
 
   openValidationDialog(): void {

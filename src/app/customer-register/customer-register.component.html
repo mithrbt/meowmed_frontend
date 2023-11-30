@@ -9,7 +9,7 @@
     <input type="file" name="file" ng2FileSelect [uploader]="uploader" />
   </div>
 
-  <div class = "form-group"[ngClass]="{'invalid-field': !customer.firstname}">
+  <div class = "form-group" [ngClass]="{'invalid-field': !customer.firstname}">
     <label> Vorname </label>
     <input type="text" class="form-control" id="firstname"
            [(ngModel)] = "customer.firstname" name ="firstname" required>
@@ -18,6 +18,11 @@
     <label> Nachname </label>
     <input type="text" class="form-control" id="lastname"
            [(ngModel)] = "customer.lastname" name ="lastname" required>
+  </div>
+  <div class = "form-group" [ngClass]="{'invalid-field': !customer.email}">
+    <label> E-Mail </label>
+    <input type="text" class="form-control" id="email"
+           [(ngModel)] = "customer.email" name ="email" required>
   </div>
   <div class = "form-group" [ngClass]="{'invalid-field': !customer.address.street}">
     <label> Strasse </label>
@@ -101,6 +106,21 @@
     <input type="radio" id="widowed" name="familyStatus" value="WIDOWED"
            [(ngModel)] = "customer.familyStatus" name ="familyStatus">
     <label for="widowed"> Verwitwet </label><br>
+  </div>
+  <div class = "form-group" [ngClass]="{'invalid-field': !customer.bankDetails.accountholder}">
+    <label> Kontoinhaber </label>
+    <input type="text" class="form-control" id="bankdetails.accountholder"
+           [(ngModel)] = "customer.bankDetails.accountholder" name ="bankdetails.accountholder" required>
+  </div>
+  <div class = "form-group" [ngClass]="{'invalid-field': !customer.bankDetails.bank_name}">
+    <label> Bankinstitut </label>
+    <input type="text" class="form-control" id="bankdetails.bank_name"
+           [(ngModel)] = "customer.bankDetails.bank_name" name ="bankdetails.bank_name" required>
+  </div>
+  <div class = "form-group" [ngClass]="{'invalid-field': !validateIBAN()}">
+    <label> IBAN </label>
+    <input type="text" class="form-control" id="bankdetails.iban"
+           [(ngModel)] = "customer.bankDetails.iban" name ="bankdetails.iban" required>
   </div>
   <button type= "submit" class ="btn btn-success" >Anlegen</button>
 </form>

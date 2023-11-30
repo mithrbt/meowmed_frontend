@@ -20,9 +20,18 @@
     <label> <b> Name: </b></label> {{cat.name}}
   </div>
   <div>
+    <label> <b> Geburtsdatum: </b></label> {{cat.birthdate | date: 'dd/MM/yyyy' }}
+  </div>
+  <div>
     <label> <b> Umgebung: </b></label> {{cat.environment}}
   </div>
   <div>
     <label> <b> Farbe: </b></label> {{cat.color}}
+  </div>
+  <div>
+    <label> <b> Persönlichkeit: </b></label> {{cat.personality}}
+  </div>
+  <div>
+    <label> <b> Gewicht: </b></label> {{cat.weight}}
   </div>
 </div>
