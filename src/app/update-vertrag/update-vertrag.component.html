@@ -85,16 +85,19 @@
   </div>
   <div class = "form-group">
     <label> Kastriert </label><br>
-    <input type="radio" id="castrated" name="castrated" value="TRUE"
+    <input type="checkbox" id="castrated" name="castrated" value="TRUE"
            [(ngModel)] = "cat.castrated" name ="castrated">
     <label for="verspielt"> Ist kastriert</label><br>
   </div>
   <div>
+    <button type="button" (click)="quote()" class="btn btn-info" style="float: right">Beitrag berechnen</button>
+    <div *ngIf="result !== null">Monatlicher Beitrag: {{result}}€</div>
+  </div>
+
     <!--  <div>
        <button type="button" (click)="quote()" class = "btn btn-info" style="float: right">Beitrag berechnen</button>
        <div *ngIf="result !== null">Monatlicher Beitrag: {{result}}€</div>
      </div> -->
-  </div>
   <button type= "submit" class ="btn btn-success" >Update</button>
 </form>
 

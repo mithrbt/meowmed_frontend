@@ -32,5 +32,4 @@ export class CustomerService {
     return this.httpClient.put(this.baseURL + `/kunden/${id}`, customer);
   }
 
-
 }

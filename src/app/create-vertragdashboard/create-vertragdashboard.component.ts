@@ -112,7 +112,6 @@ export class CreateVertragdashboardComponent implements OnInit{
       error => {
         console.log(error);
     });
-
   }
 
   showMonthlyContribution(){

@@ -21,6 +21,7 @@ export class UpdateVertragComponent implements OnInit {
   result!: number;
   formattedStartDate: string = '';
   formattedEndDate: string = '';
+  customer!: Customer;
 
   constructor(private catService: CatService,
               private vertragService: VertragService,
@@ -42,6 +43,8 @@ export class UpdateVertragComponent implements OnInit {
         this.cat = data;
         console.log("Ausgewählte Katze: ", this.cat);
       });
+
+      console.log("Kunde: " + this.customer);
     }, error => console.log(error));
   }
 
@@ -58,15 +61,19 @@ export class UpdateVertragComponent implements OnInit {
 
   }
 
-  /*quote() {
-    this.vertragService.quote(this.cat, this.vertrag).subscribe(data => {
+  quote() {
+    console.log("Katzenrasse:" , this.cat.breed);
+
+    this.vertragService.quote(this.cat, this.vertrag, this.vertrag.customer).subscribe(data =>{
         this.result = data;
+        this.vertrag.quote = this.result;
         console.log(this.result);
       },
       error => {
         console.log(error);
       });
-  }*/
+
+  }
 
   private updateCat() {
     this.catService.updateCat(this.cat.id, this.cat).subscribe(data => {
