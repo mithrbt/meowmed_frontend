@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, NgModule, OnInit} from '@angular/core';
 import {VertragService} from "../vertrag.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Vertrag} from "../vertrag";
@@ -27,6 +27,8 @@ export class CreateVertragdashboardComponent implements OnInit{
   environmentKeys!: any;
   breeds: Breed[] = [];
   selectedBreed!: Breed;
+  actionType: string | null = null;
+
 
   constructor(private catService: CatService,
               private vertragService: VertragService,
@@ -37,13 +39,17 @@ export class CreateVertragdashboardComponent implements OnInit{
   }
 
   ngOnInit() {
-    this.id = this.route.snapshot.params['id'];
-    this.customerService.getCustomerById(this.id).subscribe(data =>{
-      this.customer = data;
+    this.route.queryParams.subscribe((params) => {
+      this.actionType = params['action'];
+      this.id = this.route.snapshot.params['id'];
+      this.customerService.getCustomerById(this.id).subscribe(data => {
+        this.customer = data;
+      });
+      this.environmentKeys = Object.keys(Environment).filter(Number);
+      this.getBreedList();
     });
-    this.environmentKeys = Object.keys(Environment).filter(Number);
-    this.getBreedList();
   }
+
 
   getBreedList(){
     this.breedService.getAllBreeds().subscribe(data =>{

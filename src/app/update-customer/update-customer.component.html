@@ -36,10 +36,15 @@
     <input type="text" class="form-control" id="country"
            [(ngModel)] = "customer.address.country" name ="country">
   </div>
-  <div class = "form-group">
+  <div class="form-group">
     <label> Geburtsdatum </label>
-    <input type="date" class="form-control" id="birthdate"
-           [(ngModel)] = "customer.birthdate" name ="birthdate">
+    <input
+            type="date"
+            class="form-control"
+            id="birthdate"
+            [(ngModel)]="formattedBirthdate"
+            name="birthdate"
+    />
   </div>
   <div class = "form-group">
     <label> Steuer-Nr. </label>

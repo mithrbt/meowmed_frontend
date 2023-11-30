@@ -19,6 +19,8 @@ export class UpdateVertragComponent implements OnInit {
   vertrag: Vertrag = new Vertrag();
   cat: Cat = new Cat();
   result!: number;
+  formattedStartDate: string = '';
+  formattedEndDate: string = '';
 
   constructor(private catService: CatService,
               private vertragService: VertragService,
@@ -31,6 +33,10 @@ export class UpdateVertragComponent implements OnInit {
     this.id = this.route.snapshot.params['id']; //Get ID from route
     this.vertragService.getVertragById(this.id).subscribe(data => {
       this.vertrag = data;
+      const startDate = new Date(this.vertrag.start);
+      this.formattedStartDate = this.formatDate(startDate);
+      const endDate = new Date(this.vertrag.end);
+      this.formattedEndDate = this.formatDate(endDate);
       console.log("Ausgewählter Vertrag: ", this.vertrag);
       this.vertragService.getCatByContractId(this.vertrag.id).subscribe(data => {
         this.cat = data;
@@ -65,6 +71,15 @@ export class UpdateVertragComponent implements OnInit {
   private updateCat() {
     this.catService.updateCat(this.cat.id, this.cat).subscribe(data => {
     }, error => console.log(error));
+  }
+
+  formatDate(date: Date): string {
+    const options: Intl.DateTimeFormatOptions = {
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit'
+    };
+    return date.toISOString().substring(0, 10);
   }
 
 }

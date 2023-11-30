@@ -83,7 +83,7 @@ export class CustomerDetailsComponent implements OnInit{
   }
 
   updateVertrag(id: number) {
-    this.router.navigate(['update-vertrag',id])
+    this.router.navigate(['update-vertrag',id]);
   }
 
   vertragDetails(id: number) {

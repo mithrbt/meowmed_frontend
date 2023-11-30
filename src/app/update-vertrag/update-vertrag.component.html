@@ -4,13 +4,19 @@
 
   <div class = "form-group">
     <label> Beginn </label>
-    <input type="date" class="form-control" id="start"
-           [(ngModel)] = "vertrag.start" name ="start">
+    <input type="date"
+           class="form-control"
+           id="start"
+           [(ngModel)] = "formattedStartDate"
+           name ="start" disabled>
   </div>
   <div class = "form-group">
     <label> Ende </label>
-    <input type="date" class="form-control" id="end"
-           [(ngModel)] = "vertrag.end" name ="end">
+    <input type="date"
+           class="form-control"
+           id="end"
+           [(ngModel)] = "formattedEndDate"
+           name ="end">
   </div>
   <div class = "form-group">
     <label> Deckung </label>
@@ -21,12 +27,17 @@
   <div class = "form-group">
     <label> Name </label>
     <input type="text" class="form-control" id="name"
-           [(ngModel)] = "cat.name" name ="name">
+           [(ngModel)] = "cat.name" name ="name" disabled>
   </div>
   <div class = "form-group">
     <label> Geburtsdatum </label>
     <input type="date" class="form-control" id="birthdate"
-           [(ngModel)] = "cat.birthdate" name ="birthdate">
+           [(ngModel)] = "cat.birthdate" name ="birthdate" disabled>
+  </div>
+  <div class = "form-group">
+    <label> Rasse </label>
+    <input type="text" class="form-control" id="breed"
+           [(ngModel)] = "cat.breed.name" name ="breed" disabled>
   </div>
   <div class = "form-group">
     <label> Umgebung </label><br>
@@ -40,22 +51,22 @@
   <div class = "form-group">
     <label> Farbe </label><br>
     <input type="radio" id="black" name="color" value="SCHWARZ"
-           [(ngModel)] = "cat.color" name ="color">
+           [(ngModel)] = "cat.color" name ="color" disabled>
     <label for="black"> Schwarz</label><br>
     <input type="radio" id="white" name="color" value="WEISS"
-           [(ngModel)] = "cat.color" name ="color">
+           [(ngModel)] = "cat.color" name ="color" disabled>
     <label for="white"> Weiss</label><br>
     <input type="radio" id="braun" name="color" value="BRAUN"
-           [(ngModel)] = "cat.color" name ="color">
+           [(ngModel)] = "cat.color" name ="color" disabled>
     <label for="braun"> Braun</label><br>
     <input type="radio" id="mehrfarbig" name="color" value="MEHRFARBIG"
-           [(ngModel)] = "cat.color" name ="color">
+           [(ngModel)] = "cat.color" name ="color" disabled>
     <label for="mehrfarbig"> Mehrfarbig </label><br>
     <input type="radio" id="orange" name="color" value="ORANGE"
-           [(ngModel)] = "cat.color" name ="color">
+           [(ngModel)] = "cat.color" name ="color" disabled>
     <label for="orange"> Orange </label><br>
     <input type="radio" id="grau" name="color" value="GRAU"
-           [(ngModel)] = "cat.color" name ="color">
+           [(ngModel)] = "cat.color" name ="color" disabled>
     <label for="grau"> Grau </label>
   </div>
   <div class = "form-group">
