@@ -35,7 +35,6 @@ export class CustomerRegisterComponent implements OnInit {
   }
 
   saveCustomer() {
-    if(this.customer.profession !== Profession.UNEMPLOYED){
       this.customerService.createCustomer(this.customer).subscribe(
         (data) => {
           console.log(data);
@@ -45,22 +44,25 @@ export class CustomerRegisterComponent implements OnInit {
         },
         (error) => console.log(error)
       );
-    }else{
-      alert('Der Kunde darf nicht Arbeitslos sein.');
-    }
-
   }
 
   createCustomer() {
     console.log(this.customer);
+    if(this.calculateAge(this.customer.birthdate) < 18){
+      alert('Der Kunde muss mindestens 18 Jahre alt sein.');
+      return;
+    }
+
     if (!this.validateForm() || !this.validateSozialversicherungsnummer()) {
       // Zeige das Dialogfenster an
       this.openValidationDialog();
       return; // Stoppe die Funktion, um das Formular nicht abzusenden
-    } else {
-      this.saveCustomer();
     }
+
+    this.saveCustomer();
+
   }
+
   goToCustomerDetails() {
     this.router.navigate(['kundendetails', this.customer.id]);
   }
@@ -126,5 +128,18 @@ export class CustomerRegisterComponent implements OnInit {
   validateSteuerID() {
     const steuerIDRegex = /^\d{11}$/;
     return this.customer.taxID !== null && this.customer.taxID !== undefined && this.customer.taxID.toString().match(steuerIDRegex) !== null;
+  }
+
+  calculateAge(birthdate: Date): number {
+    const today = new Date();
+    const birthDate = new Date(birthdate);
+    let age = today.getFullYear() - birthDate.getFullYear();
+    const month = today.getMonth() - birthDate.getMonth();
+
+    // Wenn der aktuelle Monat vor dem Geburtsmonat liegt oder im gleichen Monat liegt, aber vor dem Geburtstag
+    if (month < 0 || (month === 0 && today.getDate() < birthDate.getDate())) {
+      age--;
+    }
+    return age;
   }
 }
