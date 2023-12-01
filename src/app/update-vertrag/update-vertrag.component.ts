@@ -21,7 +21,6 @@ export class UpdateVertragComponent implements OnInit {
   result!: number;
   formattedStartDate: string = '';
   formattedEndDate: string = '';
-  customer!: Customer;
 
   constructor(private catService: CatService,
               private vertragService: VertragService,
@@ -43,8 +42,7 @@ export class UpdateVertragComponent implements OnInit {
         this.cat = data;
         console.log("Ausgewählte Katze: ", this.cat);
       });
-
-      console.log("Kunde: " + this.customer);
+      console.log("Kunde: " + this.vertrag.customer);
     }, error => console.log(error));
   }
 

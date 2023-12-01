@@ -26,7 +26,7 @@ export class CatService {
   }
 
   updateCat(id:number, cat: Cat): Observable<Cat>{
-    return this.httpClient.post<Cat>(this.baseURL + `/katze/${id}`, cat);
+    return this.httpClient.put<Cat>(this.baseURL + `/katze/${id}`, cat);
   }
 
   deleteCat(id: number): Observable<Object>{

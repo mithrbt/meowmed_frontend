@@ -1,10 +1,11 @@
-import {Component, NgModule, OnInit} from '@angular/core';
-import { Customer } from '../customer';
-import { CustomerService } from '../customer.service';
-import { Router } from '@angular/router';
-import { Address } from '../address';
-import {FileItem, FileUploader, FileUploadModule, ParsedResponseHeaders} from 'ng2-file-upload';
+import {Component, OnInit} from '@angular/core';
+import {Customer} from '../customer';
+import {CustomerService} from '../customer.service';
+import {Router} from '@angular/router';
+import {Address} from '../address';
+import {FileItem, FileUploader, ParsedResponseHeaders} from 'ng2-file-upload';
 import {BankDetails} from "../bank-details";
+import {Profession} from "../enums/Profession";
 
 @Component({
   selector: 'app-customer-register',
@@ -34,20 +35,24 @@ export class CustomerRegisterComponent implements OnInit {
   }
 
   saveCustomer() {
-    this.customerService.createCustomer(this.customer).subscribe(
-      (data) => {
-        console.log(data);
-        this.customer = data;
-        this.uploader.uploadAll();
-        this.goToCustomerDetails();
-      },
-      (error) => console.log(error)
-    );
+    if(this.customer.profession !== Profession.UNEMPLOYED){
+      this.customerService.createCustomer(this.customer).subscribe(
+        (data) => {
+          console.log(data);
+          this.customer = data;
+          this.uploader.uploadAll();
+          this.goToCustomerDetails();
+        },
+        (error) => console.log(error)
+      );
+    }else{
+      alert('Der Kunde darf nicht Arbeitslos sein.');
+    }
+
   }
 
   createCustomer() {
     console.log(this.customer);
-
     if (!this.validateForm() || !this.validateSozialversicherungsnummer()) {
       // Zeige das Dialogfenster an
       this.openValidationDialog();
