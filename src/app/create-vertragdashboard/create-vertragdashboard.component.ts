@@ -9,6 +9,7 @@ import {CatService} from "../cat.service";
 import {Environment} from "../enums/Environment";
 import {BreedService} from "../breed.service";
 import {Breed} from "../breed";
+import {Personality} from "../enums/Personality";
 
 
 @Component({
@@ -28,6 +29,8 @@ export class CreateVertragdashboardComponent implements OnInit{
   breeds: Breed[] = [];
   selectedBreed!: Breed;
   actionType: string | null = null;
+  cats!: Cat[];
+  catNameExists!: boolean;
 
 
   constructor(private catService: CatService,
@@ -80,18 +83,40 @@ export class CreateVertragdashboardComponent implements OnInit{
 
   createVertrag() {
     console.log(this.vertrag);
-    if (!this.validateForm()) {
-      // Zeige das Dialogfenster an
-      this.openValidationDialog();
-      return; // Stoppe die Funktion, um das Formular nicht abzusenden
-    }else{
-      this.saveVertrag();}
+
+    this.catNameExists = false;
+    this.catService.getCatList(this.customer.id).subscribe(data =>{
+      this.cats = data;
+      for (let i = 0; i < this.cats.length; i++) {
+        if (this.cats[i].name === this.cat.name) {
+          this.catNameExists = true;
+          console.log("CatNameExists: ", this.catNameExists);
+          alert('Der Kunde besitzt schon eine Katze mit dem Namen: ' + this.cat.name);
+          return;
+        }
+      }
+
+      if(this.catNameExists){
+        return;
+      }
+
+      if (!this.validateForm()) {
+        // Zeige das Dialogfenster an
+        this.openValidationDialog();
+        return; // Stoppe die Funktion, um das Formular nicht abzusenden
+      }
+
+
+      this.saveVertrag();
+    });
+
+
   }
 
   saveCat(){
     console.log("VertragID: " + this.contract.id);
     this.catService.createCat(this.id, this.contract.id, this.cat).subscribe(data =>{
-      console.log(data);
+        console.log(data);
       },
       error => console.log(error)
     );
@@ -105,14 +130,13 @@ export class CreateVertragdashboardComponent implements OnInit{
   quote() {
     console.log("Katzenrasse:" , this.cat.breed);
     this.vertragService.quote(this.cat, this.vertrag, this.customer).subscribe(data =>{
-      this.result = data;
-      this.vertrag.quote = this.result;
-      console.log(this.result);
-    },
+        this.result = data;
+        this.vertrag.quote = this.result;
+        console.log(this.result);
+      },
       error => {
         console.log(error);
-    });
-
+      });
   }
 
   showMonthlyContribution(){

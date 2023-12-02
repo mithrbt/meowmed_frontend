@@ -1,10 +1,11 @@
-import {Component, NgModule, OnInit} from '@angular/core';
-import { Customer } from '../customer';
-import { CustomerService } from '../customer.service';
-import { Router } from '@angular/router';
-import { Address } from '../address';
-import {FileItem, FileUploader, FileUploadModule, ParsedResponseHeaders} from 'ng2-file-upload';
+import {Component, OnInit} from '@angular/core';
+import {Customer} from '../customer';
+import {CustomerService} from '../customer.service';
+import {Router} from '@angular/router';
+import {Address} from '../address';
+import {FileItem, FileUploader, ParsedResponseHeaders} from 'ng2-file-upload';
 import {BankDetails} from "../bank-details";
+import {Profession} from "../enums/Profession";
 
 @Component({
   selector: 'app-customer-register',
@@ -34,28 +35,80 @@ export class CustomerRegisterComponent implements OnInit {
   }
 
   saveCustomer() {
+
+    console.log('saveCustomer() wurde aufgerufen');
+    // Überprüfe, ob die Adresse vorhanden und gültig ist
+    if (!this.validateAddress()) {
+      // Zeige eine Fehlermeldung oder Dialog für ungültige Adresse an
+      console.error('Ungültige Adresse');
+      this.openInvalidAddressDialog();
+      return;
+    }
+
+
+    // Überprüfe, ob der Berufsstatus arbeitslos ist
+    if (this.isUnemployed()) {
+      // Zeige einen Dialog für arbeitslose Kunden an
+      console.error('Arbeitsloser Kunde');
+      this.openUnemployedDialog();
+      return;
+    }
+
+
+    // Führe die restlichen Schritte zur Kundenanlegung durch
     this.customerService.createCustomer(this.customer).subscribe(
       (data) => {
-        console.log(data);
+        console.log('Kunde erfolgreich angelegt:', data);
         this.customer = data;
         this.uploader.uploadAll();
         this.goToCustomerDetails();
       },
-      (error) => console.log(error)
-    );
-  }
+      (error) => {
+        console.error('Fehler bei der Kundenanlegung:', error);
+        alert('Fehler bei der Kundenanlegung: ' + error.error);
+      });}
 
   createCustomer() {
     console.log(this.customer);
+    if (this.calculateAge(this.customer.birthdate) < 18) {
+      alert('Der Kunde muss mindestens 18 Jahre alt sein.');
+      return;
+    }
 
     if (!this.validateForm() || !this.validateSozialversicherungsnummer()) {
       // Zeige das Dialogfenster an
       this.openValidationDialog();
       return; // Stoppe die Funktion, um das Formular nicht abzusenden
-    } else {
-      this.saveCustomer();
     }
+
+    this.saveCustomer();
   }
+
+  openUnemployedDialog(): void {
+    alert('Kunden mit dem Berufsstatus "Arbeitslos" können möglicherweise nicht alle Dienstleistungen nutzen.');
+  }
+
+  openInvalidAddressDialog(): void {
+    alert('Die Adresse ist nicht gültig. Bitte überprüfen Sie Ihre Eingaben.');
+  }
+
+  validateAddress(): boolean {
+    return (
+      this.customer.address !== undefined &&
+      this.customer.address !== null &&
+      this.customer.address.street !== null &&
+      this.customer.address.street !== undefined &&
+      this.customer.address.houseNr !== null &&
+      this.customer.address.houseNr !== undefined &&
+      this.customer.address.zipCode !== null &&
+      this.customer.address.zipCode !== undefined &&
+      this.customer.address.city !== null &&
+      this.customer.address.city !== undefined &&
+      this.customer.address.country !== null &&
+      this.customer.address.country !== undefined
+    );
+  }
+
   goToCustomerDetails() {
     this.router.navigate(['kundendetails', this.customer.id]);
   }
@@ -99,6 +152,21 @@ export class CustomerRegisterComponent implements OnInit {
     return this.customer.svn !== null && this.customer.svn !== undefined && this.customer.svn.toString().match(sozialversicherungsnummerRegex) !== null;
   }
 
+  isUnemployed(): boolean {
+    return (
+      this.customer.profession !== undefined &&
+      this.customer.profession !== null &&
+      (this.customer.profession === Profession.UNEMPLOYED || this.customer.profession === 'unemployed' as Profession)
+    );
+  }
+
+  validateProfession(): boolean{
+    if(this.customer.profession === Profession.UNEMPLOYED){
+      return false;
+    }
+    return true;
+  }
+
 
   validateIBAN(): boolean {
     // Muster für IBAN Deutschland
@@ -121,5 +189,18 @@ export class CustomerRegisterComponent implements OnInit {
   validateSteuerID() {
     const steuerIDRegex = /^\d{11}$/;
     return this.customer.taxID !== null && this.customer.taxID !== undefined && this.customer.taxID.toString().match(steuerIDRegex) !== null;
+  }
+
+  calculateAge(birthdate: Date): number {
+    const today = new Date();
+    const birthDate = new Date(birthdate);
+    let age = today.getFullYear() - birthDate.getFullYear();
+    const month = today.getMonth() - birthDate.getMonth();
+
+    // Wenn der aktuelle Monat vor dem Geburtsmonat liegt oder im gleichen Monat liegt, aber vor dem Geburtstag
+    if (month < 0 || (month === 0 && today.getDate() < birthDate.getDate())) {
+      age--;
+    }
+    return age;
   }
 }

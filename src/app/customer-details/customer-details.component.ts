@@ -37,13 +37,14 @@ export class CustomerDetailsComponent implements OnInit{
 
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
-    this.customerService.getCustomerById(this.id).subscribe(data =>{
+    this.customerService.getCustomerById(this.id).subscribe(data => {
       this.customer = data;
+      this.address = this.customer.address || new Address(); // Setze die Adresse oder eine leere Adresse, wenn nicht definiert
+      console.log('Adresse: ', this.address);
     });
-    console.log("ID: " + this.id);
+
+    console.log('ID: ' + this.id);
     this.getVertragList();
-    this.customer.address = this.address;
-    console.log("Adresse: " + this.address);
   }
 
   private getVertragList(){
