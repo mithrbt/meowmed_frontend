@@ -7,6 +7,9 @@ import {VertragService} from "../vertrag.service";
 import {Cat} from "../cat";
 import {CatService} from "../cat.service";
 import {Address} from "../address";
+import {ImageService} from "../image.service";
+import {error} from "@angular/compiler-cli/src/transformers/util";
+import {Image} from "../image";
 
 @Component({
   selector: 'app-customer-details',
@@ -29,11 +32,19 @@ export class CustomerDetailsComponent implements OnInit{
   totalMonthlyContribution: number = 0;
   today = new Date();
 
+  uploadedImage!: File;
+  dbImage!: any;
+  postResponse!: any;
+  successResponse!: any;
+  image!: any;
+
+
   constructor(private route: ActivatedRoute,
               private catService: CatService,
               private customerService: CustomerService,
               private vertragService: VertragService,
-              private router: Router) {}
+              private router: Router,
+              private imageService: ImageService) {}
 
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
@@ -63,6 +74,7 @@ export class CustomerDetailsComponent implements OnInit{
         this.vertragService.getCatByContractId(vertrag.id).subscribe(data => {
           this.cats.set(vertrag.id, data);
         });
+        //this.imageUploadAction();
         console.log(vertrag.quote);
       }
     });
@@ -113,6 +125,36 @@ export class CustomerDetailsComponent implements OnInit{
     this.filteredContracts = this.vertraege.filter(vertrag =>
       this.getCatByContractId(vertrag.id).name.toLowerCase().includes(this.searchTerm.toLowerCase())
     );
+  }
+
+  //Fotos hochladen
+  public onImageUpload(event: Event){
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files.length > 0) {
+      this.uploadedImage = input.files[0];
+    }
+  }
+
+  imageUploadAction(){
+    const imageFormData = new FormData();
+    imageFormData.append('image', this.uploadedImage, this.uploadedImage.name);
+
+    console.log("KundenID: ", this.customer.id);
+    this.imageService.uploadFile(imageFormData).subscribe((response) =>{
+      /*if(response.status === 200){
+        this.postResponse = response;
+        this.successResponse = this.postResponse.body.message;
+      }else{
+        this.successResponse = 'Bild wurde nicht hochgeladen!';
+      }*/
+    });
+  }
+
+  viewImage(){
+    this.imageService.viewImage(this.image).subscribe(res =>{
+      this.postResponse = res;
+      this.dbImage = 'data:image/jpeg;base64,' + this.postResponse.image;
+    })
   }
 
 

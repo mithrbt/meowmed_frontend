@@ -3,9 +3,14 @@ import {Customer} from '../customer';
 import {CustomerService} from '../customer.service';
 import {Router} from '@angular/router';
 import {Address} from '../address';
-import {FileItem, FileUploader, ParsedResponseHeaders} from 'ng2-file-upload';
 import {BankDetails} from "../bank-details";
+import {Image} from "../image";
+import {DomSanitizer} from "@angular/platform-browser";
+import {ImageService} from "../image.service";
 import {Profession} from "../enums/Profession";
+
+
+declare var window: Window & typeof globalThis; // Import für das Window-Objekt
 
 @Component({
   selector: 'app-customer-register',
@@ -13,23 +18,31 @@ import {Profession} from "../enums/Profession";
   styleUrls: ['./customer-register.component.css']
 })
 export class CustomerRegisterComponent implements OnInit {
+
   customer: Customer = new Customer();
   address!: Address;
-
-  uploader: FileUploader = new FileUploader({
-    url: 'URL_ZUM_UPLOAD_ENDPUNKT', // Setzen Sie die tatsächliche URL zum Server-Upload-Endpunkt
-    itemAlias: 'file',
-  });
   bankDetails!: BankDetails;
 
+  /*userFile;
+  imgURL: any;
+  public message!: string;
+  public imagePath;
+  file!: any;*/
 
-  constructor(private customerService: CustomerService, private router: Router) {}
+
+  /*uploader: FileUploader = new FileUploader({
+    url: 'URL_ZUM_UPLOAD_ENDPUNKT', // Setzen Sie die tatsächliche URL zum Server-Upload-Endpunkt
+    itemAlias: 'file',
+  });*/
+
+  constructor(private customerService: CustomerService,
+              private router: Router) {}
 
   ngOnInit() {
     this.customer.address = new Address();
-    this.uploader.onCompleteItem = (item: FileItem, response: string, status: number, headers: ParsedResponseHeaders) => {
+    /*this.uploader.onCompleteItem = (item: FileItem, response: string, status: number, headers: ParsedResponseHeaders) => {
       console.log('Datei hochgeladen:', item.file.name, 'Status:', status, 'Server-Antwort:', response);
-    };
+    };*/
 
     this.customer.bankDetails = new BankDetails();
   }
@@ -39,12 +52,13 @@ export class CustomerRegisterComponent implements OnInit {
         (data) => {
           console.log(data);
           this.customer = data;
-          this.uploader.uploadAll();
+          //this.uploader.uploadAll();
           this.goToCustomerDetails();
         },
         (error) => console.log(error)
       );
   }
+
 
   createCustomer() {
     console.log(this.customer);
@@ -53,12 +67,16 @@ export class CustomerRegisterComponent implements OnInit {
       return;
     }
 
+    if(this.customer.profession.toString().toLowerCase() === Profession.UNEMPLOYED){
+      alert('Der Kunde darf nicht Arbeitslos sein');
+      return;
+    }
+
     if (!this.validateForm() || !this.validateSozialversicherungsnummer()) {
       // Zeige das Dialogfenster an
       this.openValidationDialog();
       return; // Stoppe die Funktion, um das Formular nicht abzusenden
     }
-
     this.saveCustomer();
 
   }
@@ -142,4 +160,7 @@ export class CustomerRegisterComponent implements OnInit {
     }
     return age;
   }
+
+
+
 }

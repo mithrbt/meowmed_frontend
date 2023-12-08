@@ -1,4 +1,4 @@
-import {Component, NgModule, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {VertragService} from "../vertrag.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Vertrag} from "../vertrag";
@@ -9,6 +9,7 @@ import {CatService} from "../cat.service";
 import {Environment} from "../enums/Environment";
 import {BreedService} from "../breed.service";
 import {Breed} from "../breed";
+import {Personality} from "../enums/Personality";
 
 
 @Component({
@@ -99,16 +100,23 @@ export class CreateVertragdashboardComponent implements OnInit{
         return;
       }
 
+      if(this.cat.personality.toString().toLowerCase() === Personality.VERSPIELT){
+        alert('Die Katze darf nicht verspielt sein.');
+        return;
+      }
+
+      if(!this.validateStart()){
+        alert('Das Start-Datum darf nicht in der Vergangenheit liegen und das End-Datum darf nicht vor dem Start-Datum liegen.');
+        return;
+      }
+
       if (!this.validateForm()) {
         // Zeige das Dialogfenster an
         this.openValidationDialog();
         return; // Stoppe die Funktion, um das Formular nicht abzusenden
       }
-
       this.saveVertrag();
     });
-
-
   }
 
   saveCat(){
@@ -156,6 +164,16 @@ export class CreateVertragdashboardComponent implements OnInit{
   }
   openValidationDialog(): void {
     alert('Nicht alle Felder sind ausgefüllt. Bitte überprüfen Sie Ihre Eingaben.');
+  }
+
+  validateStart(): boolean{
+    const today = new Date();
+    today.setHours(0,0,0,0);
+    const start = new Date(this.vertrag.start);
+    const end = new Date(this.vertrag.end);
+    return(
+      start.getTime() >= today.getTime() && end > start
+    )
   }
 
 }

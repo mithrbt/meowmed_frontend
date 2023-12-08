@@ -18,6 +18,9 @@ import {MatSelectModule} from "@angular/material/select";
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
 import {DatePipe} from "@angular/common";
 import { FileUploadModule } from 'ng2-file-upload';
+import {MatCardModule} from "@angular/material/card";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 @NgModule({
   declarations: [
@@ -41,6 +44,9 @@ import { FileUploadModule } from 'ng2-file-upload';
         MatTableModule,
         MatSelectModule,
         MatButtonToggleModule,
+        MatCardModule,
+        MatFormFieldModule,
+        BrowserAnimationsModule
     ],
   providers: [DatePipe],
   bootstrap: [AppComponent]
