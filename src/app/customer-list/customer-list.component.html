@@ -3,12 +3,20 @@
   <a onclick = "window.location.href = 'http://localhost:4200/register';" routerLink="register" routerLinkActive="active" style="float: right;">
     <button>Neuer Kunde +</button>
   </a>
-  <div class="form-group">
+  <!--<div class="form-group">
     <label for="searchTerm">Suche:</label>
     <input type="text" class="form-control" id="searchTerm" [(ngModel)]="searchTerm" name="searchTerm">
 
     <!-- Hier ist der Button für die Suche -->
-    <button type="button" class="btn btn-primary" (click)="filterCustomers()">Suchen</button>
+    <!-- <button type="button" class="btn btn-primary" (click)="filterCustomers()">Suchen</button>
+  </div> -->
+
+  <div class="container">
+    <div class="row">
+      <div class="search-customer">
+        <input type="text" class="form-control" placeholder="Suche..." name="search" [(ngModel)]="searchTerm" (input)="filterCustomers()">
+      </div>
+    </div>
   </div>
 </form>
 <table class = "table table-striped">
