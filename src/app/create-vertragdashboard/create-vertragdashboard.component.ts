@@ -102,6 +102,10 @@ export class CreateVertragdashboardComponent implements OnInit{
     this.router.navigate(['kundendetails', this.customer.id]);
   }
 
+  goBack() {
+    this.router.navigate(['kundendetails', this.customer.id]);
+  }
+
   quote() {
     console.log("Katzenrasse:" , this.cat.breed);
     this.vertragService.quote(this.cat, this.vertrag, this.customer).subscribe(data =>{
@@ -115,10 +119,6 @@ export class CreateVertragdashboardComponent implements OnInit{
 
   }
 
-  showMonthlyContribution(){
-    this.quote();
-    console.log(this.result);
-  }
 
   validateForm(): boolean {
     return (

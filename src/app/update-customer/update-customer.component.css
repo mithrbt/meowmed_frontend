@@ -1,0 +1,124 @@
+.body {
+  background-color: #F4F4F4;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  min-height: 100vh;
+  padding: 50px;
+}
+
+.left-panel, .right-panel {
+  flex-grow: 1;
+  padding: 20px;
+  width: 50%;
+}
+
+.invalid-field {
+  border: 0.2em solid #FF0000; /* Hier den gewünschten Wert anpassen */
+  box-sizing: border-box;
+}
+
+.form-group {
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: row; /* Ändere die Flexbox-Ausrichtung auf "row" */
+  align-items: center;
+}
+
+label {
+  margin-right: 10px; /* Füge nach Bedarf Abstand zwischen Label und Input hinzu */
+}
+
+input {
+  width: calc(100% - 100px); /* Ändere den Wert nach Bedarf, um die gleiche Breite wie die Umrandung zu haben */
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.paw-button {
+  background: url('../../assets/images/pfotenbild.png') no-repeat;
+  background-size: contain;
+  color: #5C4638;
+  font-size: 24px; /* Passe die Schriftgröße an */
+  display: inline-block;
+  border: none;
+  cursor: pointer;
+  margin-left: 150px;
+}
+
+.paw-button:hover {
+  color: #6E2C00;
+}
+
+.button-text {
+  font-size: 18px; /* Größe des Texts anpassen */
+}
+
+.back-button {
+  background: url('../../assets/images/pfotenbild.png') no-repeat;
+  background-size: contain;
+  color: #5C4638;
+  font-size: 24px; /* Passe die Schriftgröße an */
+  display: inline-block;
+  border: none;
+  cursor: pointer;
+  margin-right: 150px;
+}
+
+.back-button:hover {
+  color: #6E2C00;
+}
+
+
+
+.form-radio label, .form-group label {
+  background-color: #d3a88f;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.form-group input {
+  margin-right: 5px;
+  cursor: pointer;
+}
+
+.form-radio-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Ändere die Ausrichtung auf "flex-start", um die Elemente links auszurichten */
+  margin-bottom: 10px;
+}
+
+.form-radio {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  width: 100%; /* Füge diese Zeile hinzu */
+}
+
+
+.form-radio input {
+  margin-right: 5px;
+  cursor: pointer;
+  background-color: #ECDAD0;
+}
+
+.form-radio label {
+  background-color: #ECDAD0;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.left-panel, .right-panel {
+  flex-grow: 1;
+  padding: 20px;
+  width: 48%; /* Ändere die Breite nach Bedarf, um Platz für den Abstand zu schaffen */
+  box-sizing: border-box;
+  margin: 0 1%; /* Hinzugefügt, um einen kleinen Abstand zwischen den Panels zu schaffen */
+}

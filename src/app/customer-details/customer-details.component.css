@@ -3,3 +3,80 @@
   color: #ffffff; /* Graue Textfarbe */
   /* Weitere Stile nach Bedarf hinzufügen */
 }
+
+.dark-label {
+  background-color: #d3a88f; /* Hintergrundfarbe für alle Labels setzen */
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  display: inline-block; /* Hinzugefügt, um die Breite an den Inhalt anzupassen */
+  min-width: 150px;
+}
+
+.output-textfield{
+  display: inline-block; /* Hinzugefügt, um die Breite an den Inhalt anzupassen */
+  min-width: 240px;
+
+
+}
+
+.search-input {
+  width: 150px; /* Ändere die Breite nach Bedarf */
+}
+
+.customer-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.search-form {
+  display: flex;
+  align-items: center;
+}
+
+.button-section {
+  margin-right: 10px; /* Füge nach Bedarf Abstand zwischen dem Button und der Suchleiste hinzu */
+}
+
+.search-bar {
+  margin-right: auto; /* Nutze auto, um den verbleibenden Platz einzunehmen */
+}
+
+.total-price {
+  margin-left: 10px; /* Füge nach Bedarf Abstand zwischen der Suchleiste und dem monatlichen Beitrag hinzu */
+}
+
+.main-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.first-section,
+.second-section,
+.third-section {
+  flex: 1;
+}
+
+.table-section {
+  width: 100%;
+}
+
+html, body {
+  width: 100vh;
+  height: 100vh;
+}
+
+.container-fluid {
+  width: 100vh;
+  height: 100vh;
+}
+
+.table-section table tbody tr:nth-child(even) {
+  background-color: #d3a88f; /* Hintergrundfarbe für gerade Zeilen */
+}
+

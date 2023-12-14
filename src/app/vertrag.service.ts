@@ -38,6 +38,10 @@ export class VertragService {
     return this.httpClient.get<Vertrag>(this.baseURL + `/vertrag/${id}`);
   }
 
+  getCustomerbyVertragID(id: number): Observable<Customer>{
+    return this.httpClient.get<Customer>(this.baseURL + '/vertrag/{contractID}/kunde');
+  }
+
   updateVertrag(id: number, vertrag: Vertrag): Observable<Object>{
     return this.httpClient.put(this.baseURL + `/vertrag/${id}`, vertrag);
   }

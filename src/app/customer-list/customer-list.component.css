@@ -1,0 +1,3 @@
+.table-section table tbody tr:nth-child(even) {
+  background-color: #d3a88f; /* Hintergrundfarbe für gerade Zeilen */
+}

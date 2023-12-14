@@ -54,4 +54,8 @@ export class UpdateCustomerComponent implements OnInit {
         };
         return date.toISOString().substring(0, 10);
     }
+
+  goBack() {
+    this.router.navigate(['kunden']);
+  }
 }

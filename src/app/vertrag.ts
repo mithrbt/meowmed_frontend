@@ -5,4 +5,5 @@ export class Vertrag {
     end!: Date;
     coverage!: number;
     quote!: number;
+    customer!: number;
 }

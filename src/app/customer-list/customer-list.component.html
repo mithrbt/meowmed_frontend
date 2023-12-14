@@ -1,36 +1,36 @@
 <h2> Mitarbeiter Dashboard </h2>
-<form>
-  <a onclick = "window.location.href = 'http://localhost:4200/register';" routerLink="register" routerLinkActive="active" style="float: right;">
-    <button>Neuer Kunde +</button>
-  </a>
-  <div class="form-group">
-    <label for="searchTerm">Suche:</label>
-    <input type="text" class="form-control" id="searchTerm" [(ngModel)]="searchTerm" name="searchTerm">
-
-    <!-- Hier ist der Button für die Suche -->
-    <button type="button" class="btn btn-primary" (click)="filterCustomers()">Suchen</button>
+<form style="display: flex; align-items: center; justify-content: space-between;">
+  <div>
+    <input type="text" class="form-control" id="searchTerm" [(ngModel)]="searchTerm" name="searchTerm" placeholder="Suche" (input)="filterCustomers()">
+  </div>
+  <div>
+    <a onclick="window.location.href='http://localhost:4200/register';" routerLink="register" routerLinkActive="active">
+      <button>Neuer Kunde +</button>
+    </a>
   </div>
 </form>
-<table class = "table table-striped">
+<div class="table-section">
+  <table class="table table-striped">
     <thead>
-        <tr>
-            <th> ID </th>
-            <th> Vorname</th>
-            <th> Nachname</th>
-            <th> Adresse</th>
-        </tr>
+    <tr>
+      <th> ID </th>
+      <th> Vorname</th>
+      <th> Nachname</th>
+      <th> Adresse</th>
+    </tr>
     </thead>
     <tbody>
     <tr *ngFor="let customer of filteredCustomers">
-            <td> {{ customer.id }} </td>
-            <td> {{ customer.firstname }} </td>
-            <td> {{ customer.lastname }} </td>
-            <td> {{ customer.address.street + " " + customer.address.houseNr + ", " + customer.address.zipCode + " " + customer.address.city}}</td>
-            <td>
-              <button (click)="deleteCustomer($event, customer.id)" class = "btn btn-danger" style="margin-left: 10px">Löschen</button>
-              <button (click)="customerDetails(customer.id)" class = "btn btn-info" style="margin-left: 10px">Details</button>
-              <button (click)="updateCustomer(customer.id)" class = "btn btn-info" style="margin-left: 10px">Update</button>
-            </td>
-        </tr>
+      <td> {{ customer.id }} </td>
+      <td> {{ customer.firstname }} </td>
+      <td> {{ customer.lastname }} </td>
+      <td> {{ customer.address.street + " " + customer.address.houseNr + ", " + customer.address.zipCode + " " + customer.address.city}}</td>
+      <td>
+        <button (click)="deleteCustomer($event, customer.id)" class="btn btn-danger" style="margin-left: 10px">Löschen</button>
+        <button (click)="customerDetails(customer.id)" class="btn btn-info" style="margin-left: 10px">Details</button>
+        <button (click)="updateCustomer(customer.id)" class="btn btn-info" style="margin-left: 10px">Update</button>
+      </td>
+    </tr>
     </tbody>
-</table>
+  </table>
+</div>

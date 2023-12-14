@@ -21,6 +21,7 @@ export class UpdateVertragComponent implements OnInit {
   result!: number;
   formattedStartDate: string = '';
   formattedEndDate: string = '';
+  customer: Customer = new Customer();
 
   constructor(private catService: CatService,
               private vertragService: VertragService,
@@ -58,15 +59,22 @@ export class UpdateVertragComponent implements OnInit {
 
   }
 
-  /*quote() {
-    this.vertragService.quote(this.cat, this.vertrag).subscribe(data => {
+  goBack() {
+    this.router.navigate(['/vertragdetails', this.id]);
+  }
+
+  quote() {
+    console.log("Katzenrasse:" , this.cat.breed);
+    this.vertragService.quote(this.cat, this.vertrag, this.customer).subscribe(data =>{
         this.result = data;
+        this.vertrag.quote = this.result;
         console.log(this.result);
       },
       error => {
         console.log(error);
       });
-  }*/
+
+  }
 
   private updateCat() {
     this.catService.updateCat(this.cat.id, this.cat).subscribe(data => {

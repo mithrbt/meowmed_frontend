@@ -1,128 +1,159 @@
-
-
-
 <h2> Neuer Kunde </h2>
 <form (ngSubmit)="createCustomer()">
+<div class="container">
+  <div class="left-panel">
+    <div class = "form-group" [ngClass]="{'invalid-field': !customer.firstname}">
+      <label class="dark-label"> Vorname </label>
+      <input type="text" class="form-control" id="firstname"
+             [(ngModel)] = "customer.firstname" name ="firstname" required>
+    </div>
+    <div class = "form-group" [ngClass]="{'invalid-field': !customer.lastname}">
+      <label class="dark-label"> Nachname </label>
+      <input type="text" class="form-control" id="lastname"
+             [(ngModel)] = "customer.lastname" name ="lastname" required>
+    </div>
+    <div class = "form-group" [ngClass]="{'invalid-field': !customer.email}">
+      <label class="dark-label"> E-Mail </label>
+      <input type="text" class="form-control" id="email"
+             [(ngModel)] = "customer.email" name ="email" required>
+    </div>
+    <div class = "form-group" [ngClass]="{'invalid-field': !customer.address.street}">
+      <label class="dark-label"> Strasse </label>
+      <input type="text" class="form-control" id="address.street"
+             [(ngModel)] = "customer.address.street" name ="address.street" required>
+    </div>
+    <div class = "form-group" [ngClass]="{'invalid-field': !customer.address.houseNr}">
+      <label class="dark-label"> Hausnummer </label>
+      <input type="text" class="form-control" id="address.houseNr"
+             [(ngModel)] = "customer.address.houseNr" name ="address.houseNr" required>
+    </div>
+    <div class = "form-group" [ngClass]="{'invalid-field': !customer.address.zipCode}">
+      <label class="dark-label"> Postleitzahl </label>
+      <input type="text" class="form-control" id="address.zipCode"
+             [(ngModel)] = "customer.address.zipCode" name ="address.zipCode" required>
+    </div>
+    <div class = "form-group" [ngClass]="{'invalid-field': !customer.address.city}">
+      <label class="dark-label"> Stadt </label>
+      <input type="text" class="form-control" id="address.city"
+             [(ngModel)] = "customer.address.city" name ="address.city" required>
+    </div>
+    <div class = "form-group" [ngClass]="{'invalid-field': !customer.address.country}">
+      <label class="dark-label"> Land </label>
+      <input type="text" class="form-control" id="address.country"
+             [(ngModel)] = "customer.address.country" name ="address.country" required>
+    </div>
+    <div class="form-group" [ngClass]="{'invalid-field': !customer.birthdate}">
+      <label class="dark-label"> Geburtsdatum </label>
+      <input type="date" class="form-control" id="birthdate"
+             [(ngModel)]="customer.birthdate" name="birthdate" required>
+    </div>
+    <div class = "form-group" [ngClass]="{'invalid-field': !validateSteuerID()}">
+      <label class="dark-label"> Steuer-Nr. </label>
+      <input type="text" class="form-control" id="taxID"
+             [(ngModel)] = "customer.taxID" name ="taxID" required>
+    </div>
+    <div class="form-group" [ngClass]="{'invalid-field': !validateSozialversicherungsnummer()}">
+      <label class="dark-label"> Sozialversicherungsnummer </label>
+      <input type="text" class="form-control" id="snv"
+             [(ngModel)]="customer.svn" name="svn" required>
+    </div>
+    <div class = "form-group" [ngClass]="{'invalid-field': !customer.telNr}">
+      <label class="dark-label"> Telefonnummer </label>
+      <input type="text" class="form-control" id="telNr"
+             [(ngModel)] = "customer.telNr" name ="telNr" required>
+    </div>
+    <div class = "form-group" [ngClass]="{'invalid-field': !customer.income}">
+      <label class="dark-label"> Brutto-Einkommen </label>
+      <input type="text" class="form-control" id="income"
+             [(ngModel)] = "customer.income" name ="income" required>
+    </div>
 
-  <div class="form-group">
-    <label for="file">Bild hochladen</label>
-    <input type="file" name="file" ng2FileSelect [uploader]="uploader" />
-  </div>
+    <div class="form-group" [ngClass]="{'invalid-field': !customer.profession}">
+      <label class="dark-label">Berufsstand</label>
+      <div class="form-radio-group">
+        <div class="form-radio">
+          <input type="radio" id="employed" name="profession" value="EMPLOYED" [(ngModel)]="customer.profession" required>
+          <label for="employed">Angestellt</label>
+        </div>
 
-  <div class = "form-group" [ngClass]="{'invalid-field': !customer.firstname}">
-    <label> Vorname </label>
-    <input type="text" class="form-control" id="firstname"
-           [(ngModel)] = "customer.firstname" name ="firstname" required>
+        <div class="form-radio">
+          <input type="radio" id="unemployed" name="profession" value="UNEMPLOYED" [(ngModel)]="customer.profession" required>
+          <label for="unemployed">Arbeitslos</label>
+        </div>
+
+        <div class="form-radio">
+          <input type="radio" id="selfemployed" name="profession" value="SELFEMPLOYED" [(ngModel)]="customer.profession" required>
+          <label for="selfemployed">Selbstständig</label>
+        </div>
+
+        <div class="form-radio">
+          <input type="radio" id="student" name="profession" value="STUDENT" [(ngModel)]="customer.profession" required>
+          <label for="student">Student/Schüler</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group" [ngClass]="{'invalid-field': !customer.familyStatus}">
+      <label class="dark-label">Familienstatus</label>
+      <div class="form-radio-group">
+        <div class="form-radio">
+          <input type="radio" id="single" name="familyStatus" value="SINGLE" [(ngModel)]="customer.familyStatus" required>
+          <label for="single">Ledig</label>
+        </div>
+
+        <div class="form-radio">
+          <input type="radio" id="regPartnership" name="familyStatus" value="REGPARTNERSHIP" [(ngModel)]="customer.familyStatus" required>
+          <label for="regPartnership">Geschieden</label>
+        </div>
+
+        <div class="form-radio">
+          <input type="radio" id="married" name="familyStatus" value="MARRIED" [(ngModel)]="customer.familyStatus" required>
+          <label for="married">Verheiratet</label>
+        </div>
+
+        <div class="form-radio">
+          <input type="radio" id="divorced" name="familyStatus" value="DIVORCED" [(ngModel)]="customer.familyStatus" required>
+          <label for="divorced">Geschieden</label>
+        </div>
+
+        <div class="form-radio">
+          <input type="radio" id="widowed" name="familyStatus" value="WIDOWED" [(ngModel)]="customer.familyStatus" required>
+          <label for="widowed">Verwitwet</label>
+        </div>
+      </div>
+    </div>
+
+
   </div>
-  <div class = "form-group" [ngClass]="{'invalid-field': !customer.lastname}">
-    <label> Nachname </label>
-    <input type="text" class="form-control" id="lastname"
-           [(ngModel)] = "customer.lastname" name ="lastname" required>
+  <div class="right-panel">
+    <div class="form-group">
+      <label class="dark-label">Bild hochladen</label>
+      <input type="file" name="file" ng2FileSelect [uploader]="uploader" />
+    </div>
+    <div class = "form-group" [ngClass]="{'invalid-field': !customer.bankDetails.accountholder}">
+      <label class="dark-label"> Kontoinhaber </label>
+      <input type="text" class="form-control" id="bankdetails.accountholder"
+             [(ngModel)] = "customer.bankDetails.accountholder" name ="bankdetails.accountholder" required>
+    </div>
+    <div class = "form-group" [ngClass]="{'invalid-field': !customer.bankDetails.bank_name}">
+      <label class="dark-label"> Bankinstitut </label>
+      <input type="text" class="form-control" id="bankdetails.bank_name"
+             [(ngModel)] = "customer.bankDetails.bank_name" name ="bankdetails.bank_name" required>
+    </div>
+    <div class = "form-group" [ngClass]="{'invalid-field': !validateIBAN()}">
+      <label class="dark-label"> IBAN </label>
+      <input type="text" class="form-control" id="bankdetails.iban"
+             [(ngModel)] = "customer.bankDetails.iban" name ="bankdetails.iban" required>
+    </div>
+
   </div>
-  <div class = "form-group" [ngClass]="{'invalid-field': !customer.email}">
-    <label> E-Mail </label>
-    <input type="text" class="form-control" id="email"
-           [(ngModel)] = "customer.email" name ="email" required>
-  </div>
-  <div class = "form-group" [ngClass]="{'invalid-field': !customer.address.street}">
-    <label> Strasse </label>
-    <input type="text" class="form-control" id="address.street"
-           [(ngModel)] = "customer.address.street" name ="address.street" required>
-  </div>
-  <div class = "form-group" [ngClass]="{'invalid-field': !customer.address.houseNr}">
-    <label> Hausnummer </label>
-    <input type="text" class="form-control" id="address.houseNr"
-           [(ngModel)] = "customer.address.houseNr" name ="address.houseNr" required>
-  </div>
-  <div class = "form-group" [ngClass]="{'invalid-field': !customer.address.zipCode}">
-    <label> Postleitzahl </label>
-    <input type="text" class="form-control" id="address.zipCode"
-           [(ngModel)] = "customer.address.zipCode" name ="address.zipCode" required>
-  </div>
-  <div class = "form-group" [ngClass]="{'invalid-field': !customer.address.city}">
-    <label> Stadt </label>
-    <input type="text" class="form-control" id="address.city"
-           [(ngModel)] = "customer.address.city" name ="address.city" required>
-  </div>
-  <div class = "form-group" [ngClass]="{'invalid-field': !customer.address.country}">
-    <label> Land </label>
-    <input type="text" class="form-control" id="address.country"
-           [(ngModel)] = "customer.address.country" name ="address.country" required>
-  </div>
-  <div class="form-group" [ngClass]="{'invalid-field': !customer.birthdate}">
-    <label> Geburtsdatum </label>
-    <input type="date" class="form-control" id="birthdate"
-           [(ngModel)]="customer.birthdate" name="birthdate" required>
-  </div>
-  <div class = "form-group" [ngClass]="{'invalid-field': !validateSteuerID()}">
-    <label> Steuer-Nr. </label>
-    <input type="text" class="form-control" id="taxID"
-           [(ngModel)] = "customer.taxID" name ="taxID" required>
-  </div>
-  <div class="form-group" [ngClass]="{'invalid-field': !validateSozialversicherungsnummer()}">
-    <label> Sozialversicherungsnummer </label>
-    <input type="text" class="form-control" id="snv"
-           [(ngModel)]="customer.svn" name="svn" required>
-  </div>
-  <div class = "form-group" [ngClass]="{'invalid-field': !customer.telNr}">
-    <label> Telefonnummer </label>
-    <input type="text" class="form-control" id="telNr"
-           [(ngModel)] = "customer.telNr" name ="telNr" required>
-  </div>
-  <div class = "form-group" [ngClass]="{'invalid-field': !customer.income}">
-    <label> Brutto-Einkommen </label>
-    <input type="text" class="form-control" id="income"
-           [(ngModel)] = "customer.income" name ="income" required>
-  </div>
-  <div class = "form-group" [ngClass]="{'invalid-field': !customer.profession}">
-    <label> Berufsstand </label><br>
-    <input type="radio" id="employed" name="profession" value="EMPLOYED"
-           [(ngModel)] = "customer.profession" name ="profession">
-    <label for="employed"> Angestellt </label><br>
-    <input type="radio" id="unemployed" name="profession" value="UNEMPLOYED"
-           [(ngModel)] = "customer.profession" name ="profession">
-    <label for="unemployed"> Arbeitslos </label><br>
-    <input type="radio" id="selfemployed" name="profession" value="SELFEMPLOYED"
-           [(ngModel)] = "customer.profession" name ="profession">
-    <label for="selfemployed"> Selbstständig </label><br>
-    <input type="radio" id="student" name="profession" value="STUDENT"
-           [(ngModel)] = "customer.profession" name ="profession">
-    <label for="student"> Student/Schüler </label><br>
-  </div>
-  <div class = "form-group" [ngClass]="{'invalid-field': !customer.familyStatus}">
-    <label> Familienstatus </label><br>
-    <input type="radio" id="single" name="familyStatus" value="SINGLE"
-           [(ngModel)] = "customer.familyStatus" name ="familyStatus">
-    <label for="single"> Ledig </label><br>
-    <input type="radio" id="regPartnership" name="familyStatus" value="REGPARTNERSHIP"
-           [(ngModel)] = "customer.familyStatus" name ="familyStatus">
-    <label for="regPartnership"> Geschieden </label><br>
-    <input type="radio" id="married" name="familyStatus" value="MARRIED"
-           [(ngModel)] = "customer.familyStatus" name ="familyStatus">
-    <label for="married"> Verheiratet </label><br>
-    <input type="radio" id="divorced" name="familyStatus" value="DIVORCED"
-           [(ngModel)] = "customer.familyStatus" name ="familyStatus">
-    <label for="divorced"> Geschieden </label><br>
-    <input type="radio" id="widowed" name="familyStatus" value="WIDOWED"
-           [(ngModel)] = "customer.familyStatus" name ="familyStatus">
-    <label for="widowed"> Verwitwet </label><br>
-  </div>
-  <div class = "form-group" [ngClass]="{'invalid-field': !customer.bankDetails.accountholder}">
-    <label> Kontoinhaber </label>
-    <input type="text" class="form-control" id="bankdetails.accountholder"
-           [(ngModel)] = "customer.bankDetails.accountholder" name ="bankdetails.accountholder" required>
-  </div>
-  <div class = "form-group" [ngClass]="{'invalid-field': !customer.bankDetails.bank_name}">
-    <label> Bankinstitut </label>
-    <input type="text" class="form-control" id="bankdetails.bank_name"
-           [(ngModel)] = "customer.bankDetails.bank_name" name ="bankdetails.bank_name" required>
-  </div>
-  <div class = "form-group" [ngClass]="{'invalid-field': !validateIBAN()}">
-    <label> IBAN </label>
-    <input type="text" class="form-control" id="bankdetails.iban"
-           [(ngModel)] = "customer.bankDetails.iban" name ="bankdetails.iban" required>
-  </div>
-  <button type= "submit" class ="btn btn-success" >Anlegen</button>
+  <button type="button" class="back-button" (click)="goBack()">
+    <span class="button-text">Zurück</span>
+  </button>
+  <button type="submit" class="paw-button">
+    <span class="button-text">Anlegen</span>
+  </button>
+</div>
 </form>
 
 

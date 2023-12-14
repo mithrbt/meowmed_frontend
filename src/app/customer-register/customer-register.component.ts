@@ -1,10 +1,11 @@
-import {Component, NgModule, OnInit} from '@angular/core';
-import { Customer } from '../customer';
-import { CustomerService } from '../customer.service';
-import { Router } from '@angular/router';
-import { Address } from '../address';
-import {FileItem, FileUploader, FileUploadModule, ParsedResponseHeaders} from 'ng2-file-upload';
+import {Component, OnInit} from '@angular/core';
+import {Customer} from '../customer';
+import {CustomerService} from '../customer.service';
+import {Router} from '@angular/router';
+import {Address} from '../address';
+import {FileItem, FileUploader, ParsedResponseHeaders} from 'ng2-file-upload';
 import {BankDetails} from "../bank-details";
+import {Profession} from "../enums/Profession";
 
 @Component({
   selector: 'app-customer-register',
@@ -53,10 +54,15 @@ export class CustomerRegisterComponent implements OnInit {
       this.openValidationDialog();
       return; // Stoppe die Funktion, um das Formular nicht abzusenden
     } else {
+      console.log("Profession: "+this.customer.profession);
       this.saveCustomer();
     }
   }
   goToCustomerDetails() {
+    this.router.navigate(['kundendetails', this.customer.id]);
+  }
+
+  goBack() {
     this.router.navigate(['kundendetails', this.customer.id]);
   }
 
@@ -90,6 +96,7 @@ export class CustomerRegisterComponent implements OnInit {
       this.customer.familyStatus !== undefined &&
       this.customer.profession !== null &&
       this.customer.profession !== undefined &&
+      this.customer.profession !== Profession.UNEMPLOYED &&
       this.customer.bankDetails !== null &&
       this.customer.bankDetails != undefined
     );

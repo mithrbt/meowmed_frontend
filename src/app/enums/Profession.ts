@@ -1,6 +1,6 @@
 export enum Profession{
-  EMPLOYED = 'employed',
-  UNEMPLOYED = 'unemployed',
-  SELFEMPLOYED = 'selfemployed',
-  STUDENT = 'student'
+  EMPLOYED = 'EMPLOYED',
+  UNEMPLOYED = 'UNEMPLOYED',
+  SELFEMPLOYED = 'SELFEMPLOYED',
+  STUDENT = 'STUDENT'
 }

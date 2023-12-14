@@ -1,56 +1,128 @@
+.body {
+  background-color: #F4F4F4;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  min-height: 100vh;
+  padding: 50px;
+}
+
+.left-panel, .right-panel {
+  flex-grow: 1;
+  padding: 20px;
+  width: 50%;
+}
+
+.right-panel {
+  box-sizing: content-box; /* Ändere border-box zu content-box, wenn es notwendig ist */
+}
+
 .invalid-field {
-  border: 2px solid red;
-  width: 20.2em;
+  border: 0.2em solid #FF0000; /* Hier den gewünschten Wert anpassen */
+  box-sizing: border-box;
 }
 
-label {
-  background-color: #B57B59;
-  width: 20em;
-}
-
-.radiolabel{
-  background-color: #ECDAD0;
-}
-
-input {
-  width: 20em;
-}
-
-.form-radio{
+.form-group {
+  margin-bottom: 15px;
   display: flex;
-  flex-direction: row;
-  align-items:center;
-  width: 20em;
-}
-
-.form-control {
-  display: flex;
-  flex-direction: row;
+  flex-direction: row; /* Ändere die Flexbox-Ausrichtung auf "row" */
   align-items: center;
 }
 
-.radio-group label {
+label {
+  margin-right: 10px; /* Füge nach Bedarf Abstand zwischen Label und Input hinzu */
+}
+
+input {
+  width: calc(100% - 100px); /* Ändere den Wert nach Bedarf, um die gleiche Breite wie die Umrandung zu haben */
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.paw-button {
+  background: url('../../assets/images/pfotenbild.png') no-repeat;
+  background-size: contain;
+  color: #5C4638;
+  font-size: 24px; /* Passe die Schriftgröße an */
+  display: inline-block;
+  border: none;
+  cursor: pointer;
+  margin-left: 150px;
+}
+
+.paw-button:hover {
+  color: #6E2C00;
+}
+
+.button-text {
+  font-size: 18px; /* Größe des Texts anpassen */
+}
+
+.back-button {
+  background: url('../../assets/images/pfotenbild.png') no-repeat;
+  background-size: contain;
+  color: #5C4638;
+  font-size: 24px; /* Passe die Schriftgröße an */
+  display: inline-block;
+  border: none;
+  cursor: pointer;
+  margin-right: 150px;
+}
+
+.back-button:hover {
+  color: #6E2C00;
+}
+
+
+
+.form-radio label, .form-group label {
+  background-color: #d3a88f;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.form-group input {
+  margin-right: 5px;
+  cursor: pointer;
+}
+
+.form-radio-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Ändere die Ausrichtung auf "flex-start", um die Elemente links auszurichten */
+  margin-bottom: 10px;
+}
+
+.form-radio {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  width: 100%; /* Füge diese Zeile hinzu */
+}
+
+
+.form-radio input {
+  margin-right: 5px;
+  cursor: pointer;
   background-color: #ECDAD0;
-  margin-left: 5px; /* Fügen Sie nach Bedarf Abstand hinzu */
 }
 
-.flex-container {
-  display: flex;
-  flex-direction: column;
-  margin-left: auto;
-  margin-right: 0;
+.form-radio label {
+  background-color: #ECDAD0;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
-.flex-container2 {
-  display: flex;
-  flex-direction: column;
-  margin-left: auto;
-  margin-right: 0;
-}
-
-.flex-container3 {
-  margin-left: auto;
-  margin-right: auto;
-  display: flex;
-  flex-direction: row;
+.left-panel, .right-panel {
+  flex-grow: 1;
+  padding: 20px;
+  width: 48%; /* Ändere die Breite nach Bedarf, um Platz für den Abstand zu schaffen */
+  box-sizing: border-box;
+  margin: 0 1%; /* Hinzugefügt, um einen kleinen Abstand zwischen den Panels zu schaffen */
 }
