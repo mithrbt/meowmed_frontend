@@ -32,11 +32,12 @@ export class CustomerDetailsComponent implements OnInit{
   totalMonthlyContribution: number = 0;
   today = new Date();
 
-  uploadedImage!: File;
   dbImage!: any;
   postResponse!: any;
-  successResponse!: any;
   image!: any;
+  imageUrl: any;
+  uploadedImage!: File;
+  successResponse!: any;
 
 
   constructor(private route: ActivatedRoute,
@@ -54,7 +55,12 @@ export class CustomerDetailsComponent implements OnInit{
     console.log("ID: " + this.id);
     this.getVertragList();
     this.customer.address = this.address;
-    console.log("Adresse: " + this.address);
+
+    //Bild anzeigen
+    this.imageService.viewImage(this.id).subscribe(res =>{
+      this.postResponse = res;
+      this.dbImage = 'data:image/jpeg;base64,' + this.postResponse.image;
+    });
   }
 
   private getVertragList(){
@@ -127,7 +133,7 @@ export class CustomerDetailsComponent implements OnInit{
     );
   }
 
-  //Fotos hochladen
+  //Foto hochladen
   public onImageUpload(event: Event){
     const input = event.target as HTMLInputElement;
     if (input.files && input.files.length > 0) {
@@ -140,22 +146,20 @@ export class CustomerDetailsComponent implements OnInit{
     imageFormData.append('image', this.uploadedImage, this.uploadedImage.name);
 
     console.log("KundenID: ", this.customer.id);
-    this.imageService.uploadFile(imageFormData).subscribe((response) =>{
-      /*if(response.status === 200){
-        this.postResponse = response;
-        this.successResponse = this.postResponse.body.message;
-      }else{
-        this.successResponse = 'Bild wurde nicht hochgeladen!';
-      }*/
+    this.imageService.uploadFile(this.customer.id, imageFormData).subscribe((response) =>{
+      window.location.reload();
     });
   }
 
-  viewImage(){
-    this.imageService.viewImage(this.image).subscribe(res =>{
-      this.postResponse = res;
-      this.dbImage = 'data:image/jpeg;base64,' + this.postResponse.image;
-    })
+  //Foto löschen
+  deleteImage(event: any, id: number) {
+    if(confirm('Sind Sie sicher, dass Sie das Bild löschen möchten?')){
+      event.target.innerText = "Löschen...";
+      this.imageService.deleteImage(id).subscribe((response: any) =>{
+        alert("Das Foto wurde gelöscht.");
+        window.location.reload();
+      });
+    }
   }
-
 
 }

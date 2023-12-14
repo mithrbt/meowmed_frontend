@@ -1,5 +1,9 @@
 <h3>Kundendetails</h3>
 <div>
+  <!--
+  <div>
+    <img [src]="dbImage" style="width: 200px; height: 200px; float: right;">
+  </div>-->
   <div class="form-group">
     <label for="file">Bild hochladen</label>
     <input type="file" (change)="onImageUpload($event)">
@@ -9,17 +13,12 @@
   <div>
     <output *ngIf=successResponse class="success"><b>{{successResponse}}</b></output>
   </div>
-  <br>
-
-  <div class="form-group">
-    <input type="text" id="image" placeholder="Search Image" [(ngModel)]="image" name="image" />
-    <input type="button" (click)="viewImage()" value="Bild anzeigen" class="btn1">
-
+  <div>
+    <img [src]="dbImage" style="width: 200px; height: auto; float: right;">
   </div>
-
-  <div *ngIf=dbImage>
-    <img [src]="dbImage" style="width: 200px; height: 200px; float: right;">
-  </div>
+  <button (click)="deleteImage($event, customer.id)" class="btn btn-danger" style="margin-right: 10px">
+    Foto löschen
+  </button>
   <div>
     <label> <b> ID: </b></label> {{customer.id}}
   </div>

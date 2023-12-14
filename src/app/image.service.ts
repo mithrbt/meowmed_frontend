@@ -14,11 +14,15 @@ export class ImageService {
   customer: any = {};
   constructor(private httpClient: HttpClient) { }
 
-  public uploadFile(formData: FormData): Observable<any>{
-    return this.httpClient.post(this.baseURL + `/upload/image`, formData);
+  public uploadFile(customerID: number,formData: FormData): Observable<any>{
+    return this.httpClient.post(this.baseURL + `/${customerID}/upload/image`, formData);
   }
 
-  public viewImage(name: any): Observable<any>{
-    return this.httpClient.get(this.baseURL + `/get/image/info/${name}`)
+  public viewImage(customerID: number): Observable<any>{
+    return this.httpClient.get(this.baseURL + `/get/image/info/${customerID}`);
+  }
+
+  public deleteImage(customerId: number): Observable<any>{
+    return this.httpClient.delete(this.baseURL + `/image/${customerId}`);
   }
 }

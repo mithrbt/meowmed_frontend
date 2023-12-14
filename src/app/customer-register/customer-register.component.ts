@@ -36,7 +36,8 @@ export class CustomerRegisterComponent implements OnInit {
   });*/
 
   constructor(private customerService: CustomerService,
-              private router: Router) {}
+              private router: Router,
+              private imageService: ImageService) {}
 
   ngOnInit() {
     this.customer.address = new Address();
@@ -160,7 +161,5 @@ export class CustomerRegisterComponent implements OnInit {
     }
     return age;
   }
-
-
 
 }
