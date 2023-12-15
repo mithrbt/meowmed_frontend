@@ -14,40 +14,42 @@
   </div>
   <h3>Katze</h3>
   <div class="form-group">
-    <label for="file">Bild hochladen</label>
+    <div>
+      <label for="file" class="dark-label">Bild hochladen</label>
+    </div>
+    <div>
+      <img [src]="dbImage" style="width: 200px; height: auto">
+    </div>
     <input type="file" (change)="onImageUpload($event)">
-    <input type="button" (click)="imageUploadAction()" value="Bild hochladen" class="btn1">
+    <input type="button" (click)="imageUploadAction()" value="Bild hochladen" class="btn btn-secondary" style="margin-right: 10px">
+    <button (click)="deleteImage($event, cat.id)" class="btn btn-danger" style="margin-right: 10px">
+      Foto löschen
+    </button>
   </div>
-
   <div>
     <output *ngIf=successResponse class="success"><b>{{successResponse}}</b></output>
   </div>
   <div>
-    <img [src]="dbImage" style="width: 200px; height: auto; float: right;">
-  </div>
-  <button (click)="deleteImage($event, cat.id)" class="btn btn-danger" style="margin-right: 10px">
-    Foto löschen
-  </button>
-  <div>
-  <div>
-    <label> <b> ID: </b></label> {{cat.id}}
-  </div>
-  <div>
-    <label> <b> Name: </b></label> {{cat.name}}
-  </div>
-  <div>
-    <label> <b> Geburtsdatum: </b></label> {{cat.birthdate | date: 'dd/MM/yyyy' }}
-  </div>
-  <div>
-    <label> <b> Umgebung: </b></label> {{cat.environment}}
-  </div>
-  <div>
-    <label> <b> Farbe: </b></label> {{cat.color}}
-  </div>
-  <div>
-    <label> <b> Persönlichkeit: </b></label> {{cat.personality}}
-  </div>
-  <div>
-    <label> <b> Gewicht: </b></label> {{cat.weight}}
+    <div>
+      <label> <b> ID: </b></label> {{cat.id}}
+    </div>
+    <div>
+      <label> <b> Name: </b></label> {{cat.name}}
+    </div>
+    <div>
+      <label> <b> Geburtsdatum: </b></label> {{cat.birthdate | date: 'dd/MM/yyyy' }}
+    </div>
+    <div>
+      <label> <b> Umgebung: </b></label> {{cat.environment}}
+    </div>
+    <div>
+      <label> <b> Farbe: </b></label> {{cat.color}}
+    </div>
+    <div>
+      <label> <b> Persönlichkeit: </b></label> {{cat.personality}}
+    </div>
+    <div>
+      <label> <b> Gewicht: </b></label> {{cat.weight}}
+    </div>
   </div>
 </div>

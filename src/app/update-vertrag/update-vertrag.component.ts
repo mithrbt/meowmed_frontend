@@ -1,13 +1,13 @@
 
 import {Component, OnInit} from '@angular/core';
-import {CustomerService} from "../customer.service";
-import {Customer} from "../customer";
+import {CustomerService} from "../service/customer.service";
+import {Customer} from "../model/customer";
 import {ActivatedRoute, Router} from "@angular/router";
 import {error} from "@angular/compiler-cli/src/transformers/util";
-import {VertragService} from "../vertrag.service";
-import {Vertrag} from "../vertrag";
-import {CatService} from "../cat.service";
-import {Cat} from "../cat";
+import {VertragService} from "../service/vertrag.service";
+import {Vertrag} from "../model/vertrag";
+import {CatService} from "../service/cat.service";
+import {Cat} from "../model/cat";
 @Component({
   selector: 'app-update-vertrag',
   templateUrl: './update-vertrag.component.html',

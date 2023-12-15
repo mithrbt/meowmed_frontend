@@ -1,15 +1,15 @@
 import {Component, OnInit} from '@angular/core';
-import {Customer} from "../customer";
+import {Customer} from "../model/customer";
 import {ActivatedRoute, Router} from "@angular/router";
-import {CustomerService} from "../customer.service";
-import {Vertrag} from "../vertrag";
-import {VertragService} from "../vertrag.service";
-import {Cat} from "../cat";
-import {CatService} from "../cat.service";
-import {Address} from "../address";
-import {ImageService} from "../image.service";
+import {CustomerService} from "../service/customer.service";
+import {Vertrag} from "../model/vertrag";
+import {VertragService} from "../service/vertrag.service";
+import {Cat} from "../model/cat";
+import {CatService} from "../service/cat.service";
+import {Address} from "../model/address";
+import {ImageService} from "../service/image.service";
 import {error} from "@angular/compiler-cli/src/transformers/util";
-import {Image} from "../image";
+import {Image} from "../model/image";
 
 @Component({
   selector: 'app-customer-details',

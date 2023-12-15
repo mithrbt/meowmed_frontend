@@ -2,8 +2,8 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpEventType} from "@angular/common/http";
 import {map, Observable} from "rxjs";
 import {Form} from "@angular/forms";
-import {Customer} from "./customer";
-import {Image} from "./image";
+import {Customer} from "../model/customer";
+import {Image} from "../model/image";
 
 @Injectable({
   providedIn: 'root'

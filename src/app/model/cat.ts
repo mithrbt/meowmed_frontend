@@ -1,6 +1,6 @@
-import {Color} from "./enums/Color";
-import {Environment} from "./enums/Environment";
-import {Personality} from "./enums/Personality";
+import {Color} from "../enum/Color";
+import {Environment} from "../enum/Environment";
+import {Personality} from "../enum/Personality";
 import {Breed} from "./breed";
 import {Image} from "./image";
 

@@ -1,6 +1,6 @@
-import {Profession} from "./enums/Profession";
+import {Profession} from "../enum/Profession";
 import {Address} from "./address";
-import {FamilyStatusEnum} from "./enums/FamilyStatus.enum";
+import {FamilyStatusEnum} from "../enum/FamilyStatus.enum";
 import {BankDetails} from "./bank-details";
 import {Image} from "./image";
 

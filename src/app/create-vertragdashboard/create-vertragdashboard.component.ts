@@ -1,15 +1,15 @@
 import {Component, OnInit} from '@angular/core';
-import {VertragService} from "../vertrag.service";
+import {VertragService} from "../service/vertrag.service";
 import {ActivatedRoute, Router} from "@angular/router";
-import {Vertrag} from "../vertrag";
-import {CustomerService} from "../customer.service";
-import {Customer} from "../customer";
-import {Cat} from "../cat";
-import {CatService} from "../cat.service";
-import {Environment} from "../enums/Environment";
-import {BreedService} from "../breed.service";
-import {Breed} from "../breed";
-import {Personality} from "../enums/Personality";
+import {Vertrag} from "../model/vertrag";
+import {CustomerService} from "../service/customer.service";
+import {Customer} from "../model/customer";
+import {Cat} from "../model/cat";
+import {CatService} from "../service/cat.service";
+import {Environment} from "../enum/Environment";
+import {BreedService} from "../service/breed.service";
+import {Breed} from "../model/breed";
+import {Personality} from "../enum/Personality";
 
 
 @Component({

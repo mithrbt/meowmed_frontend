@@ -1,10 +1,10 @@
 import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
-import {Vertrag} from "./vertrag";
-import {Cat} from "./cat";
-import {Catract} from "./catract";
-import {Customer} from "./customer";
+import {Vertrag} from "../model/vertrag";
+import {Cat} from "../model/cat";
+import {Catract} from "../model/catract";
+import {Customer} from "../model/customer";
 
 @Injectable({
   providedIn: 'root'

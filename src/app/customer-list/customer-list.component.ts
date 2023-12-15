@@ -1,10 +1,10 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import { Customer } from '../customer'
-import { CustomerService } from '../customer.service';
+import { Customer } from '../model/customer'
+import { CustomerService } from '../service/customer.service';
 import {Router} from "@angular/router";
-import {VertragService} from "../vertrag.service";
-import {CatService} from "../cat.service";
-import {Vertrag} from "../vertrag";
+import {VertragService} from "../service/vertrag.service";
+import {CatService} from "../service/cat.service";
+import {Vertrag} from "../model/vertrag";
 import {FormBuilder} from "@angular/forms";
 
 @Component({

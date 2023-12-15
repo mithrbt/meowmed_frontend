@@ -1,13 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {Customer} from '../customer';
-import {CustomerService} from '../customer.service';
+import {Customer} from '../model/customer';
+import {CustomerService} from '../service/customer.service';
 import {Router} from '@angular/router';
-import {Address} from '../address';
-import {BankDetails} from "../bank-details";
-import {Image} from "../image";
-import {DomSanitizer} from "@angular/platform-browser";
-import {ImageService} from "../image.service";
-import {Profession} from "../enums/Profession";
+import {Address} from '../model/address';
+import {BankDetails} from "../model/bank-details";
+import {ImageService} from "../service/image.service";
+import {Profession} from "../enum/Profession";
 
 
 declare var window: Window & typeof globalThis; // Import für das Window-Objekt
@@ -23,17 +21,6 @@ export class CustomerRegisterComponent implements OnInit {
   address!: Address;
   bankDetails!: BankDetails;
 
-  /*userFile;
-  imgURL: any;
-  public message!: string;
-  public imagePath;
-  file!: any;*/
-
-
-  /*uploader: FileUploader = new FileUploader({
-    url: 'URL_ZUM_UPLOAD_ENDPUNKT', // Setzen Sie die tatsächliche URL zum Server-Upload-Endpunkt
-    itemAlias: 'file',
-  });*/
 
   constructor(private customerService: CustomerService,
               private router: Router,
@@ -41,10 +28,6 @@ export class CustomerRegisterComponent implements OnInit {
 
   ngOnInit() {
     this.customer.address = new Address();
-    /*this.uploader.onCompleteItem = (item: FileItem, response: string, status: number, headers: ParsedResponseHeaders) => {
-      console.log('Datei hochgeladen:', item.file.name, 'Status:', status, 'Server-Antwort:', response);
-    };*/
-
     this.customer.bankDetails = new BankDetails();
   }
 
@@ -132,15 +115,14 @@ export class CustomerRegisterComponent implements OnInit {
 
 
   validateIBAN(): boolean {
-    // Muster für IBAN Deutschland
     const ibanRegex = /^DE.{20}$/;
 
     return (
-      this.customer.bankDetails !== null && // Überprüfe, ob die Bankdetails nicht null sind
-      this.customer.bankDetails !== undefined && // Überprüfe, ob die Bankdetails nicht undefined sind
-      this.customer.bankDetails.iban !== null && // Überprüfe, ob die IBAN nicht null ist
-      this.customer.bankDetails.iban !== undefined && // Überprüfe, ob die IBAN nicht undefined ist
-      this.customer.bankDetails.iban.match(ibanRegex) !== null // Überprüfe, ob die IBAN dem Muster entspricht
+      this.customer.bankDetails !== null &&
+      this.customer.bankDetails !== undefined &&
+      this.customer.bankDetails.iban !== null &&
+      this.customer.bankDetails.iban !== undefined &&
+      this.customer.bankDetails.iban.match(ibanRegex) !== null
     );
   }
 

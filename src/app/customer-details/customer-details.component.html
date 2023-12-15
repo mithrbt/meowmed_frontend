@@ -10,103 +10,121 @@
 <div class="container-fluid">
   <h3>Kundendetails</h3>
   <div class="form-group">
-    <label for="file">Bild hochladen</label>
+    <div>
+    <label for="file" class="dark-label">Bild</label>
+    </div>
+    <div>
+      <img [src]="dbImage" style="width: 200px; height: auto">
+    </div>
     <input type="file" (change)="onImageUpload($event)">
-    <input type="button" (click)="imageUploadAction()" value="Bild hochladen" class="btn1">
+    <input type="button" (click)="imageUploadAction()" value="Bild hochladen" class="btn btn-secondary" style="margin-right: 10px">
+    <button (click)="deleteImage($event, customer.id)" class="btn btn-danger" style="margin-right: 10px">
+      Foto löschen
+    </button>
   </div>
-
   <div>
     <output *ngIf=successResponse class="success"><b>{{successResponse}}</b></output>
   </div>
+
   <div>
-    <img [src]="dbImage" style="width: 200px; height: auto; float: right;">
-  </div>
-  <button (click)="deleteImage($event, customer.id)" class="btn btn-danger" style="margin-right: 10px">
-    Foto löschen
-  </button>
-  <div>
-  <div class="customer-details">
-    <div class="wrapper">
-    <div class="first-section">
-    <div>
-      <label class="dark-label"> <b> ID </b></label> <input type="text" class="output-textfield" value="{{customer.id}}" readonly>
-    </div>
-    <div>
-      <label class="dark-label"> <b> Vorname </b></label> <input type="text" class="output-textfield" value="{{customer.firstname}}" readonly>
-    </div>
-    <div>
-      <label class="dark-label"> <b> Nachname </b></label> <input type="text" class="output-textfield" value="{{customer.lastname}}" readonly>
-    </div>
-    <div>
-      <label class="dark-label"> <b> Titel </b></label> <input type="text" class="output-textfield" value="{{customer.profession}}" readonly>
-    </div>
-      <div class="search-bar">
-        <input type="text" class="form-control" id="searchTerm" [(ngModel)]="searchTerm" name="searchTerm" placeholder="Suche" (input)="filterCats()">
-      </div>
-  </div>
+    <div class="customer-details">
+      <div class="wrapper">
+        <div class="first-section">
+          <div>
+            <label class="dark-label"> <b> ID </b></label> <input type="text" class="output-textfield"
+                                                                  value="{{customer.id}}" readonly>
+          </div>
+          <div>
+            <label class="dark-label"> <b> Vorname </b></label> <input type="text" class="output-textfield"
+                                                                       value="{{customer.firstname}}" readonly>
+          </div>
+          <div>
+            <label class="dark-label"> <b> Nachname </b></label> <input type="text" class="output-textfield"
+                                                                        value="{{customer.lastname}}" readonly>
+          </div>
+          <div>
+            <label class="dark-label"> <b> Berufsstand </b></label> <input type="text" class="output-textfield"
+                                                                     value="{{customer.profession}}" readonly>
+          </div>
+          <div class="search-bar">
+            <input type="text" class="form-control" id="searchTerm" [(ngModel)]="searchTerm" name="searchTerm"
+                   placeholder="Suche" (input)="filterCats()">
+          </div>
+        </div>
 
-    <div class="second-section">
-    <div>
-      <label class="dark-label"> <b> E-Mail </b></label> <input type="text" class="output-textfield" value="{{customer.email}}" readonly>
-    </div>
-    <div>
-      <label class="dark-label"> <b> Straße </b></label> <input type="text" class="output-textfield" value='{{customer.address.street + " " + customer.address.houseNr}}' readonly>
-    </div>
-    <div>
-      <label class="dark-label"> <b> Stadt </b></label> <input type="text" class="output-textfield" value='{{customer.address.zipCode + " " + customer.address.street}}' readonly>
-    </div>
-    <div>
-      <label class="dark-label"> <b> Land </b></label> <input type="text" class="output-textfield" value="{{customer.address.country}}" readonly>
+
+        <div class="second-section">
+          <div>
+            <label class="dark-label"> <b> E-Mail </b></label> <input type="text" class="output-textfield"
+                                                                      value="{{customer.email}}" readonly>
+          </div>
+          <div>
+            <label class="dark-label"> <b> Straße </b></label> <input type="text" class="output-textfield"
+                                                                      value='{{customer.address.street + " " + customer.address.houseNr}}'
+                                                                      readonly>
+          </div>
+          <div>
+            <label class="dark-label"> <b> Stadt </b></label> <input type="text" class="output-textfield"
+                                                                     value='{{customer.address.zipCode + " " + customer.address.street}}'
+                                                                     readonly>
+          </div>
+          <div>
+            <label class="dark-label"> <b> Land </b></label> <input type="text" class="output-textfield"
+                                                                    value="{{customer.address.country}}" readonly>
+          </div>
+        </div>
+
+        <div class="third-section">
+          <div class="button-section">
+            <button (click)="goToCreateContract(customer.id)" class="btn btn-info">Neuer Vertrag +</button>
+          </div>
+          <div class="total-price">
+            <label>Gesamter monatlicher Beitrag:</label>
+            {{ totalMonthlyContribution | currency:'EUR':'symbol':'1.2-2' }}
+          </div>
+        </div>
+      </div>
+        <div class="table-section">
+          <table class="table table-striped">
+            <thead>
+            <tr>
+              <th> ID</th>
+              <th> Katze</th>
+              <th> Beginn</th>
+              <th> Ende</th>
+              <th> Jahresdeckung</th>
+              <th> Monatl. Beitrag</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let vertrag of filteredContracts"
+                [ngClass]="{'vertrag-abgelaufen': isVertragAbgelaufen(vertrag)}">
+              <td> {{ vertrag.id }} </td>
+              <td> {{ getCatByContractId(vertrag.id).name }}</td>
+              <td> {{ vertrag.start | date: 'dd/MM/yyyy' }} </td>
+              <td> {{ vertrag.end | date: 'dd/MM/yyyy' }} </td>
+              <td> {{ vertrag.coverage }} </td>
+              <td> {{ vertrag.quote | currency:'EUR':'symbol':'1.2-2' }} </td>
+              <td>
+                <button (click)="deleteVertrag($event, vertrag.id)" [disabled]="isVertragAbgelaufen(vertrag)"
+                        class="btn btn-danger" style="margin-left: 10px">
+                  Löschen
+                </button>
+                <button (click)="vertragDetails(vertrag.id)" [disabled]="isVertragAbgelaufen(vertrag)"
+                        class="btn btn-secondary" style="margin-left: 10px">
+                  Details
+                </button>
+                <button (click)="updateVertrag(vertrag.id)" [disabled]="isVertragAbgelaufen(vertrag)"
+                        class="btn btn-info" style="margin-left: 10px">
+                  Update
+                </button>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   </div>
-
-    <div class="third-section">
-      <div class="button-section">
-        <button (click)="goToCreateContract(customer.id)" class="btn btn-info">Neuer Vertrag +</button>
-      </div>
-      <div class="total-price">
-        <label>Gesamter monatlicher Beitrag:</label>
-        {{ totalMonthlyContribution }}
-      </div>
-    </div>
-    </div>
-
-    <div class="table-section">
-      <table class="table table-striped">
-        <thead>
-        <tr>
-          <th> ID </th>
-          <th> Katze </th>
-          <th> Beginn </th>
-          <th> Ende </th>
-          <th> Jahresdeckung </th>
-          <th> Monatl. Beitrag </th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr *ngFor="let vertrag of filteredContracts" [ngClass]="{'vertrag-abgelaufen': isVertragAbgelaufen(vertrag)}">
-          <td> {{ vertrag.id }} </td>
-          <td> {{ getCatByContractId(vertrag.id).name }}</td>
-          <td> {{ vertrag.start | date: 'dd/MM/yyyy' }} </td>
-          <td> {{ vertrag.end | date: 'dd/MM/yyyy' }} </td>
-          <td> {{ vertrag.coverage }} </td>
-          <td> {{ vertrag.quote }} </td>
-          <td>
-            <button (click)="deleteVertrag($event, vertrag.id)" [disabled]="isVertragAbgelaufen(vertrag)" class="btn btn-danger" style="margin-left: 10px">
-              Löschen
-            </button>
-            <button (click)="vertragDetails(vertrag.id)" [disabled]="isVertragAbgelaufen(vertrag)" class="btn btn-danger" style="margin-left: 10px">
-              Details
-            </button>
-            <button (click)="updateVertrag(vertrag.id)" [disabled]="isVertragAbgelaufen(vertrag)" class="btn btn-info" style="margin-left: 10px">
-              Update
-            </button>
-          </td>
-        </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</div>
 </body>
 </html>
