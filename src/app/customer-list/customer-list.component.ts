@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import { Customer } from '../customer'
 import { CustomerService } from '../customer.service';
 import {Router} from "@angular/router";
 import {VertragService} from "../vertrag.service";
 import {CatService} from "../cat.service";
 import {Vertrag} from "../vertrag";
+import {FormBuilder} from "@angular/forms";
 
 @Component({
   selector: 'app-customer-list',
@@ -20,7 +21,6 @@ export class CustomerListComponent implements OnInit{
 
   filteredCustomers: Customer[] = [];
   searchTerm: string = '';
-
 
   constructor(private customerService: CustomerService,
               private router: Router,
@@ -69,6 +69,7 @@ export class CustomerListComponent implements OnInit{
       (customer.lastname.toLowerCase().includes(this.searchTerm.toLowerCase()))
     );
   }
+
 
 
 }

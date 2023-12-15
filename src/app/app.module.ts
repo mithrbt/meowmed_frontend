@@ -18,6 +18,11 @@ import {MatSelectModule} from "@angular/material/select";
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
 import {DatePipe} from "@angular/common";
 import { FileUploadModule } from 'ng2-file-upload';
+import {MatCardModule} from "@angular/material/card";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {MatListModule} from "@angular/material/list";
+import {MatToolbarModule} from "@angular/material/toolbar";
 
 @NgModule({
   declarations: [
@@ -30,18 +35,23 @@ import { FileUploadModule } from 'ng2-file-upload';
     VertragDetailsComponent,
     UpdateVertragComponent
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        HttpClientModule,
-        FormsModule,
-        FileUploadModule,
-        ReactiveFormsModule,
-        MatIconModule,
-        MatTableModule,
-        MatSelectModule,
-        MatButtonToggleModule,
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    FileUploadModule,
+    ReactiveFormsModule,
+    MatIconModule,
+    MatTableModule,
+    MatSelectModule,
+    MatButtonToggleModule,
+    MatCardModule,
+    MatFormFieldModule,
+    BrowserAnimationsModule,
+    MatListModule,
+    MatToolbarModule
+  ],
   providers: [DatePipe],
   bootstrap: [AppComponent]
 })

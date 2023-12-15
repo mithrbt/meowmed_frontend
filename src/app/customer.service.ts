@@ -32,5 +32,12 @@ export class CustomerService {
     return this.httpClient.put(this.baseURL + `/kunden/${id}`, customer);
   }
 
+  uploadProfilePicture(id: number, formdata: FormData): Observable<any>{
+    return this.httpClient.post(this.baseURL + `/${id}/profile-picture`, formdata);
+  }
+
+  loadProfilePicture(id: number): Observable<any>{
+    return this.httpClient.get(this.baseURL + `/${id}/profile-picture`);
+  }
 
 }

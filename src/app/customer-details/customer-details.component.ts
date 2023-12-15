@@ -7,6 +7,9 @@ import {VertragService} from "../vertrag.service";
 import {Cat} from "../cat";
 import {CatService} from "../cat.service";
 import {Address} from "../address";
+import {ImageService} from "../image.service";
+import {error} from "@angular/compiler-cli/src/transformers/util";
+import {Image} from "../image";
 
 @Component({
   selector: 'app-customer-details',
@@ -29,11 +32,20 @@ export class CustomerDetailsComponent implements OnInit{
   totalMonthlyContribution: number = 0;
   today = new Date();
 
+  dbImage!: any;
+  postResponse!: any;
+  image!: any;
+  imageUrl: any;
+  uploadedImage!: File;
+  successResponse!: any;
+
+
   constructor(private route: ActivatedRoute,
               private catService: CatService,
               private customerService: CustomerService,
               private vertragService: VertragService,
-              private router: Router) {}
+              private router: Router,
+              private imageService: ImageService) {}
 
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
@@ -43,7 +55,12 @@ export class CustomerDetailsComponent implements OnInit{
     console.log("ID: " + this.id);
     this.getVertragList();
     this.customer.address = this.address;
-    console.log("Adresse: " + this.address);
+
+    //Bild anzeigen
+    this.imageService.viewImage(this.id).subscribe(res =>{
+      this.postResponse = res;
+      this.dbImage = 'data:image/jpeg;base64,' + this.postResponse.image;
+    });
   }
 
   private getVertragList(){
@@ -63,6 +80,7 @@ export class CustomerDetailsComponent implements OnInit{
         this.vertragService.getCatByContractId(vertrag.id).subscribe(data => {
           this.cats.set(vertrag.id, data);
         });
+        //this.imageUploadAction();
         console.log(vertrag.quote);
       }
     });
@@ -115,5 +133,33 @@ export class CustomerDetailsComponent implements OnInit{
     );
   }
 
+  //Foto hochladen
+  public onImageUpload(event: Event){
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files.length > 0) {
+      this.uploadedImage = input.files[0];
+    }
+  }
+
+  imageUploadAction(){
+    const imageFormData = new FormData();
+    imageFormData.append('image', this.uploadedImage, this.uploadedImage.name);
+
+    console.log("KundenID: ", this.customer.id);
+    this.imageService.uploadFile(this.customer.id, imageFormData).subscribe((response) =>{
+      window.location.reload();
+    });
+  }
+
+  //Foto löschen
+  deleteImage(event: any, id: number) {
+    if(confirm('Sind Sie sicher, dass Sie das Bild löschen möchten?')){
+      event.target.innerText = "Löschen...";
+      this.imageService.deleteImage(id).subscribe((response: any) =>{
+        alert("Das Foto wurde gelöscht.");
+        window.location.reload();
+      });
+    }
+  }
 
 }

@@ -2,6 +2,7 @@ import {Profession} from "./enums/Profession";
 import {Address} from "./address";
 import {FamilyStatusEnum} from "./enums/FamilyStatus.enum";
 import {BankDetails} from "./bank-details";
+import {Image} from "./image";
 
 export class Customer {
     id!: number;
@@ -16,5 +17,6 @@ export class Customer {
     profession!: Profession;
     familyStatus!: FamilyStatusEnum;
     bankDetails!: BankDetails;
-    email!: String;
+    email!: string;
+    image!: Image;
 }

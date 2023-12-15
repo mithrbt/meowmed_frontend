@@ -3,9 +3,14 @@ import {Customer} from '../customer';
 import {CustomerService} from '../customer.service';
 import {Router} from '@angular/router';
 import {Address} from '../address';
-import {FileItem, FileUploader, ParsedResponseHeaders} from 'ng2-file-upload';
 import {BankDetails} from "../bank-details";
+import {Image} from "../image";
+import {DomSanitizer} from "@angular/platform-browser";
+import {ImageService} from "../image.service";
 import {Profession} from "../enums/Profession";
+
+
+declare var window: Window & typeof globalThis; // Import für das Window-Objekt
 
 @Component({
   selector: 'app-customer-register',
@@ -13,51 +18,70 @@ import {Profession} from "../enums/Profession";
   styleUrls: ['./customer-register.component.css']
 })
 export class CustomerRegisterComponent implements OnInit {
+
   customer: Customer = new Customer();
   address!: Address;
-
-  uploader: FileUploader = new FileUploader({
-    url: 'URL_ZUM_UPLOAD_ENDPUNKT', // Setzen Sie die tatsächliche URL zum Server-Upload-Endpunkt
-    itemAlias: 'file',
-  });
   bankDetails!: BankDetails;
 
+  /*userFile;
+  imgURL: any;
+  public message!: string;
+  public imagePath;
+  file!: any;*/
 
-  constructor(private customerService: CustomerService, private router: Router) {}
+
+  /*uploader: FileUploader = new FileUploader({
+    url: 'URL_ZUM_UPLOAD_ENDPUNKT', // Setzen Sie die tatsächliche URL zum Server-Upload-Endpunkt
+    itemAlias: 'file',
+  });*/
+
+  constructor(private customerService: CustomerService,
+              private router: Router,
+              private imageService: ImageService) {}
 
   ngOnInit() {
     this.customer.address = new Address();
-    this.uploader.onCompleteItem = (item: FileItem, response: string, status: number, headers: ParsedResponseHeaders) => {
+    /*this.uploader.onCompleteItem = (item: FileItem, response: string, status: number, headers: ParsedResponseHeaders) => {
       console.log('Datei hochgeladen:', item.file.name, 'Status:', status, 'Server-Antwort:', response);
-    };
+    };*/
 
     this.customer.bankDetails = new BankDetails();
   }
 
   saveCustomer() {
-    this.customerService.createCustomer(this.customer).subscribe(
-      (data) => {
-        console.log(data);
-        this.customer = data;
-        this.uploader.uploadAll();
-        this.goToCustomerDetails();
-      },
-      (error) => console.log(error)
-    );
+      this.customerService.createCustomer(this.customer).subscribe(
+        (data) => {
+          console.log(data);
+          this.customer = data;
+          //this.uploader.uploadAll();
+          this.goToCustomerDetails();
+        },
+        (error) => console.log(error)
+      );
   }
+
 
   createCustomer() {
     console.log(this.customer);
+    if(this.calculateAge(this.customer.birthdate) < 18){
+      alert('Der Kunde muss mindestens 18 Jahre alt sein.');
+      return;
+    }
+
+    if(this.customer.profession.toString().toLowerCase() === Profession.UNEMPLOYED){
+      alert('Der Kunde darf nicht Arbeitslos sein');
+      return;
+    }
 
     if (!this.validateForm() || !this.validateSozialversicherungsnummer()) {
       // Zeige das Dialogfenster an
       this.openValidationDialog();
       return; // Stoppe die Funktion, um das Formular nicht abzusenden
-    } else {
-      console.log("Profession: "+this.customer.profession);
-      this.saveCustomer();
     }
+    this.saveCustomer();
+
   }
+
   goToCustomerDetails() {
     this.router.navigate(['kundendetails', this.customer.id]);
   }
@@ -129,4 +153,18 @@ export class CustomerRegisterComponent implements OnInit {
     const steuerIDRegex = /^\d{11}$/;
     return this.customer.taxID !== null && this.customer.taxID !== undefined && this.customer.taxID.toString().match(steuerIDRegex) !== null;
   }
+
+  calculateAge(birthdate: Date): number {
+    const today = new Date();
+    const birthDate = new Date(birthdate);
+    let age = today.getFullYear() - birthDate.getFullYear();
+    const month = today.getMonth() - birthDate.getMonth();
+
+    // Wenn der aktuelle Monat vor dem Geburtsmonat liegt oder im gleichen Monat liegt, aber vor dem Geburtstag
+    if (month < 0 || (month === 0 && today.getDate() < birthDate.getDate())) {
+      age--;
+    }
+    return age;
+  }
+
 }

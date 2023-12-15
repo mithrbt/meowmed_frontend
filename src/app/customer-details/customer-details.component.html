@@ -9,7 +9,22 @@
 
 <div class="container-fluid">
   <h3>Kundendetails</h3>
+  <div class="form-group">
+    <label for="file">Bild hochladen</label>
+    <input type="file" (change)="onImageUpload($event)">
+    <input type="button" (click)="imageUploadAction()" value="Bild hochladen" class="btn1">
+  </div>
 
+  <div>
+    <output *ngIf=successResponse class="success"><b>{{successResponse}}</b></output>
+  </div>
+  <div>
+    <img [src]="dbImage" style="width: 200px; height: auto; float: right;">
+  </div>
+  <button (click)="deleteImage($event, customer.id)" class="btn btn-danger" style="margin-right: 10px">
+    Foto löschen
+  </button>
+  <div>
   <div class="customer-details">
     <div class="wrapper">
     <div class="first-section">

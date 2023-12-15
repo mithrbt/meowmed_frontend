@@ -1,3 +1,4 @@
+import {Customer} from "./customer";
 
 export class Vertrag {
     id!: number;
@@ -5,5 +6,5 @@ export class Vertrag {
     end!: Date;
     coverage!: number;
     quote!: number;
-    customer!: number;
+    customer!: Customer;
 }
