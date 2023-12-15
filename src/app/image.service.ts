@@ -25,4 +25,16 @@ export class ImageService {
   public deleteImage(customerId: number): Observable<any>{
     return this.httpClient.delete(this.baseURL + `/image/${customerId}`);
   }
+
+  public uploadCatImage(catID: number, formData: FormData): Observable<any>{
+    return this.httpClient.post(this.baseURL + `/${catID}/upload/catimage`, formData);
+  }
+
+  public viewCatImage(catID: number): Observable<any>{
+    return this.httpClient.get(this.baseURL + `/get/catImage/info/${catID}`);
+  }
+
+  public deleteCatImage(catID: number): Observable<any>{
+    return this.httpClient.delete(this.baseURL + `/catImage/${catID}`);
+  }
 }

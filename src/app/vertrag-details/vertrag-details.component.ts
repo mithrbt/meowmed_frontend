@@ -35,7 +35,6 @@ export class VertragDetailsComponent implements OnInit{
     });
     console.log("ID: " + this.id);
     this.getCatList();
-
   }
 
   private getCatList() {
@@ -43,6 +42,12 @@ export class VertragDetailsComponent implements OnInit{
       console.log("ID: " + data);
       this.cat = data;
       console.log(data.name);
+      //Bild anzeigen
+      console.log("Cat ID: " + this.cat.id);
+      this.imageService.viewCatImage(this.cat.id).subscribe(res =>{
+        this.postResponse = res;
+        this.dbImage = 'data:image/jpeg;base64,' + this.postResponse.image;
+      });
     });
 
   }
@@ -60,7 +65,7 @@ export class VertragDetailsComponent implements OnInit{
     imageFormData.append('image', this.uploadedImage, this.uploadedImage.name);
 
     console.log("KundenID: ", this.cat.id);
-    this.imageService.uploadFile(this.cat.id, imageFormData).subscribe((response) =>{
+    this.imageService.uploadCatImage(this.cat.id, imageFormData).subscribe((response) =>{
       window.location.reload();
     });
   }
@@ -69,7 +74,7 @@ export class VertragDetailsComponent implements OnInit{
   deleteImage(event: any, id: number) {
     if(confirm('Sind Sie sicher, dass Sie das Bild löschen möchten?')){
       event.target.innerText = "Löschen...";
-      this.imageService.deleteImage(id).subscribe((response: any) =>{
+      this.imageService.deleteCatImage(id).subscribe((response: any) =>{
         alert("Das Foto wurde gelöscht.");
         window.location.reload();
       });

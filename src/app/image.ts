@@ -1,5 +1,6 @@
 import {SafeUrl} from "@angular/platform-browser";
 import {Customer} from "./customer";
+import {Cat} from "./cat";
 
 export class Image {
     id?: number;
@@ -7,4 +8,5 @@ export class Image {
     imageUrl?: string;
     imageId?: string;
     customer!: Customer;
+    cat!: Cat;
 }
