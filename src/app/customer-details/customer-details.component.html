@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Deine Webseite</title>
 </head>
@@ -15,21 +16,22 @@
       <div class="wrapper">
         <div class="first-section">
           <div>
-            <label class="dark-label"> <b> ID </b></label> <input type="text" class="output-textfield"
+            <label class="dark-label">ID</label> <input type="text" class="output-textfield"
                                                                   value="{{customer.id}}" readonly>
           </div>
           <div>
-            <label class="dark-label"> <b> Vorname </b></label> <input type="text" class="output-textfield"
+            <label class="dark-label">Vorname</label> <input type="text" class="output-textfield"
                                                                        value="{{customer.firstname}}" readonly>
           </div>
           <div>
-            <label class="dark-label"> <b> Nachname </b></label> <input type="text" class="output-textfield"
+            <label class="dark-label">Nachname</label> <input type="text" class="output-textfield"
                                                                         value="{{customer.lastname}}" readonly>
           </div>
           <div>
-            <label class="dark-label"> <b> Berufsstand </b></label> <input type="text" class="output-textfield"
+            <label class="dark-label">Berufsstand</label> <input type="text" class="output-textfield"
                                                                      value="{{customer.profession}}" readonly>
           </div>
+          <br>
           <div class="search-bar">
             <input type="text" class="form-control" id="searchTerm" [(ngModel)]="searchTerm" name="searchTerm"
                    placeholder="Suche" (input)="filterCats()">
@@ -39,21 +41,21 @@
 
         <div class="second-section">
           <div>
-            <label class="dark-label"> <b> E-Mail </b></label> <input type="text" class="output-textfield"
+            <label class="dark-label">E-Mail</label> <input type="text" class="output-textfield"
                                                                       value="{{customer.email}}" readonly>
           </div>
           <div>
-            <label class="dark-label"> <b> Straße </b></label> <input type="text" class="output-textfield"
+            <label class="dark-label">Straße</label> <input type="text" class="output-textfield"
                                                                       value='{{customer.address.street + " " + customer.address.houseNr}}'
                                                                       readonly>
           </div>
           <div>
-            <label class="dark-label"> <b> Stadt </b></label> <input type="text" class="output-textfield"
+            <label class="dark-label">Stadt</label> <input type="text" class="output-textfield"
                                                                      value='{{customer.address.zipCode + " " + customer.address.street}}'
                                                                      readonly>
           </div>
           <div>
-            <label class="dark-label"> <b> Land </b></label> <input type="text" class="output-textfield"
+            <label class="dark-label">Land</label> <input type="text" class="output-textfield"
                                                                     value="{{customer.address.country}}" readonly>
           </div>
         </div>
@@ -61,26 +63,21 @@
         <div class="third-section">
           <div class="form-group">
             <div>
-              <label for="file" class="dark-label">Bild</label>
+              <label class="dark-label">Bild</label>
             </div>
             <div>
               <img [src]="dbImage" style="width: 200px; height: auto">
             </div>
             <input type="file" (change)="onImageUpload($event)">
-            <input type="button" (click)="imageUploadAction()" value="Bild hochladen" class="btn btn-secondary" style="margin-right: 10px">
+            <button (click)="imageUploadAction()" class="btn btn-secondary" style="margin-right: 10px">
+              <i class="material-icons" style="margin-right: 5px;">cloud_upload</i>
+            </button>
             <button (click)="deleteImage($event, customer.id)" class="btn btn-danger" style="margin-right: 10px">
-              Foto löschen
+              <i class="material-icons">delete</i>
             </button>
           </div>
           <div>
             <output *ngIf=successResponse class="success"><b>{{successResponse}}</b></output>
-          </div>
-          <div class="button-section">
-            <button (click)="goToCreateContract(customer.id)" class="btn btn-info">Neuer Vertrag +</button>
-          </div>
-          <div class="total-price">
-            <label>Gesamter monatlicher Beitrag:</label>
-            {{ totalMonthlyContribution | currency:'EUR':'symbol':'1.2-2' }}
           </div>
         </div>
       </div>
@@ -94,6 +91,19 @@
               <th> Ende</th>
               <th> Jahresdeckung</th>
               <th> Monatl. Beitrag</th>
+
+                <th>
+                <div class="total-price">
+                  <label>Gesamter monatlicher Beitrag:</label>
+                  {{ totalMonthlyContribution | number:'1.2-2' }}&euro;
+                </div>
+                </th>
+              <th>
+                <button (click)="goToCreateContract(customer.id)" class="btn btn-info create-contract-button">
+                  <i class="material-icons" style="margin-right: 5px;">description</i>
+                </button>
+              </th>
+
             </tr>
             </thead>
             <tbody>
@@ -104,24 +114,32 @@
               <td> {{ vertrag.start | date: 'dd/MM/yyyy' }} </td>
               <td> {{ vertrag.end | date: 'dd/MM/yyyy' }} </td>
               <td> {{ vertrag.coverage }} </td>
-              <td> {{ vertrag.quote | currency:'EUR':'symbol':'1.2-2' }} </td>
+              <td>{{ vertrag.quote | number:'1.2-2' }}&euro;</td>
+
+              <td>
+                <button (click)="vertragDetails(vertrag.id)" [disabled]="isVertragAbgelaufen(vertrag)"
+                        class="btn">
+                  <i class="material-icons">search</i>
+                </button>
+              </td>
+              <td>
+                <button (click)="updateVertrag(vertrag.id)" [disabled]="isVertragAbgelaufen(vertrag)"
+                        class="btn">
+                  <i class="material-icons">edit</i>
+                </button>
+              </td>
               <td>
                 <button (click)="deleteVertrag($event, vertrag.id)" [disabled]="isVertragAbgelaufen(vertrag)"
-                        class="btn btn-danger" style="margin-left: 10px">
-                  Löschen
-                </button>
-                <button (click)="vertragDetails(vertrag.id)" [disabled]="isVertragAbgelaufen(vertrag)"
-                        class="btn btn-secondary" style="margin-left: 10px">
-                  Details
-                </button>
-                <button (click)="updateVertrag(vertrag.id)" [disabled]="isVertragAbgelaufen(vertrag)"
-                        class="btn btn-info" style="margin-left: 10px">
-                  Update
+                        class="btn">
+                  <i class="material-icons">delete</i>
                 </button>
               </td>
             </tr>
             </tbody>
           </table>
+          <button type="button" class="back-button" (click)="goBack()">
+            <span class="button-text">&larr;</span>
+          </button>
         </div>
       </div>
     </div>

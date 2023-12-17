@@ -1,25 +1,12 @@
 .vertrag-abgelaufen {
-  background-color: #696969 !important; /* Graue Hintergrundfarbe */
-  color: #ffffff; /* Graue Textfarbe */
-  /* Weitere Stile nach Bedarf hinzufügen */
-}
-
-.dark-label {
-  background-color: #d3a88f; /* Hintergrundfarbe für alle Labels setzen */
-  padding: 8px 12px;
-  border-radius: 5px;
-  cursor: pointer;
-  display: inline-block; /* Hinzugefügt, um die Breite an den Inhalt anzupassen */
-  min-width: 150px;
+  background-color: #696969 !important;
+  color: #ffffff;
 }
 
 .output-textfield{
   display: inline-block; /* Hinzugefügt, um die Breite an den Inhalt anzupassen */
   min-width: 240px;
-
-
 }
-
 
 .search-input {
   width: 150px; /* Ändere die Breite nach Bedarf */
@@ -33,18 +20,6 @@
 .search-form {
   display: flex;
   align-items: center;
-}
-
-.button-section {
-  margin-right: 10px; /* Füge nach Bedarf Abstand zwischen dem Button und der Suchleiste hinzu */
-}
-
-.search-bar {
-  margin-right: auto; /* Nutze auto, um den verbleibenden Platz einzunehmen */
-}
-
-.total-price {
-  margin-left: 10px; /* Füge nach Bedarf Abstand zwischen der Suchleiste und dem monatlichen Beitrag hinzu */
 }
 
 .main-section {
@@ -78,6 +53,70 @@ html, body {
 }
 
 .table-section table tbody tr:nth-child(even) {
-  background-color: #d3a88f; /* Hintergrundfarbe für gerade Zeilen */
+  background-color: rgba(128, 64, 0, 0.50);
+}
+.btn{
+  background: url('../../assets/images/pfotenbild.svg') no-repeat;
+  background-size: contain;
+  display: inline-block;
+  border: none;
+  cursor: pointer;
+  width: 8em;
+  height: 3em;
+  padding-top: 26px;
+  padding-right: 87px;
 }
 
+.back-button {
+  background: url('../../assets/images/pfotenbild.svg') no-repeat;
+  background-size: contain;
+  display: block; /* Ändere zu 'block', um die Breite zu 100% zu machen und in der Mitte zu positionieren */
+  margin: 0 auto; /* Zentriere den Button horizontal */
+  border: none;
+  cursor: pointer;
+  width: 12em; /* Ändere die Breite nach Bedarf */
+  height: 5em; /* Ändere die Höhe nach Bedarf */
+  line-height: 5em; /* Zentriere den Text vertikal innerhalb des Buttons */
+  text-align: center; /* Zentriere den Text horizontal innerhalb des Buttons */ /* Ändere die Schriftgröße nach Bedarf */
+  padding-top: 18px;
+  padding-right: 110px;
+}
+
+.button-text{
+  font-size: 30px;
+  color: white;
+
+}
+
+
+
+.material-icons{
+  color: white;
+  font-size:17px;
+}
+
+.third-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.total-price {
+  margin-bottom: 10px; /* Füge etwas Platz zwischen den Elementen hinzu */
+}
+
+.create-contract-button {
+  margin-left: 10px; /* Füge etwas Abstand zum vorherigen Element hinzu */
+}
+
+.dark-label {
+  background-color: rgb(128, 64, 0);
+  color: #ffffff; /* Schriftfarbe auf Weiß ändern */
+  padding: 6px 10px; /* Kleinere Abstände */
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px; /* Ändere die Schriftgröße nach Bedarf */
+}

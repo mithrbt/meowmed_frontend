@@ -127,6 +127,10 @@ export class CustomerDetailsComponent implements OnInit{
     return vertragEnd < currentDate;
   }
 
+  goBack() {
+    this.router.navigate(['kunden']);
+  }
+
   filterCats(): void {
     this.filteredContracts = this.vertraege.filter(vertrag =>
       this.getCatByContractId(vertrag.id).name.toLowerCase().includes(this.searchTerm.toLowerCase())
