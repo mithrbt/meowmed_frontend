@@ -1,55 +1,78 @@
 <h3>Vertragdetails</h3>
-<div>
-  <div>
-    <label> <b> ID: </b></label> {{vertrag.id}}
-  </div>
-  <div>
-    <label> <b> Start: </b></label> {{vertrag.start | date: 'dd/MM/yyyy'}}
-  </div>
-  <div>
-    <label> <b> Ende: </b></label> {{vertrag.end | date: 'dd/MM/yyyy'}}
-  </div>
-  <div>
-    <label> <b> Deckung: </b></label> {{vertrag.coverage}}
-  </div>
-  <h3>Katze</h3>
-  <div class="form-group">
-    <div>
-      <label for="file" class="dark-label">Bild hochladen</label>
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+</head>
+<div class="wrapper">
+  <div class="first-section">
+    <div class="form-group">
+      <label class="dark-label"> <b> ID: </b></label> <input type="text" class="output-textfield"
+                                                             value="{{vertrag.id}}" readonly>
     </div>
-    <div>
-      <img [src]="dbImage" style="width: 200px; height: auto">
+    <div class="form-group">
+      <label class="dark-label"> <b> Start: </b></label> <input type="text" class="output-textfield"
+                                                                value="{{vertrag.start | date: 'dd/MM/yyyy'}}" readonly>
     </div>
-    <input type="file" (change)="onImageUpload($event)">
-    <input type="button" (click)="imageUploadAction()" value="Bild hochladen" class="btn btn-secondary" style="margin-right: 10px">
-    <button (click)="deleteImage($event, cat.id)" class="btn btn-danger" style="margin-right: 10px">
-      Foto löschen
+    <div class="form-group">
+      <label class="dark-label"> <b> Ende: </b></label> <input type="text" class="output-textfield"
+                                                               value="{{vertrag.end | date: 'dd/MM/yyyy'}}" readonly>
+    </div>
+    <div class="form-group">
+      <label class="dark-label"> <b> Deckung: </b></label> <input type="text" class="output-textfield"
+                                                                  value="{{vertrag.coverage}}" readonly>
+    </div>
+    <button type="button" class="btn" (click)="goBack()">
+      <span class="button-text">&larr;</span>
     </button>
   </div>
-  <div>
+  <div class="second-section">
+    <h3>Katze</h3>
+    <div class="form-group">
+      <label class="dark-label">Bild hochladen</label>
+    </div>
+      <div class="form-group">
+        <img [src]="dbImage" style="width: 200px; height: auto">
+      </div>
+      <div class="form-group">
+      <input type="file" (change)="onImageUpload($event)"><br>
+    </div>
+    <div class="form-group">
+      <button (click)="imageUploadAction()" class="btn btn-secondary" style="margin-right: 10px">
+        <i class="material-icons" style="margin-right: 5px;">cloud_upload</i>
+      </button>
+      <button (click)="deleteImage($event, cat.id)" class="btn btn-danger" style="margin-right: 10px">
+        <i class="material-icons">delete</i>
+      </button>
+    </div>
     <output *ngIf=successResponse class="success"><b>{{successResponse}}</b></output>
-  </div>
-  <div>
-    <div>
-      <label> <b> ID: </b></label> {{cat.id}}
+    <div class="form-group">
+      <label class="dark-label"> <b> ID: </b></label> <input type="text" class="output-textfield"
+                                                             value="{{cat.id}}" readonly>
     </div>
-    <div>
-      <label> <b> Name: </b></label> {{cat.name}}
+    <div class="form-group">
+      <label class="dark-label"> <b> Name: </b></label> <input type="text" class="output-textfield"
+                                                               value="{{cat.name}}" readonly>
     </div>
-    <div>
-      <label> <b> Geburtsdatum: </b></label> {{cat.birthdate | date: 'dd/MM/yyyy' }}
+    <div class="form-group">
+      <label class="dark-label"> <b> Geburtsdatum: </b></label> <input type="text" class="output-textfield"
+                                                                       value="{{cat.birthdate | date: 'dd/MM/yyyy' }}" readonly>
     </div>
-    <div>
-      <label> <b> Umgebung: </b></label> {{cat.environment}}
+    <div class="form-group">
+      <label class="dark-label"> <b> Umgebung: </b></label> <input type="text" class="output-textfield"
+                                                                   value="{{cat.environment}}" readonly>
     </div>
-    <div>
-      <label> <b> Farbe: </b></label> {{cat.color}}
+    <div class="form-group">
+      <label class="dark-label"> <b> Farbe: </b></label> <input type="text" class="output-textfield"
+                                                                value="{{cat.color}}" readonly>
     </div>
-    <div>
-      <label> <b> Persönlichkeit: </b></label> {{cat.personality}}
+    <div class="form-group">
+      <label class="dark-label"> <b> Persönlichkeit: </b></label> <input type="text" class="output-textfield"
+                                                                         value="{{cat.personality}}" readonly>
     </div>
-    <div>
-      <label> <b> Gewicht: </b></label> {{cat.weight}}
+    <div class="form-group">
+      <label class="dark-label"> <b> Gewicht: </b></label> <input type="text" class="output-textfield"
+                                                                  value="{{cat.weight}}" readonly>
     </div>
   </div>
 </div>

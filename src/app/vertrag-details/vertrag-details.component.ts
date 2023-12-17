@@ -5,6 +5,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {CustomerService} from "../service/customer.service";
 import {VertragService} from "../service/vertrag.service";
 import {ImageService} from "../service/image.service";
+import {Customer} from "../model/customer";
 
 @Component({
   selector: 'app-vertrag-details',
@@ -25,6 +26,7 @@ export class VertragDetailsComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
               private vertragService: VertragService,
+              private router: Router,
               private imageService: ImageService) {
   }
 
@@ -79,6 +81,9 @@ export class VertragDetailsComponent implements OnInit {
         window.location.reload();
       });
     }
+  }
+  goBack() {
+    this.router.navigate(['kundendetails',this.vertrag.customer.id]);
   }
 
 }
