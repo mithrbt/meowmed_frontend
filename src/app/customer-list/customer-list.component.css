@@ -1,3 +1,19 @@
 .table-section table tbody tr:nth-child(even) {
-  background-color: #d3a88f; /* Hintergrundfarbe für gerade Zeilen */
+  background-color: rgba(128, 64, 0, 0.50);
+}
+
+.btn{
+  background: url('../../assets/images/pfotenbild.svg') no-repeat;
+  background-size: contain;
+  display: inline-block;
+  border: none;
+  cursor: pointer;
+  width: 8em;
+  height: 3em;
+  padding-top: 26px;
+  padding-right: 87px;
+}
+
+.material-icons{
+  color:white;
 }

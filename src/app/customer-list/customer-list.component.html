@@ -1,11 +1,16 @@
 <h2> Mitarbeiter Dashboard </h2>
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+</head>
 <form style="display: flex; align-items: center; justify-content: space-between;">
   <div>
     <input type="text" class="form-control" id="searchTerm" [(ngModel)]="searchTerm" name="searchTerm" placeholder="Suche" (input)="filterCustomers()">
   </div>
   <div>
     <a onclick="window.location.href='http://localhost:4200/register';" routerLink="register" routerLinkActive="active">
-      <button>Neuer Kunde +</button>
+      <button class="btn"><i class="material-icons">description</i></button>
     </a>
   </div>
 </form>
@@ -26,9 +31,9 @@
       <td> {{ customer.lastname }} </td>
       <td> {{ customer.address.street + " " + customer.address.houseNr + ", " + customer.address.zipCode + " " + customer.address.city}}</td>
       <td>
-        <button (click)="deleteCustomer($event, customer.id)" class="btn btn-danger" style="margin-left: 10px">Löschen</button>
-        <button (click)="customerDetails(customer.id)" class="btn btn-secondary" style="margin-left: 10px">Details</button>
-        <button (click)="updateCustomer(customer.id)" class="btn btn-info" style="margin-left: 10px">Update</button>
+        <button (click)="customerDetails(customer.id)" class="btn btn-secondary" style="margin-left: 10px"><i class="material-icons">search</i></button>
+        <button (click)="updateCustomer(customer.id)" class="btn btn-info" style="margin-left: 10px"><i class="material-icons">edit</i></button>
+        <button (click)="deleteCustomer($event, customer.id)" class="btn btn-danger" style="margin-left: 10px"><i class="material-icons">delete</i></button>
       </td>
     </tr>
     </tbody>
