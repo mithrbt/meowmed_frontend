@@ -1,7 +1,3 @@
-.body {
-  background-color: #F4F4F4;
-}
-
 .container {
   display: flex;
   justify-content: center;
@@ -14,31 +10,33 @@
 .left-panel, .right-panel {
   flex-grow: 1;
   padding: 20px;
-  width: 50%;
-}
-
-.right-panel {
-  box-sizing: content-box; /* Ändere border-box zu content-box, wenn es notwendig ist */
+  width: 48%;
+  box-sizing: border-box;
+  margin: 0 1%;
 }
 
 .invalid-field {
-  border: 0.2em solid #FF0000; /* Hier den gewünschten Wert anpassen */
+  border: 0.2em solid #FF0000;
   box-sizing: border-box;
 }
 
 .form-group {
   margin-bottom: 15px;
   display: flex;
-  flex-direction: row; /* Ändere die Flexbox-Ausrichtung auf "row" */
+  flex-direction: row;
   align-items: center;
 }
 
 label {
-  margin-right: 10px; /* Füge nach Bedarf Abstand zwischen Label und Input hinzu */
+  margin-right: 10px;
+  width: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 input {
-  width: calc(100% - 100px); /* Ändere den Wert nach Bedarf, um die gleiche Breite wie die Umrandung zu haben */
+  width: calc(100% - 100px);
   padding: 10px;
   box-sizing: border-box;
 }
@@ -46,12 +44,14 @@ input {
 .paw-button {
   background: url('../../assets/images/pfotenbild.svg') no-repeat;
   background-size: contain;
-  color: #5C4638;
-  font-size: 24px; /* Passe die Schriftgröße an */
   display: inline-block;
   border: none;
   cursor: pointer;
   margin-left: 150px;
+  width: 9em; /* Ändere die Größe nach Bedarf */
+  height: 4em;
+  padding-top: 28px;
+  padding-right: 80px;
 }
 
 .paw-button:hover {
@@ -59,31 +59,58 @@ input {
 }
 
 .button-text {
-  font-size: 18px; /* Größe des Texts anpassen */
+  font-size: 20px;
+  color: #ffffff; /* Schriftfarbe auf Weiß ändern */
 }
 
 .back-button {
   background: url('../../assets/images/pfotenbild.svg') no-repeat;
   background-size: contain;
-  color: #5C4638;
-  font-size: 24px; /* Passe die Schriftgröße an */
   display: inline-block;
   border: none;
   cursor: pointer;
   margin-right: 150px;
+  width: 9em; /* Ändere die Größe nach Bedarf */
+  height: 4em;
+  padding-top: 28px;
+  padding-right: 80px;
 }
 
 .back-button:hover {
   color: #6E2C00;
 }
 
+.auswaehlen-button {
+  background: url('../../assets/images/pfotenbild.svg') no-repeat;
+  background-size: contain;
+  display: inline-block;
+  border: none;
+  cursor: pointer;
+  width: 7.5em;
+  height: 2.5em;
+  padding-top: 16px;
+  padding-right: 58px;
+}
+
+.auswaehlen-button:hover {
+  color: #6E2C00;
+}
+
+.auswaehlen-button-text {
+  font-size: 17px;
+  color: #ffffff; /* Schriftfarbe auf Weiß ändern */
+}
 
 
-.form-radio label, .form-group label {
-  background-color: #d3a88f;
+.form-radio label, .form-group label, .dark-label {
+  background-color: rgb(128, 64, 0);
+  color: #ffffff; /* Schriftfarbe auf Weiß ändern */
   padding: 8px 12px;
   border-radius: 5px;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .form-group input {
@@ -94,7 +121,7 @@ input {
 .form-radio-group {
   display: flex;
   flex-direction: column;
-  align-items: flex-start; /* Ändere die Ausrichtung auf "flex-start", um die Elemente links auszurichten */
+  align-items: flex-start;
   margin-bottom: 10px;
 }
 
@@ -102,27 +129,30 @@ input {
   display: flex;
   align-items: center;
   margin-bottom: 10px;
-  width: 100%; /* Füge diese Zeile hinzu */
+  width: 100%;
 }
-
 
 .form-radio input {
   margin-right: 5px;
   cursor: pointer;
-  background-color: #ECDAD0;
+  background-color: #B88457;
 }
 
 .form-radio label {
-  background-color: #ECDAD0;
+  background-color: #B88457;
+  color: #ffffff; /* Schriftfarbe auf Weiß ändern */
   padding: 8px 12px;
   border-radius: 5px;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .left-panel, .right-panel {
   flex-grow: 1;
   padding: 20px;
-  width: 48%; /* Ändere die Breite nach Bedarf, um Platz für den Abstand zu schaffen */
+  width: 48%;
   box-sizing: border-box;
-  margin: 0 1%; /* Hinzugefügt, um einen kleinen Abstand zwischen den Panels zu schaffen */
+  margin: 0 1%;
 }
