@@ -47,52 +47,11 @@
       <input type="date" class="form-control" id="birthdate"
              [(ngModel)]="customer.birthdate" name="birthdate" required>
     </div>
-    <div class = "form-group" [ngClass]="{'invalid-field': !validateSteuerID()}">
-      <label class="dark-label"> Steuer-Nr. </label>
-      <input type="text" class="form-control" id="taxID"
-             [(ngModel)] = "customer.taxID" name ="taxID" required>
-    </div>
-    <div class="form-group" [ngClass]="{'invalid-field': !validateSozialversicherungsnummer()}">
-      <label class="dark-label"> Sozialversicherungsnummer </label>
-      <input type="text" class="form-control" id="snv"
-             [(ngModel)]="customer.svn" name="svn" required>
-    </div>
     <div class = "form-group" [ngClass]="{'invalid-field': !customer.telNr}">
       <label class="dark-label"> Telefonnummer </label>
       <input type="text" class="form-control" id="telNr"
              [(ngModel)] = "customer.telNr" name ="telNr" required>
     </div>
-    <div class = "form-group" [ngClass]="{'invalid-field': !customer.income}">
-      <label class="dark-label"> Brutto-Einkommen </label>
-      <input type="text" class="form-control" id="income"
-             [(ngModel)] = "customer.income" name ="income" required>
-    </div>
-
-    <div class="form-group" [ngClass]="{'invalid-field': !customer.profession}">
-      <label class="dark-label">Berufsstand</label>
-      <div class="form-radio-group">
-        <div class="form-radio">
-          <input type="radio" id="employed" name="profession" value="EMPLOYED" [(ngModel)]="customer.profession" required>
-          <label for="employed">Angestellt</label>
-        </div>
-
-        <div class="form-radio">
-          <input type="radio" id="unemployed" name="profession" value="UNEMPLOYED" [(ngModel)]="customer.profession" required>
-          <label for="unemployed">Arbeitslos</label>
-        </div>
-
-        <div class="form-radio">
-          <input type="radio" id="selfemployed" name="profession" value="SELFEMPLOYED" [(ngModel)]="customer.profession" required>
-          <label for="selfemployed">Selbstständig</label>
-        </div>
-
-        <div class="form-radio">
-          <input type="radio" id="student" name="profession" value="STUDENT" [(ngModel)]="customer.profession" required>
-          <label for="student">Student/Schüler</label>
-        </div>
-      </div>
-    </div>
-
     <div class="form-group" [ngClass]="{'invalid-field': !customer.familyStatus}">
       <label class="dark-label">Familienstatus</label>
       <div class="form-radio-group">
@@ -126,9 +85,45 @@
 
   </div>
   <div class="right-panel">
-    <div class="form-group">
-      <label class="dark-label">Bild hochladen</label>
-      <!--<input type="file" name="file" ng2FileSelect [uploader]="uploader" />-->
+
+    <div class = "form-group" [ngClass]="{'invalid-field': !validateSteuerID()}">
+      <label class="dark-label"> Steuer-Nr. </label>
+      <input type="text" class="form-control" id="taxID"
+             [(ngModel)] = "customer.taxID" name ="taxID" required>
+    </div>
+    <div class="form-group" [ngClass]="{'invalid-field': !validateSozialversicherungsnummer()}">
+      <label class="dark-label"> Sozialversicherungsnr. </label>
+      <input type="text" class="form-control" id="snv"
+             [(ngModel)]="customer.svn" name="svn" required>
+    </div>
+    <div class = "form-group" [ngClass]="{'invalid-field': !customer.income}">
+      <label class="dark-label"> Brutto-Einkommen </label>
+      <input type="text" class="form-control" id="income"
+             [(ngModel)] = "customer.income" name ="income" required>
+    </div>
+    <div class="form-group" [ngClass]="{'invalid-field': !customer.profession}">
+      <label class="dark-label">Berufsstand</label>
+      <div class="form-radio-group">
+        <div class="form-radio">
+          <input type="radio" id="employed" name="profession" value="EMPLOYED" [(ngModel)]="customer.profession" required>
+          <label for="employed">Angestellt</label>
+        </div>
+
+        <div class="form-radio">
+          <input type="radio" id="unemployed" name="profession" value="UNEMPLOYED" [(ngModel)]="customer.profession" required>
+          <label for="unemployed">Arbeitslos</label>
+        </div>
+
+        <div class="form-radio">
+          <input type="radio" id="selfemployed" name="profession" value="SELFEMPLOYED" [(ngModel)]="customer.profession" required>
+          <label for="selfemployed">Selbstständig</label>
+        </div>
+
+        <div class="form-radio">
+          <input type="radio" id="student" name="profession" value="STUDENT" [(ngModel)]="customer.profession" required>
+          <label for="student">Student/Schüler</label>
+        </div>
+      </div>
     </div>
     <div class = "form-group" [ngClass]="{'invalid-field': !customer.bankDetails.accountholder}">
       <label class="dark-label"> Kontoinhaber </label>
@@ -148,10 +143,10 @@
 
   </div>
   <button type="button" class="back-button" (click)="goBack()">
-    <span class="button-text">Zurück</span>
+    <span class="button-text">&larr;</span>
   </button>
   <button type="submit" class="paw-button">
-    <span class="button-text">Anlegen</span>
+    <span class="button-text">&check;</span>
   </button>
 </div>
 </form>

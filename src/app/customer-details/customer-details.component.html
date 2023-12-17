@@ -9,22 +9,6 @@
 
 <div class="container-fluid">
   <h3>Kundendetails</h3>
-  <div class="form-group">
-    <div>
-    <label for="file" class="dark-label">Bild</label>
-    </div>
-    <div>
-      <img [src]="dbImage" style="width: 200px; height: auto">
-    </div>
-    <input type="file" (change)="onImageUpload($event)">
-    <input type="button" (click)="imageUploadAction()" value="Bild hochladen" class="btn btn-secondary" style="margin-right: 10px">
-    <button (click)="deleteImage($event, customer.id)" class="btn btn-danger" style="margin-right: 10px">
-      Foto löschen
-    </button>
-  </div>
-  <div>
-    <output *ngIf=successResponse class="success"><b>{{successResponse}}</b></output>
-  </div>
 
   <div>
     <div class="customer-details">
@@ -75,6 +59,22 @@
         </div>
 
         <div class="third-section">
+          <div class="form-group">
+            <div>
+              <label for="file" class="dark-label">Bild</label>
+            </div>
+            <div>
+              <img [src]="dbImage" style="width: 200px; height: auto">
+            </div>
+            <input type="file" (change)="onImageUpload($event)">
+            <input type="button" (click)="imageUploadAction()" value="Bild hochladen" class="btn btn-secondary" style="margin-right: 10px">
+            <button (click)="deleteImage($event, customer.id)" class="btn btn-danger" style="margin-right: 10px">
+              Foto löschen
+            </button>
+          </div>
+          <div>
+            <output *ngIf=successResponse class="success"><b>{{successResponse}}</b></output>
+          </div>
           <div class="button-section">
             <button (click)="goToCreateContract(customer.id)" class="btn btn-info">Neuer Vertrag +</button>
           </div>

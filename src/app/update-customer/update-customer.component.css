@@ -40,7 +40,7 @@ input {
 }
 
 .paw-button {
-  background: url('../../assets/images/pfotenbild.png') no-repeat;
+  background: url('../../assets/images/pfotenbild.svg') no-repeat;
   background-size: contain;
   color: #5C4638;
   font-size: 24px; /* Passe die Schriftgröße an */
@@ -59,7 +59,7 @@ input {
 }
 
 .back-button {
-  background: url('../../assets/images/pfotenbild.png') no-repeat;
+  background: url('../../assets/images/pfotenbild.svg') no-repeat;
   background-size: contain;
   color: #5C4638;
   font-size: 24px; /* Passe die Schriftgröße an */
