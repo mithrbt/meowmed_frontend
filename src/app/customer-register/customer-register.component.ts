@@ -70,7 +70,7 @@ export class CustomerRegisterComponent implements OnInit {
   }
 
   goBack() {
-    this.router.navigate(['kundendetails', this.customer.id]);
+    this.router.navigate(['kunden']);
   }
 
   validateForm(): boolean {
