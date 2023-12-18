@@ -1,15 +1,8 @@
-
-
-.dark-label {
-  background-color: rgb(128, 64, 0);
-  color: #ffffff; /* Schriftfarbe auf Weiß ändern */
-  padding: 6px 8px; /* Kleinere Abstände */
-  border-radius: 5px;
-  cursor: pointer;
-  display: inline-block; /* Änderung: Stellen Sie sicher, dass das Element nur so breit wie sein Inhalt ist */
-  font-size: 24px; /* Ändere die Schriftgröße nach Bedarf */
-  text-align: center;
+.body {
+  background-color: #F4F4F4;
 }
+
+
 .container {
   display: flex;
   justify-content: center;
@@ -106,6 +99,18 @@ input {
 .form-group input {
   margin-right: 5px;
   cursor: pointer;
+}
+
+
+.kundelabel {
+  background-color: rgb(128, 64, 0);
+  color: #ffffff; /* Schriftfarbe auf Weiß ändern */
+  padding: 6px 8px; /* Kleinere Abstände */
+  border-radius: 5px;
+  cursor: pointer;
+  display: inline-block; /* Änderung: Stellen Sie sicher, dass das Element nur so breit wie sein Inhalt ist */
+  font-size: 24px; /* Ändere die Schriftgröße nach Bedarf */
+  text-align: center;
 }
 
 .form-radio-group {
