@@ -1,4 +1,3 @@
-<h3><label class="dark-label">Vertragdetails</label></h3>
 <head>
   <meta charset="UTF-8">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -6,7 +5,10 @@
 </head>
 
 <div class="wrapper">
+  <h3><label class="dark-label vertragdetail">Vertragdetails</label></h3>
   <div class="first-section">
+    <br>
+    <br>
     <div class="form-group">
       <label class="dark-label"> <b> ID: </b></label> <input type="text" class="output-textfield"
                                                              value="{{vertrag.id}}" readonly>
@@ -24,6 +26,28 @@
       <label class="dark-label"> <b> Deckung: </b></label> <input type="text" class="output-textfield"
                                                                   value="{{vertrag.coverage}}" readonly>
     </div>
+    <div class="form-group">
+      <label class="dark-label"> <b> Name: </b></label> <input type="text" class="output-textfield"
+                                                               value="{{cat.name}}" readonly>
+    </div>
+    <div class="form-group">
+      <label class="dark-label"> <b> Geburtsdatum: </b></label> <input type="text" class="output-textfield"
+                                                                       value="{{cat.birthdate | date: 'dd/MM/yyyy' }}"
+                                                                       readonly>
+    </div>
+    <div class="form-group">
+      <label class="dark-label"> <b> Umgebung: </b></label> <input type="text" class="output-textfield"
+                                                                   value="{{cat.environment}}" readonly>
+    </div>
+    <div class="form-group">
+      <label class="dark-label"> <b> Persönlichkeit: </b></label> <input type="text" class="output-textfield"
+                                                                         value="{{cat.personality}}" readonly>
+    </div>
+    <div class="form-group">
+      <label class="dark-label"> <b> Gewicht: </b></label> <input type="text" class="output-textfield"
+                                                                  value="{{cat.weight}}" readonly>
+    </div>
+
     <button type="button" class="btn btn-back" (click)="goBack()">
       <span class="button-text">&larr;</span>
     </button>
@@ -48,33 +72,13 @@
     </div>
     <output *ngIf=successResponse class="success"><b>{{successResponse}}</b></output>
     <div class="form-group">
-      <label class="dark-label"> <b> ID: </b></label> <input type="text" class="output-textfield"
-                                                             value="{{cat.id}}" readonly>
-    </div>
-    <div class="form-group">
-      <label class="dark-label"> <b> Name: </b></label> <input type="text" class="output-textfield"
-                                                               value="{{cat.name}}" readonly>
-    </div>
-    <div class="form-group">
-      <label class="dark-label"> <b> Geburtsdatum: </b></label> <input type="text" class="output-textfield"
-                                                                       value="{{cat.birthdate | date: 'dd/MM/yyyy' }}"
-                                                                       readonly>
-    </div>
-    <div class="form-group">
-      <label class="dark-label"> <b> Umgebung: </b></label> <input type="text" class="output-textfield"
-                                                                   value="{{cat.environment}}" readonly>
+      <label class="dark-label"> <b> Rasse: </b></label> <input type="text" class="output-textfield"
+                                                                value="{{cat.breed}}" readonly>
     </div>
     <div class="form-group">
       <label class="dark-label"> <b> Farbe: </b></label> <input type="text" class="output-textfield"
                                                                 value="{{cat.color}}" readonly>
     </div>
-    <div class="form-group">
-      <label class="dark-label"> <b> Persönlichkeit: </b></label> <input type="text" class="output-textfield"
-                                                                         value="{{cat.personality}}" readonly>
-    </div>
-    <div class="form-group">
-      <label class="dark-label"> <b> Gewicht: </b></label> <input type="text" class="output-textfield"
-                                                                  value="{{cat.weight}}" readonly>
-    </div>
+
   </div>
 </div>
