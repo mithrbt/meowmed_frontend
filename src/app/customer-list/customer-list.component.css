@@ -2,6 +2,14 @@
   background-color: rgba(128, 64, 0, 0.50);
 }
 
+.table-section {
+  width: 70vw;/* Höchstens 2/3 der Bildschirmhöhe */
+  overflow-y: auto; /* Fügt eine vertikale Scroll-Leiste hinzu, wenn der Inhalt zu groß ist */
+  overflow-x: hidden;  /* Verhindert horizontales Scrollen */
+
+  /* Weitere CSS-Stile hier, je nach Bedarf */
+}
+
 .btn{
   background: url('../../assets/images/pfotenbild.svg') no-repeat;
   background-size: contain;

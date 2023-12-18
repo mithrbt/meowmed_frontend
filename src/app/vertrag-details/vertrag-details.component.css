@@ -4,14 +4,19 @@
   display: inline-block;
   border: none;
   cursor: pointer;
-  width: 8em;
-  height: 3em;
-  padding-top: 20px;
-  padding-right: 87px;
+  width: 12em;
+  height: 5em;
+  padding-top: 45px;
+  padding-right: 115px;
+}
+
+.btn-back{
+  padding-top: 35px;
+  padding-right: 120px;
 }
 
 .button-text {
-  font-size: 20px;
+  font-size: 30px;
   color: #ffffff; /* Schriftfarbe auf Weiß ändern */
 }
 
