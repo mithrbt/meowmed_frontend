@@ -3,7 +3,8 @@
 }
 
 .table-section {
-  width: 70vw;/* Höchstens 2/3 der Bildschirmhöhe */
+  width: 70vw;
+  max-height: 50vh; /* Höchstens 2/3 der Bildschirmhöhe */
   overflow-y: auto; /* Fügt eine vertikale Scroll-Leiste hinzu, wenn der Inhalt zu groß ist */
   overflow-x: hidden;  /* Verhindert horizontales Scrollen */
 
