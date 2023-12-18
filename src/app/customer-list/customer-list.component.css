@@ -35,7 +35,6 @@
   border-radius: 5px;
   cursor: pointer;
   display: inline-block; /* Änderung: Stellen Sie sicher, dass das Element nur so breit wie sein Inhalt ist */
-  width: 100px; /* Änderung: Lassen Sie die Breite automatisch berechnen */
-  font-size: 14px; /* Ändere die Schriftgröße nach Bedarf */
+  font-size: 24px; /* Ändere die Schriftgröße nach Bedarf */
   text-align: center;
 }
