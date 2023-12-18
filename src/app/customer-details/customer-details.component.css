@@ -64,11 +64,6 @@ html, body {
   /* Weitere CSS-Stile hier, je nach Bedarf */
 }
 
-.table-section table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
 .table-section table tbody tr:nth-child(even) {
   background-color: rgba(128, 64, 0, 0.50);
   color: #ffffff;
