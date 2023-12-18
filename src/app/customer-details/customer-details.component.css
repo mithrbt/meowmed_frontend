@@ -133,6 +133,11 @@ html, body {
   text-align: center;
 }
 
+.kundendetail{
+  font-size: 24px;
+  width: auto;
+}
+
 .cropped1 {
   width: 200px;
   height: 200px;
@@ -145,4 +150,10 @@ html, body {
   margin-right: 0;
   width: 150px;
   border: 1px solid black;
+}
+
+.create-contract-button {
+  position: fixed;
+  bottom: 350px; /* Ändern Sie dies nach Bedarf, um den gewünschten Abstand zum unteren Rand zu erhalten */
+  right: 200px; /* Ändern Sie dies nach Bedarf, um den gewünschten Abstand zum rechten Rand zu erhalten */
 }
