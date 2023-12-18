@@ -20,6 +20,10 @@
                                                                   value="{{customer.id}}" readonly>
           </div>
           <div>
+            <label class="dark-label">Titel</label> <input type="text" class="output-textfield"
+                                                           value="{{getTitleText(customer.title)}}" readonly>
+          </div>
+          <div>
             <label class="dark-label">Vorname</label> <input type="text" class="output-textfield"
                                                                        value="{{customer.firstname}}" readonly>
           </div>
@@ -29,7 +33,7 @@
           </div>
           <div>
             <label class="dark-label">Berufsstand</label> <input type="text" class="output-textfield"
-                                                                     value="{{customer.profession}}" readonly>
+                                                                     value="{{getProfessionText(customer.profession)}}" readonly>
           </div>
           <br>
           <div class="search-bar">
@@ -65,7 +69,7 @@
             <div>
               <label class="dark-label">Bild</label>
             </div>
-            <div>
+            <div class="object-fit">
               <img [src]="dbImage" style="width: 200px; height: auto">
             </div>
             <input type="file" (change)="onImageUpload($event)">

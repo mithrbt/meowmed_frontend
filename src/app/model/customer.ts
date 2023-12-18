@@ -3,6 +3,7 @@ import {Address} from "./address";
 import {FamilyStatusEnum} from "../enum/FamilyStatus.enum";
 import {BankDetails} from "./bank-details";
 import {Image} from "./image";
+import {Title} from "../enum/Title";
 
 export class Customer {
     id!: number;
@@ -19,4 +20,5 @@ export class Customer {
     bankDetails!: BankDetails;
     email!: string;
     image!: Image;
+    title!: Title;
 }

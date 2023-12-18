@@ -8,15 +8,14 @@ import {Cat} from "../model/cat";
 import {CatService} from "../service/cat.service";
 import {Address} from "../model/address";
 import {ImageService} from "../service/image.service";
-import {error} from "@angular/compiler-cli/src/transformers/util";
-import {Image} from "../model/image";
+import {Profession} from "../enum/Profession";
 
 @Component({
   selector: 'app-customer-details',
   templateUrl: './customer-details.component.html',
   styleUrls: ['./customer-details.component.css']
 })
-export class CustomerDetailsComponent implements OnInit{
+export class CustomerDetailsComponent implements OnInit {
 
   id!: number;
   customer: Customer = new Customer();
@@ -45,26 +44,28 @@ export class CustomerDetailsComponent implements OnInit{
               private customerService: CustomerService,
               private vertragService: VertragService,
               private router: Router,
-              private imageService: ImageService) {}
+              private imageService: ImageService) {
+  }
 
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
-    this.customerService.getCustomerById(this.id).subscribe(data =>{
+    this.customerService.getCustomerById(this.id).subscribe(data => {
       this.customer = data;
+      console.log("Titel:", this.customer.title)
     });
     console.log("ID: " + this.id);
     this.getVertragList();
     this.customer.address = this.address;
 
     //Bild anzeigen
-    this.imageService.viewImage(this.id).subscribe(res =>{
+    this.imageService.viewImage(this.id).subscribe(res => {
       this.postResponse = res;
       this.dbImage = 'data:image/jpeg;base64,' + this.postResponse.image;
     });
   }
 
-  private getVertragList(){
-    this.vertragService.getVertragList(this.id).subscribe(data =>{
+  private getVertragList() {
+    this.vertragService.getVertragList(this.id).subscribe(data => {
       this.vertraege = data;
       this.filteredContracts = this.vertraege;
       console.log("Verträge:");
@@ -74,7 +75,7 @@ export class CustomerDetailsComponent implements OnInit{
         console.log("Contribution: " + vertrag.quote);
         console.log("Vertragende: " + vertrag.end);
         console.log("Heute:" + this.today);
-        if(new Date(vertrag.end) >= this.today){
+        if (new Date(vertrag.end) >= this.today) {
           this.totalMonthlyContribution = this.totalMonthlyContribution + vertrag.quote;
         }
         this.vertragService.getCatByContractId(vertrag.id).subscribe(data => {
@@ -88,7 +89,7 @@ export class CustomerDetailsComponent implements OnInit{
 
   getCatByContractId(id: number): Cat {
     const cat = this.cats.get(id);
-    if(cat) {
+    if (cat) {
       return cat;
     } else {
       return new Cat();
@@ -96,12 +97,12 @@ export class CustomerDetailsComponent implements OnInit{
   }
 
 
-  goToCreateContract(id: number){
+  goToCreateContract(id: number) {
     this.router.navigate(['vertrag', id]);
   }
 
   updateVertrag(id: number) {
-    this.router.navigate(['update-vertrag',id]);
+    this.router.navigate(['update-vertrag', id]);
   }
 
   vertragDetails(id: number) {
@@ -110,10 +111,10 @@ export class CustomerDetailsComponent implements OnInit{
 
   deleteVertrag(event: any, id: number) {
     this.totalMonthlyContribution = 0;
-    if(confirm('Sind Sie sicher, dass Sie den Vertrag löschen möchten?')){
+    if (confirm('Sind Sie sicher, dass Sie den Vertrag löschen möchten?')) {
       event.target.innerText = "Löschen...";
-      this.catService.deleteCatByContractID(id).subscribe((response:any)=>{
-        this.vertragService.deleteVertrag(id).subscribe((response:any)=>{
+      this.catService.deleteCatByContractID(id).subscribe((response: any) => {
+        this.vertragService.deleteVertrag(id).subscribe((response: any) => {
           this.getVertragList();
           alert("Der Vertrag und die Katze wurden gelöscht.");
         });
@@ -138,32 +139,59 @@ export class CustomerDetailsComponent implements OnInit{
   }
 
   //Foto hochladen
-  public onImageUpload(event: Event){
+  public onImageUpload(event: Event) {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files.length > 0) {
       this.uploadedImage = input.files[0];
     }
   }
 
-  imageUploadAction(){
+  imageUploadAction() {
     const imageFormData = new FormData();
     imageFormData.append('image', this.uploadedImage, this.uploadedImage.name);
 
     console.log("KundenID: ", this.customer.id);
-    this.imageService.uploadFile(this.customer.id, imageFormData).subscribe((response) =>{
+    this.imageService.uploadFile(this.customer.id, imageFormData).subscribe((response) => {
       window.location.reload();
     });
   }
 
   //Foto löschen
   deleteImage(event: any, id: number) {
-    if(confirm('Sind Sie sicher, dass Sie das Bild löschen möchten?')){
+    if (confirm('Sind Sie sicher, dass Sie das Bild löschen möchten?')) {
       event.target.innerText = "Löschen...";
-      this.imageService.deleteImage(id).subscribe((response: any) =>{
+      this.imageService.deleteImage(id).subscribe((response: any) => {
         alert("Das Foto wurde gelöscht.");
         window.location.reload();
       });
     }
   }
 
+  getTitleText(title: string): string {
+    switch (title) {
+      case 'DR':
+        return 'Dr.';
+      case 'PROF':
+        return 'Prof.';
+      case 'PROFDR':
+        return 'Prof. Dr.';
+      default:
+        return '';
+    }
+  }
+
+  getProfessionText(p: string): string{
+    switch (p){
+      case 'EMPLOYED':
+        return 'Angestellt';
+      case 'UNEMPLOYED':
+        return 'Arbeitslos';
+      case 'SELFEMPLOYED':
+        return 'Selbstständig';
+      case 'STUDENT':
+        return 'Student';
+      default:
+        return '';
+    }
+  }
 }

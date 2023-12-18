@@ -4,8 +4,8 @@ import {CustomerService} from '../service/customer.service';
 import {Router} from '@angular/router';
 import {Address} from '../model/address';
 import {BankDetails} from "../model/bank-details";
-import {ImageService} from "../service/image.service";
 import {Profession} from "../enum/Profession";
+import {Title} from "../enum/Title";
 
 
 declare var window: Window & typeof globalThis; // Import für das Window-Objekt
@@ -20,38 +20,47 @@ export class CustomerRegisterComponent implements OnInit {
   customer: Customer = new Customer();
   address!: Address;
   bankDetails!: BankDetails;
+  titleKeys = Object.keys(Title);
+  title!: Title | undefined;
 
 
   constructor(private customerService: CustomerService,
-              private router: Router,
-              private imageService: ImageService) {}
+              private router: Router) {
+  }
 
   ngOnInit() {
     this.customer.address = new Address();
     this.customer.bankDetails = new BankDetails();
   }
 
+  getTitleValue(key: string): string {
+    return Title[key as keyof typeof Title]; // Gib den Wert für den übergebenen Schlüssel zurück
+  }
+
+
   saveCustomer() {
-      this.customerService.createCustomer(this.customer).subscribe(
-        (data) => {
-          console.log(data);
-          this.customer = data;
-          //this.uploader.uploadAll();
-          this.goToCustomerDetails();
-        },
-        (error) => console.log(error)
-      );
+    console.log("Titel: ", this.customer.title);
+    this.customerService.createCustomer(this.customer).subscribe(
+      (data) => {
+        console.log(data);
+        this.customer = data;
+        this.goToCustomerDetails();
+      },
+      (error) => console.log(error)
+    );
   }
 
 
   createCustomer() {
     console.log(this.customer);
-    if(this.calculateAge(this.customer.birthdate) < 18){
+    if (this.calculateAge(this.customer.birthdate) < 18) {
       alert('Der Kunde muss mindestens 18 Jahre alt sein.');
       return;
     }
 
-    if(this.customer.profession.toString().toLowerCase() === Profession.UNEMPLOYED){
+    console.log("Kunde Berufsstand: ", this.customer.profession);
+    console.log("Enum Berufsstand: ", Profession.UNEMPLOYED);
+    if (this.customer.profession === Profession.UNEMPLOYED) {
       alert('Der Kunde darf nicht Arbeitslos sein');
       return;
     }
@@ -103,11 +112,11 @@ export class CustomerRegisterComponent implements OnInit {
       this.customer.familyStatus !== undefined &&
       this.customer.profession !== null &&
       this.customer.profession !== undefined &&
-      this.customer.profession !== Profession.UNEMPLOYED &&
       this.customer.bankDetails !== null &&
       this.customer.bankDetails != undefined
     );
   }
+
   validateSozialversicherungsnummer(): boolean {
     const sozialversicherungsnummerRegex = /^\d{2}\d{2}\d{2}\d{2}[A-Z]\d{3}$/;
     return this.customer.svn !== null && this.customer.svn !== undefined && this.customer.svn.toString().match(sozialversicherungsnummerRegex) !== null;
@@ -148,5 +157,6 @@ export class CustomerRegisterComponent implements OnInit {
     }
     return age;
   }
+
 
 }
