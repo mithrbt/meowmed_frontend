@@ -55,11 +55,11 @@ export class UpdateVertragComponent implements OnInit {
   }
 
   gotoVertragList(id: number) {
-    this.router.navigate(['/vertragdetails', this.id]);
+    this.router.navigate(['kundendetails', this.vertrag.customer.id]);
   }
 
   goBack() {
-    this.router.navigate(['/kundendetails',this.vertrag.customer.id]);
+    this.router.navigate(['kundendetails', this.vertrag.customer.id]);
   }
 
   quote() {
