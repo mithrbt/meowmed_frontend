@@ -139,7 +139,7 @@ export class CreateVertragdashboardComponent implements OnInit{
 
   quote() {
     console.log("Katzenrasse:" , this.cat.breed);
-    this.vertragService.quote(this.cat, this.vertrag).subscribe(data =>{
+    this.vertragService.quote(this.cat, this.vertrag, this.customer).subscribe(data =>{
       this.result = data;
       this.vertrag.quote = this.result;
       console.log(this.result);

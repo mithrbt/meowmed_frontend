@@ -43,13 +43,18 @@ export class UpdateVertragComponent implements OnInit {
         this.cat = data;
         console.log("Ausgewählte Katze: ", this.cat);
       });
+      this.vertragService.getCustomerByContractId(this.vertrag.id).subscribe(data =>{
+        this.customer = data;
+      });
     }, error => console.log(error));
+
   }
 
 
   onSubmit() {
     this.vertragService.updateVertrag(this.id, this.vertrag).subscribe(data => {
       this.updateCat();
+      window.location.reload();
     }, error => console.log(error));
     this.gotoVertragList(this.id);
   }
@@ -63,15 +68,13 @@ export class UpdateVertragComponent implements OnInit {
   }
 
   quote() {
-    this.vertragService.quote(this.cat, this.vertrag).subscribe(data =>{
+    this.vertragService.quote(this.cat, this.vertrag, this.customer).subscribe(data =>{
         this.result = data;
         this.vertrag.quote = this.result;
-        console.log(this.result);
       },
       error => {
         console.log(error);
       });
-
   }
 
   private updateCat() {

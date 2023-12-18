@@ -90,4 +90,52 @@ export class VertragDetailsComponent implements OnInit {
     this.router.navigate(['kundendetails',this.vertrag.customer.id]);
   }
 
+  getEnvironmentText(p: string): string{
+    switch (p){
+      case 'DRAUSSEN':
+        return 'Draußen';
+      case 'DRIN':
+        return 'Drin';
+      default:
+        return '';
+    }
+  }
+
+  getColorText(p: string): string{
+    switch (p){
+      case 'SCHWARZ':
+        return 'Schwarz';
+      case 'WEISS':
+        return 'Weiß';
+      case 'BRAUN':
+        return 'Braun';
+      case 'MEHRFAHRBIG':
+        return 'Mehrfarbig';
+      case 'ORANGE':
+        return 'Orange';
+      case 'GRAU':
+        return 'Grau';
+      default:
+        return '';
+    }
+  }
+
+  getPersonalityText(p: string): string{
+    switch (p){
+      case 'VERSPIELT':
+        return 'Verspielt';
+      case 'AUSGEGLICHEN':
+        return 'Ausgeglichen';
+      case 'SCHEU':
+        return 'Scheu';
+      case 'ZUTRAULICH':
+        return 'Zutraulich';
+      case 'ANHAENGLICH':
+        return 'Anhänglich';
+      case 'VERSCHMUST':
+        return 'Verschmust';
+      default:
+        return '';
+    }
+  }
 }

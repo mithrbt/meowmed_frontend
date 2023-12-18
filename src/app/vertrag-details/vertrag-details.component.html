@@ -37,11 +37,11 @@
     </div>
     <div class="form-group">
       <label class="dark-label"> <b> Umgebung: </b></label> <input type="text" class="output-textfield"
-                                                                   value="{{cat.environment}}" readonly>
+                                                                   value="{{getEnvironmentText(cat.environment)}}" readonly>
     </div>
     <div class="form-group">
       <label class="dark-label"> <b> Persönlichkeit: </b></label> <input type="text" class="output-textfield"
-                                                                         value="{{cat.personality}}" readonly>
+                                                                         value="{{getPersonalityText(cat.personality)}}" readonly>
     </div>
     <div class="form-group">
       <label class="dark-label"> <b> Gewicht: </b></label> <input type="text" class="output-textfield"
@@ -75,11 +75,11 @@
     <output *ngIf=successResponse class="success"><b>{{successResponse}}</b></output>
     <div class="form-group">
       <label class="dark-label"> <b> Rasse: </b></label> <input type="text" class="output-textfield"
-                                                                value="{{cat.breed}}" readonly>
+                                                                value="{{cat.breed.name}}" readonly>
     </div>
     <div class="form-group">
       <label class="dark-label"> <b> Farbe: </b></label> <input type="text" class="output-textfield"
-                                                                value="{{cat.color}}" readonly>
+                                                                value="{{getColorText(cat.color)}}" readonly>
     </div>
 
   </div>
