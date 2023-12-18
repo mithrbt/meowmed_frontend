@@ -26,3 +26,15 @@
 .material-icons{
   color:white;
 }
+
+.dark-label {
+  background-color: rgb(128, 64, 0);
+  color: #ffffff; /* Schriftfarbe auf Weiß ändern */
+  padding: 6px 8px; /* Kleinere Abstände */
+  border-radius: 5px;
+  cursor: pointer;
+  display: inline-block; /* Änderung: Stellen Sie sicher, dass das Element nur so breit wie sein Inhalt ist */
+  width: 100px; /* Änderung: Lassen Sie die Breite automatisch berechnen */
+  font-size: 14px; /* Ändere die Schriftgröße nach Bedarf */
+  text-align: center;
+}
