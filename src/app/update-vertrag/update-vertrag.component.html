@@ -147,7 +147,7 @@
       <div>
         <button type="button" (click)="quote()" class="btn btn-info" style="float: right">Beitrag berechnen</button>
         <label class="dark-label"> Monatlicher Beitrag: </label>
-        <div *ngIf="result !== null">{{result}}€</div>
+        <div *ngIf="result !== null">{{result | number:'1.2-2' }}€</div>
       </div>
     </div>
     <button type="button" class="back-button" (click)="goBack()">

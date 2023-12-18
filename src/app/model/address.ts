@@ -1,7 +1,7 @@
 export class Address {
   country!: string;
   city!: string;
-  zipCode!: number;
+  zipCode!: string;
   street!: string;
   houseNr!: string;
 }

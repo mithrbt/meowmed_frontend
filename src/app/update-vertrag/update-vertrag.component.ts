@@ -56,7 +56,6 @@ export class UpdateVertragComponent implements OnInit {
 
   gotoVertragList(id: number) {
     this.router.navigate(['/vertragdetails', this.id]);
-
   }
 
   goBack() {
@@ -64,8 +63,7 @@ export class UpdateVertragComponent implements OnInit {
   }
 
   quote() {
-    console.log("Katzenrasse:" , this.cat.breed);
-    this.vertragService.quote(this.cat, this.vertrag, this.customer).subscribe(data =>{
+    this.vertragService.quote(this.cat, this.vertrag).subscribe(data =>{
         this.result = data;
         this.vertrag.quote = this.result;
         console.log(this.result);

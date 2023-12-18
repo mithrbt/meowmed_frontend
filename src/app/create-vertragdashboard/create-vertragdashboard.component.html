@@ -9,10 +9,10 @@
       </div>
       <div class = "form-group" [ngClass]="{'invalid-field': !cat.breed}">
         <label for="breed">Rasse</label>
-        <select class="form-control" id="breed" name="breed" [(ngModel)]="selectedBreed" required>
+        <select class="form-control" id="breed" name="breed" [(ngModel)]="cat.breed" required>
           <option *ngFor="let breed of breeds" [ngValue]="breed">{{ breed.name }}</option>
         </select>
-        <button type="button" (click)="onSelectBreed()" class="auswaehlen-button"><span class="auswaehlen-button-text">&check;</span></button>
+        <!--<button type="button" (click)="onSelectBreed()" class="auswaehlen-button"><span class="auswaehlen-button-text">&check;</span></button>-->
       </div>
       <div class = "form-group" [ngClass]="{'invalid-field': !cat.birthdate}">
         <label class="dark-label"> Geburtsdatum </label>
@@ -150,7 +150,7 @@
         <div>
           <button type="button" (click)="quote()" class="btn btn-info" style="float: right">Beitrag berechnen</button>
           <label class="dark-label"> Monatlicher Beitrag: </label>
-          <div *ngIf="result !== null">{{result}}€</div>
+          <div *ngIf="result !== null">{{result | number:'1.2-2' }}€</div>
         </div>
     </div>
     <button type="button" class="back-button" (click)="goBack()">

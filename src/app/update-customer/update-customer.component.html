@@ -2,6 +2,12 @@
 <form (ngSubmit)="onSubmit()">
   <div class="container">
     <div class="left-panel">
+      <div class="form-group">
+        <label class="dark-label">Titel</label>
+        <select id="title" name="title" [(ngModel)]="customer.title" class="custom-select">
+          <option *ngFor="let titleKey of titleKeys" [value]="titleKey">{{ getTitleValue(titleKey) }}</option>
+        </select>
+      </div>
       <div class = "form-group">
         <label class="dark-label"> Vorname </label>
         <input type="text" class="form-control" id="firstname"

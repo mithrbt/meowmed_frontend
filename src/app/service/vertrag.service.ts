@@ -1,4 +1,4 @@
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {Vertrag} from "../model/vertrag";
@@ -46,8 +46,8 @@ export class VertragService {
     return this.httpClient.put(this.baseURL + `/vertrag/${id}`, vertrag);
   }
 
-  quote(cat: Cat, contract: Vertrag, customer: Customer): Observable<number>{
-    const catract = new Catract(contract, cat, customer);
+  quote(cat: Cat, contract: Vertrag): Observable<number>{
+    const catract = new Catract(contract, cat);
     console.log(catract);
     return this.httpClient.post<number>(this.baseURL + `/vertrag/quote`, catract);
   }

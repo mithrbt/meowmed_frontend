@@ -5,19 +5,35 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Deine Webseite</title>
+  <style>
+    /* Styles für das Bild in der oberen rechten Ecke */
+    .logo-container {
+      position: absolute;
+      top: 10px; /* Abstand vom oberen Rand */
+      right: 10px; /* Abstand vom rechten Rand */
+    }
+
+    /* Weitere Styles für das Bild selbst */
+    .logo-image {
+      width: 150px; /* Breite des Logos */
+      height: auto; /* Höhe automatisch anpassen */
+    }
+  </style>
 </head>
 <body>
 
+<div class="logo-container">
+  <img src="assets/images/logo.png" alt="Logo" class="logo-image">
+</div>
 <div class="container-fluid">
   <h3>Kundendetails</h3>
-
   <div>
     <div class="customer-details">
       <div class="wrapper">
         <div class="first-section">
           <div>
             <label class="dark-label">ID</label> <input type="text" class="output-textfield"
-                                                                  value="{{customer.id}}" readonly>
+                                                        value="{{customer.id}}" readonly>
           </div>
           <div>
             <label class="dark-label">Titel</label> <input type="text" class="output-textfield"
@@ -25,15 +41,16 @@
           </div>
           <div>
             <label class="dark-label">Vorname</label> <input type="text" class="output-textfield"
-                                                                       value="{{customer.firstname}}" readonly>
+                                                             value="{{customer.firstname}}" readonly>
           </div>
           <div>
             <label class="dark-label">Nachname</label> <input type="text" class="output-textfield"
-                                                                        value="{{customer.lastname}}" readonly>
+                                                              value="{{customer.lastname}}" readonly>
           </div>
           <div>
             <label class="dark-label">Berufsstand</label> <input type="text" class="output-textfield"
-                                                                     value="{{getProfessionText(customer.profession)}}" readonly>
+                                                                 value="{{getProfessionText(customer.profession)}}"
+                                                                 readonly>
           </div>
           <br>
           <div class="search-bar">
@@ -46,21 +63,21 @@
         <div class="second-section">
           <div>
             <label class="dark-label">E-Mail</label> <input type="text" class="output-textfield"
-                                                                      value="{{customer.email}}" readonly>
+                                                            value="{{customer.email}}" readonly>
           </div>
           <div>
             <label class="dark-label">Straße</label> <input type="text" class="output-textfield"
-                                                                      value='{{customer.address.street + " " + customer.address.houseNr}}'
-                                                                      readonly>
+                                                            value='{{customer.address.street + " " + customer.address.houseNr}}'
+                                                            readonly>
           </div>
           <div>
             <label class="dark-label">Stadt</label> <input type="text" class="output-textfield"
-                                                                     value='{{customer.address.zipCode + " " + customer.address.street}}'
-                                                                     readonly>
+                                                           value='{{customer.address.zipCode + " " + customer.address.street}}'
+                                                           readonly>
           </div>
           <div>
             <label class="dark-label">Land</label> <input type="text" class="output-textfield"
-                                                                    value="{{customer.address.country}}" readonly>
+                                                          value="{{customer.address.country}}" readonly>
           </div>
         </div>
 
@@ -69,8 +86,9 @@
             <div>
               <label class="dark-label">Bild</label>
             </div>
-            <div class="object-fit">
-              <img [src]="dbImage" style="width: 200px; height: auto">
+            <div>
+              <!-- style="width: 200px; height: auto" -->
+              <img [src]="dbImage" class="cropped1">
             </div>
             <input type="file" (change)="onImageUpload($event)">
             <button (click)="imageUploadAction()" class="btn btn-secondary" style="margin-right: 10px">
@@ -85,68 +103,68 @@
           </div>
         </div>
       </div>
-        <div class="table-section">
-          <table class="table table-striped">
-            <thead>
-            <tr>
-              <th> ID</th>
-              <th> Katze</th>
-              <th> Beginn</th>
-              <th> Ende</th>
-              <th> Jahresdeckung</th>
-              <th> Monatl. Beitrag</th>
+      <div class="table-section">
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th> ID</th>
+            <th> Katze</th>
+            <th> Beginn</th>
+            <th> Ende</th>
+            <th> Jahresdeckung</th>
+            <th> Monatl. Beitrag</th>
 
-                <th>
-                <div class="total-price">
-                  <label>Gesamter monatlicher Beitrag:</label>
-                  {{ totalMonthlyContribution | number:'1.2-2' }}&euro;
-                </div>
-                </th>
-              <th>
-                <button (click)="goToCreateContract(customer.id)" class="btn btn-info create-contract-button">
-                  <i class="material-icons" style="margin-right: 5px;">description</i>
-                </button>
-              </th>
+            <th>
+              <div class="total-price">
+                <label>Gesamter monatlicher Beitrag:</label>
+                {{ totalMonthlyContribution | number:'1.2-2' }}&euro;
+              </div>
+            </th>
+            <th>
+              <button (click)="goToCreateContract(customer.id)" class="btn btn-info create-contract-button">
+                <i class="material-icons" style="margin-right: 5px;">description</i>
+              </button>
+            </th>
 
-            </tr>
-            </thead>
-            <tbody>
-            <tr *ngFor="let vertrag of filteredContracts"
-                [ngClass]="{'vertrag-abgelaufen': isVertragAbgelaufen(vertrag)}">
-              <td> {{ vertrag.id }} </td>
-              <td> {{ getCatByContractId(vertrag.id).name }}</td>
-              <td> {{ vertrag.start | date: 'dd/MM/yyyy' }} </td>
-              <td> {{ vertrag.end | date: 'dd/MM/yyyy' }} </td>
-              <td> {{ vertrag.coverage }} </td>
-              <td>{{ vertrag.quote | number:'1.2-2' }}&euro;</td>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let vertrag of filteredContracts"
+              [ngClass]="{'vertrag-abgelaufen': isVertragAbgelaufen(vertrag)}">
+            <td> {{ vertrag.id }} </td>
+            <td> {{ getCatByContractId(vertrag.id).name }}</td>
+            <td> {{ vertrag.start | date: 'dd/MM/yyyy' }} </td>
+            <td> {{ vertrag.end | date: 'dd/MM/yyyy' }} </td>
+            <td> {{ vertrag.coverage }} </td>
+            <td>{{ vertrag.quote | number:'1.2-2' }}&euro;</td>
 
-              <td>
-                <button (click)="vertragDetails(vertrag.id)" [disabled]="isVertragAbgelaufen(vertrag)"
-                        class="btn">
-                  <i class="material-icons">search</i>
-                </button>
-              </td>
-              <td>
-                <button (click)="updateVertrag(vertrag.id)" [disabled]="isVertragAbgelaufen(vertrag)"
-                        class="btn">
-                  <i class="material-icons">edit</i>
-                </button>
-              </td>
-              <td>
-                <button (click)="deleteVertrag($event, vertrag.id)" [disabled]="isVertragAbgelaufen(vertrag)"
-                        class="btn">
-                  <i class="material-icons">delete</i>
-                </button>
-              </td>
-            </tr>
-            </tbody>
-          </table>
-          <button type="button" class="back-button" (click)="goBack()">
-            <span class="button-text">&larr;</span>
-          </button>
-        </div>
+            <td>
+              <button (click)="vertragDetails(vertrag.id)" [disabled]="isVertragAbgelaufen(vertrag)"
+                      class="btn">
+                <i class="material-icons">search</i>
+              </button>
+            </td>
+            <td>
+              <button (click)="updateVertrag(vertrag.id)" [disabled]="isVertragAbgelaufen(vertrag)"
+                      class="btn">
+                <i class="material-icons">edit</i>
+              </button>
+            </td>
+            <td>
+              <button (click)="deleteVertrag($event, vertrag.id)" [disabled]="isVertragAbgelaufen(vertrag)"
+                      class="btn">
+                <i class="material-icons">delete</i>
+              </button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+        <button type="button" class="back-button" (click)="goBack()">
+          <span class="button-text">&larr;</span>
+        </button>
       </div>
     </div>
   </div>
+</div>
 </body>
 </html>

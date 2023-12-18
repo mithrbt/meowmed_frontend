@@ -121,3 +121,17 @@ html, body {
   justify-content: center;
   font-size: 14px; /* Ändere die Schriftgröße nach Bedarf */
 }
+
+.cropped1 {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border: 5px solid black;
+}
+
+.rechts {
+  margin-left: auto;
+  margin-right: 0;
+  width: 150px;
+  border: 1px solid black;
+}

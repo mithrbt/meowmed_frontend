@@ -9,6 +9,7 @@ import {CatService} from "../service/cat.service";
 import {Address} from "../model/address";
 import {ImageService} from "../service/image.service";
 import {Profession} from "../enum/Profession";
+import {HttpHeaders} from "@angular/common/http";
 
 @Component({
   selector: 'app-customer-details',

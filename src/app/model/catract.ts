@@ -6,12 +6,10 @@ export class Catract {
 
   cat: Cat;
   contract: Vertrag;
-  customer: Customer;
 
-  constructor(contract: Vertrag, cat: Cat, customer: Customer) {
+  constructor(contract: Vertrag, cat: Cat) {
     this.cat = cat;
     this.contract = contract;
-    this.customer = customer;
   }
 
 }

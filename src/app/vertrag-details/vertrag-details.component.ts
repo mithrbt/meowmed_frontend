@@ -6,6 +6,7 @@ import {CustomerService} from "../service/customer.service";
 import {VertragService} from "../service/vertrag.service";
 import {ImageService} from "../service/image.service";
 import {Customer} from "../model/customer";
+import {HttpHeaders} from "@angular/common/http";
 
 @Component({
   selector: 'app-vertrag-details',
@@ -32,18 +33,21 @@ export class VertragDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
+    this.loadData();
+
+  }
+
+  loadData(){
     this.vertragService.getVertragById(this.id).subscribe(data => {
       this.vertrag = data;
+      this.getCatList();
     });
-    console.log("ID: " + this.id);
-    this.getCatList();
   }
 
   private getCatList() {
     this.vertragService.getCatByContractId(this.id).subscribe(data => {
-      console.log("ID: " + data);
       this.cat = data;
-      console.log(data.name);
+
       //Bild anzeigen
       console.log("Cat ID: " + this.cat.id);
       this.imageService.viewCatImage(this.cat.id).subscribe(res => {
