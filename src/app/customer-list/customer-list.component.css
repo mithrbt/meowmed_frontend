@@ -1,5 +1,6 @@
 .table-section table tbody tr:nth-child(even) {
   background-color: rgba(128, 64, 0, 0.50);
+  color: #ffffff;
 }
 
 .table-section {
