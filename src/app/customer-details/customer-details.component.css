@@ -119,10 +119,11 @@ html, body {
 }
 
 .create-contract-button {
-  margin-left: 10px; /* Füge etwas Abstand zum vorherigen Element hinzu */
+  margin-left: 10px;
+  margin-top:100px;/* Füge etwas Abstand zum vorherigen Element hinzu */
 }
 
-.dark-label {
+.dark-label { /*schauen label zum dazugehörigen output gleichgroß*/
   background-color: rgb(128, 64, 0);
   color: #ffffff; /* Schriftfarbe auf Weiß ändern */
   padding: 6px 8px; /* Kleinere Abstände */
@@ -151,10 +152,4 @@ html, body {
   margin-right: 0;
   width: 150px;
   border: 1px solid black;
-}
-
-.create-contract-button {
-  position: fixed;
-  bottom: 350px; /* Ändern Sie dies nach Bedarf, um den gewünschten Abstand zum unteren Rand zu erhalten */
-  right: 200px; /* Ändern Sie dies nach Bedarf, um den gewünschten Abstand zum rechten Rand zu erhalten */
 }

@@ -84,14 +84,15 @@
             <button (click)="deleteImage($event, customer.id)" class="btn btn-danger" style="margin-right: 10px">
               <i class="material-icons">delete</i>
             </button>
+            <br>
+            <button (click)="goToCreateContract(customer.id)" class="btn btn-info create-contract-button">
+              <i class="material-icons" style="margin-right: 5px;">description</i>
+            </button>
           </div>
           <div>
             <output *ngIf=successResponse class="success"><b>{{successResponse}}</b></output>
           </div>
         </div>
-        <button (click)="goToCreateContract(customer.id)" class="btn btn-info create-contract-button">
-          <i class="material-icons" style="margin-right: 5px;">description</i>
-        </button>
       </div>
       <div class="table-section">
         <table class="table table-striped">
