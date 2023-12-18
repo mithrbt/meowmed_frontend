@@ -6,6 +6,7 @@
 .output-textfield{
   display: inline-block; /* Hinzugefügt, um die Breite an den Inhalt anzupassen */
   min-width: 240px;
+  margin-bottom: 10px;
 }
 
 .search-input {
