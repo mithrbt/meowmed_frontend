@@ -113,6 +113,11 @@ input {
   justify-content: center;
 }
 
+.vertraglabel{
+  width:270px;
+
+}
+
 .form-group input {
   margin-right: 5px;
   cursor: pointer;

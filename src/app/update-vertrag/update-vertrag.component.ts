@@ -59,7 +59,7 @@ export class UpdateVertragComponent implements OnInit {
   }
 
   goBack() {
-    this.router.navigate(['kundendetails',this.vertrag.customer.id]);
+    this.router.navigate(['/kundendetails',this.vertrag.customer.id]);
   }
 
   quote() {
