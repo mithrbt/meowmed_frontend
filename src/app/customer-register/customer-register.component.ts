@@ -8,13 +8,12 @@ import {Profession} from "../enum/Profession";
 import {Title} from "../enum/Title";
 
 
-declare var window: Window & typeof globalThis; // Import für das Window-Objekt
-
 @Component({
   selector: 'app-customer-register',
   templateUrl: 'customer-register.component.html',
   styleUrls: ['./customer-register.component.css']
 })
+
 export class CustomerRegisterComponent implements OnInit {
 
   customer: Customer = new Customer();
@@ -33,16 +32,15 @@ export class CustomerRegisterComponent implements OnInit {
     this.customer.bankDetails = new BankDetails();
   }
 
+  //Für Dropdown Titel
   getTitleValue(key: string): string {
-    return Title[key as keyof typeof Title]; // Gib den Wert für den übergebenen Schlüssel zurück
+    return Title[key as keyof typeof Title];
   }
 
 
   saveCustomer() {
-    console.log("Titel: ", this.customer.title);
     this.customerService.createCustomer(this.customer).subscribe(
       (data) => {
-        console.log(data);
         this.customer = data;
         this.goToCustomerDetails();
       },
@@ -52,14 +50,12 @@ export class CustomerRegisterComponent implements OnInit {
 
 
   createCustomer() {
-    console.log(this.customer);
+
     if (this.calculateAge(this.customer.birthdate) < 18) {
       alert('Der Kunde muss mindestens 18 Jahre alt sein.');
       return;
     }
 
-    console.log("Kunde Berufsstand: ", this.customer.profession);
-    console.log("Enum Berufsstand: ", Profession.UNEMPLOYED);
     if (this.customer.profession === Profession.UNEMPLOYED) {
       alert('Der Kunde darf nicht Arbeitslos sein');
       return;
@@ -157,6 +153,5 @@ export class CustomerRegisterComponent implements OnInit {
     }
     return age;
   }
-
 
 }

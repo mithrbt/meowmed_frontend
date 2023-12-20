@@ -8,14 +8,13 @@ import {Cat} from "../model/cat";
 import {CatService} from "../service/cat.service";
 import {Address} from "../model/address";
 import {ImageService} from "../service/image.service";
-import {Profession} from "../enum/Profession";
-import {HttpHeaders} from "@angular/common/http";
 
 @Component({
   selector: 'app-customer-details',
   templateUrl: './customer-details.component.html',
   styleUrls: ['./customer-details.component.css']
 })
+
 export class CustomerDetailsComponent implements OnInit {
 
   id!: number;
@@ -31,7 +30,6 @@ export class CustomerDetailsComponent implements OnInit {
   searchTerm: string = '';
   totalMonthlyContribution: number = 0;
   today = new Date();
-
   dbImage!: any;
   postResponse!: any;
   image!: any;
@@ -52,9 +50,7 @@ export class CustomerDetailsComponent implements OnInit {
     this.id = this.route.snapshot.params['id'];
     this.customerService.getCustomerById(this.id).subscribe(data => {
       this.customer = data;
-      console.log("Titel:", this.customer.title)
     });
-    console.log("ID: " + this.id);
     this.getVertragList();
     this.customer.address = this.address;
 
@@ -69,22 +65,17 @@ export class CustomerDetailsComponent implements OnInit {
     this.vertragService.getVertragList(this.id).subscribe(data => {
       this.vertraege = data;
       this.filteredContracts = this.vertraege;
-      console.log("Verträge:");
-      console.log(this.vertraege);
       this.cats = new Map<number, Cat>();
+
       for (const vertrag of this.vertraege) {
-        console.log("Contribution: " + vertrag.quote);
-        console.log("Vertragende: " + vertrag.end);
-        console.log("Heute:" + this.today);
         if (new Date(vertrag.end) >= this.today) {
           this.totalMonthlyContribution = this.totalMonthlyContribution + vertrag.quote;
         }
         this.vertragService.getCatByContractId(vertrag.id).subscribe(data => {
           this.cats.set(vertrag.id, data);
         });
-        //this.imageUploadAction();
-        console.log(vertrag.quote);
       }
+
     });
   }
 
@@ -112,6 +103,7 @@ export class CustomerDetailsComponent implements OnInit {
 
   deleteVertrag(event: any, id: number) {
     this.totalMonthlyContribution = 0;
+
     if (confirm('Sind Sie sicher, dass Sie den Vertrag löschen möchten?')) {
       event.target.innerText = "Löschen...";
       this.catService.deleteCatByContractID(id).subscribe((response: any) => {
@@ -168,6 +160,7 @@ export class CustomerDetailsComponent implements OnInit {
     }
   }
 
+  //Ausgaben
   getTitleText(title: string): string {
     switch (title) {
       case 'DR':

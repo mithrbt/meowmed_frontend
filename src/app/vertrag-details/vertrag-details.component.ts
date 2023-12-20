@@ -2,22 +2,19 @@ import {Component, OnInit} from '@angular/core';
 import {Cat} from "../model/cat";
 import {Vertrag} from "../model/vertrag";
 import {ActivatedRoute, Router} from "@angular/router";
-import {CustomerService} from "../service/customer.service";
 import {VertragService} from "../service/vertrag.service";
 import {ImageService} from "../service/image.service";
-import {Customer} from "../model/customer";
-import {HttpHeaders} from "@angular/common/http";
 
 @Component({
   selector: 'app-vertrag-details',
   templateUrl: './vertrag-details.component.html',
   styleUrls: ['./vertrag-details.component.css']
 })
+
 export class VertragDetailsComponent implements OnInit {
   id!: number;
   vertrag: Vertrag = new Vertrag();
   cat: Cat = new Cat();
-
   dbImage!: any;
   postResponse!: any;
   image!: any;
@@ -34,12 +31,12 @@ export class VertragDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
     this.loadData();
-
   }
 
-  loadData(){
+  loadData() {
     this.vertragService.getVertragById(this.id).subscribe(data => {
       this.vertrag = data;
+
       this.getCatList();
     });
   }
@@ -49,7 +46,6 @@ export class VertragDetailsComponent implements OnInit {
       this.cat = data;
 
       //Bild anzeigen
-      console.log("Cat ID: " + this.cat.id);
       this.imageService.viewCatImage(this.cat.id).subscribe(res => {
         this.postResponse = res;
         this.dbImage = 'data:image/jpeg;base64,' + this.postResponse.image;
@@ -70,7 +66,6 @@ export class VertragDetailsComponent implements OnInit {
     const imageFormData = new FormData();
     imageFormData.append('image', this.uploadedImage, this.uploadedImage.name);
 
-    console.log("KundenID: ", this.cat.id);
     this.imageService.uploadCatImage(this.cat.id, imageFormData).subscribe((response) => {
       window.location.reload();
     });
@@ -86,12 +81,14 @@ export class VertragDetailsComponent implements OnInit {
       });
     }
   }
+
   goBack() {
-    this.router.navigate(['kundendetails',this.vertrag.customer.id]);
+    this.router.navigate(['kundendetails', this.vertrag.customer.id]);
   }
 
-  getEnvironmentText(p: string): string{
-    switch (p){
+  //Anzeige
+  getEnvironmentText(p: string): string {
+    switch (p) {
       case 'DRAUSSEN':
         return 'Draußen';
       case 'DRIN':
@@ -101,8 +98,8 @@ export class VertragDetailsComponent implements OnInit {
     }
   }
 
-  getColorText(p: string): string{
-    switch (p){
+  getColorText(p: string): string {
+    switch (p) {
       case 'SCHWARZ':
         return 'Schwarz';
       case 'WEISS':
@@ -120,8 +117,8 @@ export class VertragDetailsComponent implements OnInit {
     }
   }
 
-  getPersonalityText(p: string): string{
-    switch (p){
+  getPersonalityText(p: string): string {
+    switch (p) {
       case 'VERSPIELT':
         return 'Verspielt';
       case 'AUSGEGLICHEN':

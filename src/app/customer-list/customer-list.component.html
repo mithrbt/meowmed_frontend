@@ -1,4 +1,4 @@
-<h2> <label class="dark-label">Mitarbeiter Dashboard </label></h2>
+<h2><label class="dark-label">Mitarbeiter Dashboard </label></h2>
 <head>
   <meta charset="UTF-8">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -6,7 +6,8 @@
 </head>
 <form style="display: flex; align-items: center; justify-content: space-between;">
   <div>
-    <input type="text" class="form-control" id="searchTerm" [(ngModel)]="searchTerm" name="searchTerm" placeholder="Suche" (input)="filterCustomers()">
+    <input type="text" class="form-control" id="searchTerm" [(ngModel)]="searchTerm" name="searchTerm"
+           placeholder="Suche" (input)="filterCustomers()">
   </div>
   <div>
     <a onclick="window.location.href='http://localhost:4200/register';" routerLink="register" routerLinkActive="active">
@@ -19,7 +20,7 @@
   <table class="table table-striped">
     <thead>
     <tr>
-      <th> ID </th>
+      <th> ID</th>
       <th> Vorname</th>
       <th> Nachname</th>
       <th> Adresse</th>
@@ -34,9 +35,12 @@
       <td> {{ customer.lastname }} </td>
       <td> {{ customer.address.street + " " + customer.address.houseNr + ", " + customer.address.zipCode + " " + customer.address.city}}</td>
       <td>
-        <button (click)="customerDetails(customer.id)" class="btn btn-secondary" style="margin-left: 10px"><i class="material-icons">search</i></button>
-        <button (click)="updateCustomer(customer.id)" class="btn btn-info" style="margin-left: 10px"><i class="material-icons">edit</i></button>
-        <button (click)="deleteCustomer($event, customer.id)" class="btn btn-danger" style="margin-left: 10px"><i class="material-icons">delete</i></button>
+        <button (click)="customerDetails(customer.id)" class="btn btn-secondary" style="margin-left: 10px"><i
+          class="material-icons">search</i></button>
+        <button (click)="updateCustomer(customer.id)" class="btn btn-info" style="margin-left: 10px"><i
+          class="material-icons">edit</i></button>
+        <button (click)="deleteCustomer($event, customer.id)" class="btn btn-danger" style="margin-left: 10px"><i
+          class="material-icons">delete</i></button>
       </td>
     </tr>
     </tbody>

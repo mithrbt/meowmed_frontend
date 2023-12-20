@@ -1,4 +1,3 @@
-import {SafeUrl} from "@angular/platform-browser";
 import {Customer} from "./customer";
 import {Cat} from "./cat";
 

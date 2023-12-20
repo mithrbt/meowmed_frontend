@@ -11,15 +11,15 @@ import {BreedService} from "../service/breed.service";
 import {Breed} from "../model/breed";
 import {Personality} from "../enum/Personality";
 
-
 @Component({
   selector: 'app-create-vertragdashboard',
   templateUrl: './create-vertragdashboard.component.html',
   styleUrls: ['./create-vertragdashboard.component.css']
 })
-export class CreateVertragdashboardComponent implements OnInit{
 
-  vertrag : Vertrag = new Vertrag();
+export class CreateVertragdashboardComponent implements OnInit {
+
+  vertrag: Vertrag = new Vertrag();
   id!: number;
   customer: Customer = new Customer();
   cat: Cat = new Cat();
@@ -38,7 +38,7 @@ export class CreateVertragdashboardComponent implements OnInit{
               private router: Router,
               private route: ActivatedRoute,
               private customerService: CustomerService,
-              private breedService: BreedService){
+              private breedService: BreedService) {
   }
 
   ngOnInit() {
@@ -54,25 +54,22 @@ export class CreateVertragdashboardComponent implements OnInit{
   }
 
 
-  getBreedList(){
-    this.breedService.getAllBreeds().subscribe(data =>{
+  getBreedList() {
+    this.breedService.getAllBreeds().subscribe(data => {
       this.breeds = data;
-      console.log(data);
-    })
+    });
   }
 
-  onSelectBreed(){
+  onSelectBreed() {
     console.log("Ausgewählte Rasse: ", this.selectedBreed.name);
-    this.breedService.getBreedById(this.selectedBreed.name).subscribe(data =>{
+    this.breedService.getBreedById(this.selectedBreed.name).subscribe(data => {
       this.cat.breed = data;
-      console.log("Rasse:", this.cat.breed);
     });
   }
 
 
-  saveVertrag(){
-    this.vertragService.createVertrag(this.id, this.vertrag).subscribe(data =>{
-        console.log(data);
+  saveVertrag() {
+    this.vertragService.createVertrag(this.id, this.vertrag).subscribe(data => {
         this.contract = data;
         this.saveCat();
         this.goToCustomerDetails();
@@ -82,30 +79,27 @@ export class CreateVertragdashboardComponent implements OnInit{
   }
 
   createVertrag() {
-    console.log(this.vertrag);
-
     this.catNameExists = false;
-    this.catService.getCatList(this.customer.id).subscribe(data =>{
+    this.catService.getCatList(this.customer.id).subscribe(data => {
       this.cats = data;
-        for (let i = 0; i < this.cats.length; i++) {
-          if (this.cats[i].name === this.cat.name) {
-            this.catNameExists = true;
-            console.log("CatNameExists: ", this.catNameExists);
-            alert('Der Kunde besitzt schon eine Katze mit dem Namen: ' + this.cat.name);
-            return;
-          }
+      for (let i = 0; i < this.cats.length; i++) {
+        if (this.cats[i].name === this.cat.name) {
+          this.catNameExists = true;
+          alert('Der Kunde besitzt schon eine Katze mit dem Namen: ' + this.cat.name);
+          return;
         }
+      }
 
-      if(this.catNameExists){
+      if (this.catNameExists) {
         return;
       }
 
-      if(this.cat.personality.toString().toLowerCase() === Personality.VERSPIELT){
+      if (this.cat.personality.toString().toLowerCase() === Personality.VERSPIELT) {
         alert('Die Katze darf nicht verspielt sein.');
         return;
       }
 
-      if(!this.validateStart()){
+      if (!this.validateStart()) {
         alert('Das Start-Datum darf nicht in der Vergangenheit liegen und das End-Datum darf nicht vor dem Start-Datum liegen.');
         return;
       }
@@ -119,17 +113,17 @@ export class CreateVertragdashboardComponent implements OnInit{
     });
   }
 
-  saveCat(){
+  saveCat() {
     console.log("VertragID: " + this.contract.id);
-    this.catService.createCat(this.id, this.contract.id, this.cat).subscribe(data =>{
-      console.log(data);
+    this.catService.createCat(this.id, this.contract.id, this.cat).subscribe(data => {
+        console.log(data);
       },
       error => console.log(error)
     );
   }
 
 
-  goToCustomerDetails(){
+  goToCustomerDetails() {
     this.router.navigate(['kundendetails', this.customer.id]);
   }
 
@@ -138,15 +132,14 @@ export class CreateVertragdashboardComponent implements OnInit{
   }
 
   quote() {
-    console.log("Katzenrasse:" , this.cat.breed);
-    this.vertragService.quote(this.cat, this.vertrag, this.customer).subscribe(data =>{
-      this.result = data;
-      this.vertrag.quote = this.result;
-      console.log(this.result);
-    },
+    console.log("Katzenrasse:", this.cat.breed);
+    this.vertragService.quote(this.cat, this.vertrag, this.customer).subscribe(data => {
+        this.result = data;
+        this.vertrag.quote = this.result;
+      },
       error => {
         console.log(error);
-    });
+      });
   }
 
 
@@ -159,19 +152,19 @@ export class CreateVertragdashboardComponent implements OnInit{
       this.cat.birthdate !== null && this.cat.birthdate !== undefined &&
       this.cat.weight !== null && this.cat.weight !== undefined &&
       this.cat.breed !== null && this.cat.breed !== undefined
-      // Füge weitere Bedingungen für andere Felder hinzu
     );
   }
+
   openValidationDialog(): void {
     alert('Nicht alle Felder sind ausgefüllt. Bitte überprüfen Sie Ihre Eingaben.');
   }
 
-  validateStart(): boolean{
+  validateStart(): boolean {
     const today = new Date();
-    today.setHours(0,0,0,0);
+    today.setHours(0, 0, 0, 0);
     const start = new Date(this.vertrag.start);
     const end = new Date(this.vertrag.end);
-    return(
+    return (
       start.getTime() >= today.getTime() && end > start
     )
   }

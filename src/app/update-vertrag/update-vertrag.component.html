@@ -1,21 +1,21 @@
-<h2> <label class="dark-label vertraglabel">Update Vertrag </label></h2>
+<h2><label class="dark-label vertraglabel">Update Vertrag </label></h2>
 <form (ngSubmit)="onSubmit()">
   <div class="container">
     <div class="left-panel">
-      <div class="form-group" >
+      <div class="form-group">
         <label class="dark-label"> Name </label>
         <input type="text" class="form-control" id="name"
                [(ngModel)]="cat.name" name="name" disabled>
       </div>
-      <div class = "form-group">
+      <div class="form-group">
         <label for="breed">Rasse</label>
         <input type="text" class="form-control" id="breed"
-               [(ngModel)] = "cat.breed.name" name ="breed" disabled>
+               [(ngModel)]="cat.breed.name" name="breed" disabled>
       </div>
-      <div class = "form-group">
+      <div class="form-group">
         <label class="dark-label"> Geburtsdatum </label>
         <input type="date" class="form-control" id="birthdate"
-               [(ngModel)] = "cat.birthdate" name ="birthdate" disabled>
+               [(ngModel)]="cat.birthdate" name="birthdate" disabled>
       </div>
 
       <div class="form-group">
@@ -43,29 +43,29 @@
           </div>
 
           <div class="form-radio">
-            <input type="radio" id="orange" name="color" value="ORANGE" [(ngModel)] = "cat.color" disabled>
+            <input type="radio" id="orange" name="color" value="ORANGE" [(ngModel)]="cat.color" disabled>
             <label for="orange">Orange</label>
           </div>
 
           <div class="form-radio">
-            <input type="radio" id="grau" name="color" value="GRAU" [(ngModel)] = "cat.color" disabled>
+            <input type="radio" id="grau" name="color" value="GRAU" [(ngModel)]="cat.color" disabled>
             <label for="grau">Grau</label>
           </div>
         </div>
       </div>
 
 
-      <div class = "form-group">
+      <div class="form-group">
         <label class="dark-label"> Gewicht </label>
         <input type="text" class="form-control" id="weight"
-               [(ngModel)] = "cat.weight" name ="weight" required>
+               [(ngModel)]="cat.weight" name="weight" required>
       </div>
 
-      <div class = "form-group">
+      <div class="form-group">
         <label class="dark-label"> Kastriert </label><br>
-        <div class = "form-radio">
+        <div class="form-radio">
           <input type="checkbox" id="castrated" name="castrated" value="TRUE"
-                 [(ngModel)] = "cat.castrated" name ="castrated">
+                 [(ngModel)]="cat.castrated" name="castrated">
           <label for="castrated"> Ist kastriert</label><br>
         </div>
       </div>
@@ -94,54 +94,56 @@
         <div class="form-radio-group">
 
           <div class="form-radio">
-            <input type="radio" id="verspielt" name="personality" value="VERSPIELT" [(ngModel)] = "cat.personality" name ="personality"  required>
+            <input type="radio" id="verspielt" name="personality" value="VERSPIELT" [(ngModel)]="cat.personality"
+                   name="personality" required>
             <label for="verspielt">Verspielt</label>
           </div>
 
           <div class="form-radio">
-            <input type="radio" id="ausgeglichen" name="personality" value="AUSGEGLICHEN" [(ngModel)] = "cat.personality" name ="personality">
+            <input type="radio" id="ausgeglichen" name="personality" value="AUSGEGLICHEN" [(ngModel)]="cat.personality"
+                   name="personality">
             <label for="ausgeglichen">Ausgeglichen</label>
           </div>
-          <div class = "form-radio">
+          <div class="form-radio">
             <input type="radio" id="scheu" name="personality" value="SCHEU"
-                   [(ngModel)] = "cat.personality" name ="personality" class="radio">
+                   [(ngModel)]="cat.personality" name="personality" class="radio">
             <label for="scheu" class="radiolabel"> Scheu</label>
           </div>
-          <div class = "form-radio">
+          <div class="form-radio">
             <input type="radio" id="zutraulich" name="personality" value="ZUTRAULICH"
-                   [(ngModel)] = "cat.personality" name ="personality" class="radio">
+                   [(ngModel)]="cat.personality" name="personality" class="radio">
             <label for="zutraulich" class="radiolabel"> Zutraulich</label>
           </div>
-          <div class = "form-radio">
+          <div class="form-radio">
             <input type="radio" id="anhaenglich" name="personality" value="ANHAENGLICH"
-                   [(ngModel)] = "cat.personality" name ="personality" class="radio">
+                   [(ngModel)]="cat.personality" name="personality" class="radio">
             <label for="anhaenglich" class="radiolabel"> Anhänglich</label>
           </div>
-          <div class = "form-radio">
+          <div class="form-radio">
             <input type="radio" id="verschmust" name="personality" value="VERSCHMUST"
-                   [(ngModel)] = "cat.personality" name ="personality" class="radio">
+                   [(ngModel)]="cat.personality" name="personality" class="radio">
             <label for="verschmust" class="radiolabel"> Verschmust</label>
           </div>
 
         </div>
       </div>
 
-      <div class = "form-group">
+      <div class="form-group">
         <label class="dark-label">Beginn</label>
         <input type="date" class="form-control" id="start"
-               [(ngModel)] = "formattedStartDate" name ="start" disabled>
+               [(ngModel)]="formattedStartDate" name="start" disabled>
       </div>
 
-      <div class = "form-group">
+      <div class="form-group">
         <label class="dark-label"> Ende </label>
         <input type="date" class="form-control" id="end"
-               [(ngModel)] = "formattedEndDate" name ="end" required>
+               [(ngModel)]="formattedEndDate" name="end" required>
       </div>
 
-      <div class = "form-group">
+      <div class="form-group">
         <label class="dark-label"> Deckung </label>
         <input type="number" class="form-control" id="coverage"
-               [(ngModel)] = "vertrag.coverage" name ="coverage" required>
+               [(ngModel)]="vertrag.coverage" name="coverage" required>
       </div>
 
       <div>

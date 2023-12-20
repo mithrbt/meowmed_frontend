@@ -9,6 +9,7 @@ import {Title} from "../enum/Title";
   templateUrl: './update-customer.component.html',
   styleUrls: ['./update-customer.component.css']
 })
+
 export class UpdateCustomerComponent implements OnInit {
   id!: number;
   customer: Customer = new Customer();
@@ -20,8 +21,7 @@ export class UpdateCustomerComponent implements OnInit {
   constructor(
     private customerService: CustomerService,
     private route: ActivatedRoute,
-    private router: Router
-  ) {
+    private router: Router) {
   }
 
   ngOnInit(): void {
@@ -29,7 +29,6 @@ export class UpdateCustomerComponent implements OnInit {
     this.customerService.getCustomerById(this.id).subscribe(
       data => {
         this.customer = data;
-        console.log(this.customer.birthdate);
         const date = new Date(this.customer.birthdate);
         this.formattedBirthdate = this.formatDate(date);
       },
@@ -37,8 +36,9 @@ export class UpdateCustomerComponent implements OnInit {
     );
   }
 
+  //Für Dropdown Titel
   getTitleValue(key: string): string {
-    return Title[key as keyof typeof Title]; // Gib den Wert für den übergebenen Schlüssel zurück
+    return Title[key as keyof typeof Title];
   }
 
 
@@ -46,7 +46,6 @@ export class UpdateCustomerComponent implements OnInit {
     this.customerService.updateCustomer(this.id, this.customer).subscribe(
       data => {
         this.goToCustomerList();
-
       },
       error => console.log(error)
     );
