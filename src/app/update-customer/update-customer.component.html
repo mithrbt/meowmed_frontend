@@ -1,0 +1,162 @@
+<h2><label class="dark-label">Update Kunde </label></h2>
+<form (ngSubmit)="onSubmit()">
+  <div class="container">
+    <div class="left-panel">
+      <div class="form-group">
+        <label class="dark-label">Titel</label>
+        <select id="title" name="title" [(ngModel)]="customer.title" class="custom-select">
+          <option *ngFor="let titleKey of titleKeys" [value]="titleKey">{{ getTitleValue(titleKey) }}</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="dark-label"> Vorname </label>
+        <input type="text" class="form-control" id="firstname"
+               [(ngModel)]="customer.firstname" name="firstname">
+      </div>
+      <div class="form-group">
+        <label class="dark-label"> Nachname </label>
+        <input type="text" class="form-control" id="lastname"
+               [(ngModel)]="customer.lastname" name="lastname">
+      </div>
+      <div class="form-group">
+        <label class="dark-label"> E-Mail </label>
+        <input type="text" class="form-control" id="email"
+               [(ngModel)]="customer.email" name="email">
+      </div>
+      <div class="form-group">
+        <label class="dark-label"> Strasse </label>
+        <input type="text" class="form-control" id="address.street"
+               [(ngModel)]="customer.address.street" name="address.street">
+      </div>
+      <div class="form-group">
+        <label class="dark-label"> Hausnummer </label>
+        <input type="text" class="form-control" id="address.houseNr"
+               [(ngModel)]="customer.address.houseNr" name="address.houseNr">
+      </div>
+      <div class="form-group">
+        <label class="dark-label"> Postleitzahl </label>
+        <input type="text" class="form-control" id="address.zipCode"
+               [(ngModel)]="customer.address.zipCode" name="address.zipCode">
+      </div>
+      <div class="form-group">
+        <label class="dark-label"> Stadt </label>
+        <input type="text" class="form-control" id="address.city"
+               [(ngModel)]="customer.address.city" name="address.city">
+      </div>
+      <div class="form-group">
+        <label class="dark-label"> Land </label>
+        <input type="text" class="form-control" id="address.country"
+               [(ngModel)]="customer.address.country" name="address.country" required>
+      </div>
+      <div class="form-group" [ngClass]="{'invalid-field': !customer.birthdate}">
+        <label class="dark-label"> Geburtsdatum </label>
+        <input type="date" class="form-control" id="birthdate"
+               [(ngModel)]="formattedBirthdate" name="birthdate">
+      </div>
+      <div class="form-group">
+        <label class="dark-label"> Telefonnummer </label>
+        <input type="text" class="form-control" id="telNr"
+               [(ngModel)]="customer.telNr" name="telNr">
+      </div>
+
+      <div class="form-group">
+        <label class="dark-label">Familienstatus</label>
+        <div class="form-radio-group">
+          <div class="form-radio">
+            <input type="radio" id="single" name="familyStatus" value="SINGLE" [(ngModel)]="customer.familyStatus">
+            <label for="single">Ledig</label>
+          </div>
+
+          <div class="form-radio">
+            <input type="radio" id="regPartnership" name="familyStatus" value="REGPARTNERSHIP"
+                   [(ngModel)]="customer.familyStatus">
+            <label for="regPartnership">Geschieden</label>
+          </div>
+
+          <div class="form-radio">
+            <input type="radio" id="married" name="familyStatus" value="MARRIED" [(ngModel)]="customer.familyStatus">
+            <label for="married">Verheiratet</label>
+          </div>
+
+          <div class="form-radio">
+            <input type="radio" id="divorced" name="familyStatus" value="DIVORCED" [(ngModel)]="customer.familyStatus">
+            <label for="divorced">Geschieden</label>
+          </div>
+
+          <div class="form-radio">
+            <input type="radio" id="widowed" name="familyStatus" value="WIDOWED" [(ngModel)]="customer.familyStatus">
+            <label for="widowed">Verwitwet</label>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+    <div class="right-panel">
+      <div class="form-group">
+        <label class="dark-label"> Steuer-Nr. </label>
+        <input type="text" class="form-control" id="taxID"
+               [(ngModel)]="customer.taxID" name="taxID">
+      </div>
+      <div class="form-group">
+        <label class="dark-label"> Sozialversicherungsnummer </label>
+        <input type="text" class="form-control" id="snv"
+               [(ngModel)]="customer.svn" name="svn">
+      </div>
+      <div class="form-group">
+        <label class="dark-label"> Brutto-Einkommen </label>
+        <input type="text" class="form-control" id="income"
+               [(ngModel)]="customer.income" name="income">
+      </div>
+      <div class="form-group">
+        <label class="dark-label">Berufsstand</label>
+        <div class="form-radio-group">
+          <div class="form-radio">
+            <input type="radio" id="employed" name="profession" value="EMPLOYED" [(ngModel)]="customer.profession">
+            <label for="employed">Angestellt</label>
+          </div>
+
+          <div class="form-radio">
+            <input type="radio" id="unemployed" name="profession" value="UNEMPLOYED" [(ngModel)]="customer.profession">
+            <label for="unemployed">Arbeitslos</label>
+          </div>
+
+          <div class="form-radio">
+            <input type="radio" id="selfemployed" name="profession" value="SELFEMPLOYED"
+                   [(ngModel)]="customer.profession">
+            <label for="selfemployed">Selbstständig</label>
+          </div>
+
+          <div class="form-radio">
+            <input type="radio" id="student" name="profession" value="STUDENT" [(ngModel)]="customer.profession">
+            <label for="student">Student/Schüler</label>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="dark-label"> Kontoinhaber </label>
+        <input type="text" class="form-control" id="bankdetails.accountholder"
+               [(ngModel)]="customer.bankDetails.accountholder" name="bankdetails.accountholder">
+      </div>
+      <div class="form-group">
+        <label class="dark-label"> Bankinstitut </label>
+        <input type="text" class="form-control" id="bankdetails.bank_name"
+               [(ngModel)]="customer.bankDetails.bank_name" name="bankdetails.bank_name">
+      </div>
+      <div class="form-group">
+        <label class="dark-label"> IBAN </label>
+        <input type="text" class="form-control" id="bankdetails.iban"
+               [(ngModel)]="customer.bankDetails.iban" name="bankdetails.iban">
+      </div>
+
+    </div>
+    <button type="button" class="back-button" (click)="goBack()">
+      <span class="button-text">&larr;</span>
+    </button>
+    <button type="submit" class="paw-button">
+      <span class="button-text">&check;</span>
+    </button>
+  </div>
+</form>
+
+

@@ -1,0 +1,156 @@
+.vertrag-abgelaufen {
+  background-color: #696969 !important;
+  color: #ffffff;
+}
+
+.output-textfield{
+  display: inline-block; /* Hinzugefügt, um die Breite an den Inhalt anzupassen */
+  min-width: 240px;
+  margin-bottom: 10px;
+}
+
+.search-input {
+  width: 150px; /* Ändere die Breite nach Bedarf */
+}
+
+.customer-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.search-form {
+  display: flex;
+  align-items: center;
+}
+
+.main-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+  width: 70vw;
+}
+
+.first-section,
+.second-section,
+.third-section {
+  flex: 1;
+  align-items: center;
+
+}
+
+.table-section {
+  width: 100%;
+}
+
+html, body {
+  width: 100vh;
+  height: 100vh;
+}
+
+.container-fluid {
+  width: 100vh;
+  height: 100vh;
+}
+
+.table-section {
+  width: 70vw;
+  max-height: 30vh; /* Höchstens 2/3 der Bildschirmhöhe */
+  overflow-y: auto; /* Fügt eine vertikale Scroll-Leiste hinzu, wenn der Inhalt zu groß ist */
+  overflow-x: hidden;  /* Verhindert horizontales Scrollen */
+
+  /* Weitere CSS-Stile hier, je nach Bedarf */
+}
+
+.table-section table tbody tr:nth-child(even) {
+  background-color: rgba(128, 64, 0, 0.50);
+  color: #ffffff;
+}
+
+.btn{
+  background: url('../../assets/images/pfotenbild.svg') no-repeat;
+  background-size: contain;
+  display: inline-block;
+  border: none;
+  cursor: pointer;
+  width: 8em;
+  height: 3em;
+  padding-top: 26px;
+  padding-right: 87px;
+}
+
+.back-button {
+  background: url('../../assets/images/pfotenbild.svg') no-repeat;
+  background-size: contain;
+  display: block; /* Ändere zu 'block', um die Breite zu 100% zu machen und in der Mitte zu positionieren */
+  margin: 0 auto; /* Zentriere den Button horizontal */
+  border: none;
+  cursor: pointer;
+  width: 12em; /* Ändere die Breite nach Bedarf */
+  height: 5em; /* Ändere die Höhe nach Bedarf */
+  line-height: 5em; /* Zentriere den Text vertikal innerhalb des Buttons */
+  text-align: center; /* Zentriere den Text horizontal innerhalb des Buttons */ /* Ändere die Schriftgröße nach Bedarf */
+  padding-top: 18px;
+  padding-right: 110px;
+}
+
+.button-text{
+  font-size: 30px;
+  color: white;
+
+}
+
+.material-icons{
+  color: white;
+  font-size:17px;
+}
+
+.third-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.total-price {
+  margin-bottom: 10px; /* Füge etwas Platz zwischen den Elementen hinzu */
+}
+
+.create-contract-button {
+  margin-left: 10px;
+  margin-top:50px;/* Füge etwas Abstand zum vorherigen Element hinzu */
+}
+
+.dark-label { /*schauen label zum dazugehörigen output gleichgroß*/
+  background-color: rgb(128, 64, 0);
+  color: #ffffff; /* Schriftfarbe auf Weiß ändern */
+  padding: 6px 8px; /* Kleinere Abstände */
+  border-radius: 5px;
+  cursor: pointer;
+  display: inline-block; /* Änderung: Stellen Sie sicher, dass das Element nur so breit wie sein Inhalt ist */
+  width: 100px; /* Änderung: Lassen Sie die Breite automatisch berechnen */
+  font-size: 14px; /* Ändere die Schriftgröße nach Bedarf */
+  text-align: center;
+  margin-bottom: -10px;
+}
+
+.kundendetail{
+  font-size: 24px;
+  width: auto;
+}
+
+.cropped1 {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border: 5px solid black;
+}
+
+.rechts {
+  margin-left: auto;
+  margin-right: 0;
+  width: 150px;
+  border: 1px solid black;
+}

@@ -1,0 +1,166 @@
+<h2><label class="dark-label"> Neuer Vertrag </label></h2>
+<form (ngSubmit)="createVertrag()">
+  <div class="container">
+    <div class="left-panel">
+      <div class="form-group" [ngClass]="{'invalid-field': !cat.name}">
+        <label class="dark-label"> Name </label>
+        <input type="text" class="form-control" id="name"
+               [(ngModel)]="cat.name" name="name" required>
+      </div>
+      <div class="form-group" [ngClass]="{'invalid-field': !cat.breed}">
+        <label for="breed">Rasse</label>
+        <select class="form-control" id="breed" name="breed" [(ngModel)]="cat.breed" required>
+          <option *ngFor="let breed of breeds" [ngValue]="breed">{{ breed.name }}</option>
+        </select>
+      </div>
+      <div class="form-group" [ngClass]="{'invalid-field': !cat.birthdate}">
+        <label class="dark-label"> Geburtsdatum </label>
+        <input type="date" class="form-control" id="birthdate"
+               [(ngModel)]="cat.birthdate" name="birthdate" required>
+      </div>
+
+      <div class="form-group" [ngClass]="{'invalid-field': !cat.color}">
+        <label class="dark-label">Farbe</label>
+        <div class="form-radio-group">
+
+          <div class="form-radio">
+            <input type="radio" id="black" name="color" value="SCHWARZ" [(ngModel)]="cat.color" required>
+            <label for="black">Schwarz</label>
+          </div>
+
+          <div class="form-radio">
+            <input type="radio" id="white" name="color" value="WEISS" [(ngModel)]="cat.color" required>
+            <label for="white">Weiss</label>
+          </div>
+
+          <div class="form-radio">
+            <input type="radio" id="braun" name="color" value="BRAUN" [(ngModel)]="cat.color" required>
+            <label for="braun">Braun</label>
+          </div>
+
+          <div class="form-radio">
+            <input type="radio" id="mehrfarbig" name="color" value="MEHRFARBIG" [(ngModel)]="cat.color" required>
+            <label for="mehrfarbig">Mehrfarbig</label>
+          </div>
+
+          <div class="form-radio">
+            <input type="radio" id="orange" name="color" value="ORANGE" [(ngModel)]="cat.color" required>
+            <label for="orange">Orange</label>
+          </div>
+
+          <div class="form-radio">
+            <input type="radio" id="grau" name="color" value="GRAU" [(ngModel)]="cat.color" required>
+            <label for="grau">Grau</label>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="form-group" [ngClass]="{'invalid-field': !cat.weight}">
+        <label class="dark-label"> Gewicht </label>
+        <input type="text" class="form-control" id="weight"
+               [(ngModel)]="cat.weight" name="weight" required>
+      </div>
+
+      <div class="form-group">
+        <label class="dark-label"> Kastriert </label><br>
+        <div class="form-radio">
+          <input type="checkbox" id="castrated" name="castrated" value="TRUE"
+                 [(ngModel)]="cat.castrated" name="castrated">
+          <label for="castrated"> Ist kastriert</label><br>
+        </div>
+      </div>
+
+
+    </div>
+    <div class="right-panel">
+
+      <div class="form-group" [ngClass]="{'invalid-field': !cat.environment}">
+        <label class="dark-label">Umgebung</label>
+        <div class="form-radio-group">
+
+          <div class="form-radio">
+            <input type="radio" id="outdoor" name="environment" value="DRAUSSEN" [(ngModel)]="cat.environment" required>
+            <label for="outdoor">Draussen</label>
+          </div>
+
+          <div class="form-radio">
+            <input type="radio" id="indoor" name="environment" value="DRIN" [(ngModel)]="cat.environment" required>
+            <label for="indoor">Drin</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group" [ngClass]="{'invalid-field': !cat.personality}">
+        <label class="dark-label">Persönlichkeit</label>
+        <div class="form-radio-group">
+
+          <div class="form-radio">
+            <input type="radio" id="verspielt" name="personality" value="VERSPIELT" [(ngModel)]="cat.personality"
+                   name="personality" required>
+            <label for="verspielt">Verspielt</label>
+          </div>
+
+          <div class="form-radio">
+            <input type="radio" id="ausgeglichen" name="personality" value="AUSGEGLICHEN" [(ngModel)]="cat.personality"
+                   name="personality" required>
+            <label for="ausgeglichen">Ausgeglichen</label>
+          </div>
+          <div class="form-radio">
+            <input type="radio" id="scheu" name="personality" value="SCHEU"
+                   [(ngModel)]="cat.personality" name="personality" class="radio">
+            <label for="scheu" class="radiolabel"> Scheu</label>
+          </div>
+          <div class="form-radio">
+            <input type="radio" id="zutraulich" name="personality" value="ZUTRAULICH"
+                   [(ngModel)]="cat.personality" name="personality" class="radio">
+            <label for="zutraulich" class="radiolabel"> Zutraulich</label>
+          </div>
+          <div class="form-radio">
+            <input type="radio" id="anhaenglich" name="personality" value="ANHAENGLICH"
+                   [(ngModel)]="cat.personality" name="personality" class="radio">
+            <label for="anhaenglich" class="radiolabel"> Anhänglich</label>
+          </div>
+          <div class="form-radio">
+            <input type="radio" id="verschmust" name="personality" value="VERSCHMUST"
+                   [(ngModel)]="cat.personality" name="personality" class="radio">
+            <label for="verschmust" class="radiolabel"> Verschmust</label>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="form-group" [ngClass]="{'invalid-field': !vertrag.start}">
+        <label class="dark-label">Beginn</label>
+        <input type="date" class="form-control" id="start"
+               [(ngModel)]="vertrag.start" name="start" required>
+      </div>
+
+      <div class="form-group" [ngClass]="{'invalid-field': !vertrag.end}">
+        <label class="dark-label"> Ende </label>
+        <input type="date" class="form-control" id="end"
+               [(ngModel)]="vertrag.end" name="end" required>
+      </div>
+
+      <div class="form-group" [ngClass]="{'invalid-field': !vertrag.coverage}">
+        <label class="dark-label"> Deckung </label>
+        <input type="number" class="form-control" id="coverage"
+               [(ngModel)]="vertrag.coverage" name="coverage" required>
+      </div>
+
+      <div>
+        <button type="button" (click)="quote()" class="btn btn-info" style="float: right">Beitrag berechnen</button>
+        <label class="dark-label"> Monatlicher Beitrag: </label>
+        <div *ngIf="result !== null">{{result | number:'1.2-2' }}€</div>
+      </div>
+    </div>
+    <button type="button" class="back-button" (click)="goBack()">
+      <span class="button-text">&larr;</span>
+    </button>
+    <button type="submit" class="paw-button">
+      <span class="button-text">&check;</span>
+    </button>
+  </div>
+</form>
+
+

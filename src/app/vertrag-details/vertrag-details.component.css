@@ -1,0 +1,71 @@
+.btn {
+  background: url('../../assets/images/pfotenbild.svg') no-repeat;
+  background-size: contain;
+  display: inline-block;
+  border: none;
+  cursor: pointer;
+  width: 12em;
+  height: 5em;
+  padding-top: 45px;
+  padding-right: 115px;
+}
+
+.btn-back{
+  padding-top: 35px;
+  padding-right: 120px;
+}
+
+.button-text {
+  font-size: 30px;
+  color: #ffffff; /* Schriftfarbe auf Weiß ändern */
+}
+
+.first-section,
+.second-section {
+  flex: 1;
+}
+
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.dark-label {
+  background-color: rgb(128, 64, 0);
+  color: #ffffff;
+  padding: 6px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  width:110px;
+
+}
+
+.bild{
+  margin-bottom: -17px;
+}
+
+.vertragdetail{
+  font-size: 24px;
+  width: auto;
+
+}
+
+.form-group {
+  display: flex;
+}
+
+.output-textfield {
+  margin-bottom: 10px;
+  margin-left: 10px; /* Fügt einen horizontalen Abstand zwischen .form-group und .output-textfield hinzu */
+}
+
+.cropped1 {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border: 5px solid black;
+}

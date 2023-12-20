@@ -1,0 +1,40 @@
+.table-section table tbody tr:nth-child(even) {
+  background-color: rgba(128, 64, 0, 0.50);
+  color: #ffffff;
+}
+
+.table-section {
+  width: 75vw;
+  max-height: 80vh; /* Höchstens 2/3 der Bildschirmhöhe */
+  overflow-y: auto; /* Fügt eine vertikale Scroll-Leiste hinzu, wenn der Inhalt zu groß ist */
+  overflow-x: hidden;  /* Verhindert horizontales Scrollen */
+
+  /* Weitere CSS-Stile hier, je nach Bedarf */
+}
+
+.btn{
+  background: url('../../assets/images/pfotenbild.svg') no-repeat;
+  background-size: contain;
+  display: inline-block;
+  border: none;
+  cursor: pointer;
+  width: 8em;
+  height: 3em;
+  padding-top: 26px;
+  padding-right: 87px;
+}
+
+.material-icons{
+  color:white;
+}
+
+.dark-label {
+  background-color: rgb(128, 64, 0);
+  color: #ffffff; /* Schriftfarbe auf Weiß ändern */
+  padding: 6px 8px; /* Kleinere Abstände */
+  border-radius: 5px;
+  cursor: pointer;
+  display: inline-block; /* Änderung: Stellen Sie sicher, dass das Element nur so breit wie sein Inhalt ist */
+  font-size: 24px; /* Ändere die Schriftgröße nach Bedarf */
+  text-align: center;
+}
